@@ -12,6 +12,16 @@ public:
     // Default constructor
     DisplayWidget();
     
+public slots:
+    
+    void play();
+    
+    void changeVolume(int volume);
+    
+    void changePosition(int position);
+    
+    void changeFile(QString file);
+    
 private:
     
     // Video player

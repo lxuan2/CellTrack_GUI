@@ -13,37 +13,25 @@
 #include <QFileDialog>
 
 #include "display_widget.hpp"
+#include "video_groupbox.hpp"
+#include "control_panel_groupbox.hpp"
+
 
 class CellApp: public QWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    CellApp();
+    CellApp(QWidget *parent = nullptr);
     
 private:
     
-    // Video widget pointer
+    // Video widget
     DisplayWidget *videoWidget;
-    
-    // Buttons
-    QPushButton *browseButton;
-    QPushButton *loadOrgButton;
-    QPushButton *loadResButton;
-    QPushButton *analyzeButton;
-    
-    // Line-Edit
-    QComboBox *fileCombobox;
-    QSpinBox *maxCellSize;
-    QSpinBox *minCellSize;
-    
-    // Group boxes
-    QGroupBox *videoBox;
-    QGroupBox *controlBox;
 
-    // Functions
-    void browse();
-    void loadOrgVideo(int index);
+    // Group boxes
+    VideoGroupBox *videoBox;
+    ControPannelGroupBox *controlBox;
 };
 
 #endif

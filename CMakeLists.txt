@@ -8,6 +8,8 @@ find_package(Qt5MultimediaWidgets REQUIRED)
 
 add_executable(cell cell.cpp
 	cell_app.hpp cell_app.cpp
-	display_widget.hpp display_widget.cpp)
+	display_widget.hpp display_widget.cpp
+	video_groupbox.hpp video_groupbox.cpp
+	control_panel_groupbox.hpp control_panel_groupbox.cpp)
 set_property(TARGET cell PROPERTY CXX_STANDARD 11)
 target_link_libraries(cell Qt5::Widgets Qt5::MultimediaWidgets)
