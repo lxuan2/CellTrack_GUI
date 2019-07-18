@@ -12,10 +12,10 @@
 #include <QPushButton>
 #include <QFileDialog>
 
+#include "log_widget.hpp"
 #include "display_widget.hpp"
 #include "video_groupbox.hpp"
 #include "control_panel_groupbox.hpp"
-
 
 class CellApp: public QWidget{
     Q_OBJECT
@@ -28,6 +28,10 @@ private:
     
     // Video widget
     DisplayWidget *videoWidget;
+    
+    // Log widget
+    
+    LogWidget *log;
 
     // Group boxes
     VideoGroupBox *videoBox;

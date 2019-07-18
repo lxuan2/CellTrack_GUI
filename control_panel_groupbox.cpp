@@ -1,6 +1,7 @@
 #include "control_panel_groupbox.hpp"
 
-ControPannelGroupBox::ControPannelGroupBox() {
+ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
+    log = l;
     setTitle("Control Panel");
     maxCellSize = new QSpinBox();
     minCellSize = new QSpinBox();

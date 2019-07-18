@@ -9,9 +9,7 @@
 #include <QLayout>
 #include <QLabel>
 
-class QAbstractButton;
-class QAbstractSlider;
-class QComboBox;
+#include "log_widget.hpp"
 
 class ControPannelGroupBox: public QGroupBox
 {
@@ -19,13 +17,16 @@ class ControPannelGroupBox: public QGroupBox
 public:
     
     // Default constructor
-    ControPannelGroupBox();
+    ControPannelGroupBox(LogWidget *l);
     
 private:
     
     QSpinBox *maxCellSize;
     QSpinBox *minCellSize;
     QPushButton *analyzeButton;
+    
+    // Log recorder
+    LogWidget *log;
 };
 
 #endif

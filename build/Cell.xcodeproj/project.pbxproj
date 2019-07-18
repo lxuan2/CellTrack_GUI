@@ -9,21 +9,21 @@
 /* Begin PBXAggregateTarget section */
 		50A130B4FC1949049E5FAE4D /* cell_autogen */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 2EB0AAA8F42B418EB7C9EAB0 /* Build configuration list for PBXAggregateTarget "cell_autogen" */;
+			buildConfigurationList = 364675FA457B488D953F112B /* Build configuration list for PBXAggregateTarget "cell_autogen" */;
 			buildPhases = (
-				0B0CA3F96BB24E9A903DB610 /* CMake Rules */,
+				C312A80B959E4866A0FFE8F1 /* CMake Rules */,
 			);
 			dependencies = (
-				5BC95E4BADFE4BDE84596CF6 /* PBXTargetDependency */,
+				179AC75752864F56B4A954A8 /* PBXTargetDependency */,
 			);
 			name = cell_autogen;
 			productName = cell_autogen;
 		};
 		DE7EF7C26E1C46F6AFF5115D /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 2FBBDB0BBA824C269C4746B2 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = C2FC22CA95794A4C80E3C46E /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
-				50DF6858E185429F8EE70284 /* CMake Rules */,
+				8344811BB9164F39BA798360 /* CMake Rules */,
 			);
 			dependencies = (
 			);
@@ -32,13 +32,13 @@
 		};
 		F65521A4B4974FDF95110914 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 187A6167BFDD479E9BE1A159 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = F4FE24F675D14C27922265D7 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
-				29CF7A0F6F004F73B5B2BE1A /* CMake Rules */,
+				9A6D80D29C29415D8A12BFA6 /* CMake Rules */,
 			);
 			dependencies = (
-				609CD09A5F1D4CEFAC207EBF /* PBXTargetDependency */,
-				3F96A2D0333C46B79B155DC9 /* PBXTargetDependency */,
+				88B42C64668149CFAFFA7B8C /* PBXTargetDependency */,
+				EC27AF7825894895AD4ABD72 /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
@@ -46,80 +46,84 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0C91CB67C2824B48B53CD228 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */ = {isa = PBXBuildFile; fileRef = 2F19014E1840416E9B0F2925 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */; };
-		3BAF2C5B01D647E18827A848 /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */ = {isa = PBXBuildFile; fileRef = 898A6B1E49CF4642B7370440 /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */; };
-		4E2EE0F7B134433D8FAEF160 /* /Users/xuanli/Desktop/cell/cell_app.hpp */ = {isa = PBXBuildFile; fileRef = 9DF014297C504ACF9A8EC508 /* /Users/xuanli/Desktop/cell/cell_app.hpp */; };
-		527DB93205544ED5A497402D /* /Users/xuanli/Desktop/cell/cell.cpp */ = {isa = PBXBuildFile; fileRef = D3EE0C5EAED14FF48F5E152B /* /Users/xuanli/Desktop/cell/cell.cpp */; };
-		621BEA20578B4D48A387BACF /* /Users/xuanli/Desktop/cell/display_widget.cpp */ = {isa = PBXBuildFile; fileRef = B0C914965DBA4CFE8DAE3C06 /* /Users/xuanli/Desktop/cell/display_widget.cpp */; };
-		6FCC7D6305204627BA68AB8A /* /Users/xuanli/Desktop/cell/cell_app.cpp */ = {isa = PBXBuildFile; fileRef = DE2ED942C7934678A25055B3 /* /Users/xuanli/Desktop/cell/cell_app.cpp */; };
-		705AC3503BF54D09BBA3195D /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */ = {isa = PBXBuildFile; fileRef = 8A32A3DCF8474CC5BA825A41 /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */; };
-		83EE0CA8146B49148A79845D /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */ = {isa = PBXBuildFile; fileRef = A86B5A37D1814FA8B3B73C9B /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */; };
-		8C567AC6EB664F05BF030C7B /* /Users/xuanli/Desktop/cell/display_widget.hpp */ = {isa = PBXBuildFile; fileRef = C25E03795E13413989E9AB30 /* /Users/xuanli/Desktop/cell/display_widget.hpp */; };
-		9D852503CF6F4FF7874DE144 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */ = {isa = PBXBuildFile; fileRef = 54F34F14A7024CCDBA6F88A6 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */; };
-		EA6BA6FA7AD34F259569A009 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 02227D7D3B654322B0663FE2 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */; };
+		0BE998FBBA644E0291E769F0 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */ = {isa = PBXBuildFile; fileRef = 16034A5E68CB4F98903D76F3 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */; };
+		0CA005F4CC8743AABE219293 /* /Users/xuanli/Desktop/cell/file_combobox.cpp */ = {isa = PBXBuildFile; fileRef = DC0335B7F4E64E498EF92E83 /* /Users/xuanli/Desktop/cell/file_combobox.cpp */; };
+		13BFEBCC62A145BFBAE18084 /* /Users/xuanli/Desktop/cell/log_widget.hpp */ = {isa = PBXBuildFile; fileRef = 9FB6BFAC456D4E9596414C58 /* /Users/xuanli/Desktop/cell/log_widget.hpp */; };
+		2797286835744575B1BC3004 /* /Users/xuanli/Desktop/cell/cell.cpp */ = {isa = PBXBuildFile; fileRef = 993B375AA9044E2DA2259B23 /* /Users/xuanli/Desktop/cell/cell.cpp */; };
+		37BB1218A5C34AE99C7D461E /* /Users/xuanli/Desktop/cell/log_widget.cpp */ = {isa = PBXBuildFile; fileRef = 43776ECA513B4C5EA6E1D00F /* /Users/xuanli/Desktop/cell/log_widget.cpp */; };
+		38887814444F47BAB8F25CEC /* /Users/xuanli/Desktop/cell/cell_app.hpp */ = {isa = PBXBuildFile; fileRef = 10FAC6C23C804A4EBC4DC82B /* /Users/xuanli/Desktop/cell/cell_app.hpp */; };
+		3E9DA2ED630B4BF59B679F89 /* /Users/xuanli/Desktop/cell/display_widget.hpp */ = {isa = PBXBuildFile; fileRef = 9263B91F76BA46829BDFFD0E /* /Users/xuanli/Desktop/cell/display_widget.hpp */; };
+		4E46DF53AB974283B0D826F7 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 781DC31F461141638DA8F748 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */; };
+		56DBD065857743DD8F8DFD88 /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */ = {isa = PBXBuildFile; fileRef = 29521A79501B42679F49470B /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */; };
+		663B21210F1C421C8A455EB4 /* /Users/xuanli/Desktop/cell/cell_app.cpp */ = {isa = PBXBuildFile; fileRef = 2A7A1853E3124CB686BC96AB /* /Users/xuanli/Desktop/cell/cell_app.cpp */; };
+		78C2E71A85B04C0D961DA2D0 /* /Users/xuanli/Desktop/cell/display_widget.cpp */ = {isa = PBXBuildFile; fileRef = AF56CA4930834416B43FE762 /* /Users/xuanli/Desktop/cell/display_widget.cpp */; };
+		8C364A231A1A44E28304FAD5 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */ = {isa = PBXBuildFile; fileRef = F3DEF02FBCED466183CA308A /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */; };
+		B48728D6AE72430CA6D0F687 /* /Users/xuanli/Desktop/cell/file_combobox.hpp */ = {isa = PBXBuildFile; fileRef = 6730A7936A9347BBA7AC5F6C /* /Users/xuanli/Desktop/cell/file_combobox.hpp */; };
+		B50AEBCEBBBC4E4694DAB1C8 /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */ = {isa = PBXBuildFile; fileRef = D02E8406D12D4BECBA9B375A /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */; };
+		E05AE832321C4DBF9678516D /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */ = {isa = PBXBuildFile; fileRef = AD40F1E5A9E24A1EB6A8F8B7 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-		0A4E8473C65747E2A720A9C7 /* RelWithDebInfo */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = RelWithDebInfo;
-		};
-		3F3E6494D9D841EBAA13AD58 /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Release;
-		};
-		6F2EB99C20914FAAAE11CB7D /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-			};
-			name = Debug;
-		};
-		BEB6B3136A1B47A6ACD25C10 /* MinSizeRel */ = {
+		5146780D17FD43FCBDB7D378 /* MinSizeRel */ = {
 			isa = PBXBuildStyle;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 			};
 			name = MinSizeRel;
 		};
+		61C608C8FBD84B7DBF156CB8 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		AE972E419A6144CCAB1117B8 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		CC091BE6A00C4AAFA23C7C12 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-		188D187CBCD947688E60B4DA /* PBXContainerItemProxy */ = {
+		18D12AE847C24FCEBA58A06E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8FDDD75D3DFC4F9D9B775A7A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 50A130B4FC1949049E5FAE4D;
-			remoteInfo = cell_autogen;
+			remoteGlobalIDString = DE7EF7C26E1C46F6AFF5115D;
+			remoteInfo = ZERO_CHECK;
 		};
-		2246AEF4808C4FCFAA473A25 /* PBXContainerItemProxy */ = {
+		3CE4E4C7FB304EC68891D187 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8FDDD75D3DFC4F9D9B775A7A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1713A8C5A711485E9D5D0076;
 			remoteInfo = cell;
 		};
-		23AFDFC6A1B3418185787A26 /* PBXContainerItemProxy */ = {
+		4E04EE797B66475699FF42A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FDDD75D3DFC4F9D9B775A7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50A130B4FC1949049E5FAE4D;
+			remoteInfo = cell_autogen;
+		};
+		9B9A0E9ABE8340AAA919A13D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8FDDD75D3DFC4F9D9B775A7A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DE7EF7C26E1C46F6AFF5115D;
 			remoteInfo = ZERO_CHECK;
 		};
-		BDD641B7ADC74AAAA0392B96 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8FDDD75D3DFC4F9D9B775A7A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DE7EF7C26E1C46F6AFF5115D;
-			remoteInfo = ZERO_CHECK;
-		};
-		D1C68E6C699644C093E180D4 /* PBXContainerItemProxy */ = {
+		BE5C8C002C02497CB02B0444 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8FDDD75D3DFC4F9D9B775A7A /* Project object */;
 			proxyType = 1;
@@ -129,105 +133,113 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02227D7D3B654322B0663FE2 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		1F1DF1FEF1F54E36A299EDB8 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		2F19014E1840416E9B0F2925 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = video_groupbox.cpp; path = video_groupbox.cpp; sourceTree = SOURCE_ROOT; };
-		54F34F14A7024CCDBA6F88A6 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = control_panel_groupbox.cpp; path = control_panel_groupbox.cpp; sourceTree = SOURCE_ROOT; };
-		79B0CC9334F24413A5DA430C /* cell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = cell; sourceTree = BUILT_PRODUCTS_DIR; };
-		898A6B1E49CF4642B7370440 /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = video_groupbox.hpp; path = video_groupbox.hpp; sourceTree = SOURCE_ROOT; };
-		8A32A3DCF8474CC5BA825A41 /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = mocs_compilation.cpp; path = build/cell_autogen/mocs_compilation.cpp; sourceTree = SOURCE_ROOT; };
-		9DF014297C504ACF9A8EC508 /* /Users/xuanli/Desktop/cell/cell_app.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = cell_app.hpp; path = cell_app.hpp; sourceTree = SOURCE_ROOT; };
-		A86B5A37D1814FA8B3B73C9B /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = control_panel_groupbox.hpp; path = control_panel_groupbox.hpp; sourceTree = SOURCE_ROOT; };
-		B0C914965DBA4CFE8DAE3C06 /* /Users/xuanli/Desktop/cell/display_widget.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = display_widget.cpp; path = display_widget.cpp; sourceTree = SOURCE_ROOT; };
-		B217D46A697E4D958F24EBDF /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		C25E03795E13413989E9AB30 /* /Users/xuanli/Desktop/cell/display_widget.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = display_widget.hpp; path = display_widget.hpp; sourceTree = SOURCE_ROOT; };
-		D3EE0C5EAED14FF48F5E152B /* /Users/xuanli/Desktop/cell/cell.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = cell.cpp; path = cell.cpp; sourceTree = SOURCE_ROOT; };
-		DE2ED942C7934678A25055B3 /* /Users/xuanli/Desktop/cell/cell_app.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = cell_app.cpp; path = cell_app.cpp; sourceTree = SOURCE_ROOT; };
+		10FAC6C23C804A4EBC4DC82B /* /Users/xuanli/Desktop/cell/cell_app.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = cell_app.hpp; path = cell_app.hpp; sourceTree = SOURCE_ROOT; };
+		16034A5E68CB4F98903D76F3 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = control_panel_groupbox.cpp; path = control_panel_groupbox.cpp; sourceTree = SOURCE_ROOT; };
+		29521A79501B42679F49470B /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = video_groupbox.hpp; path = video_groupbox.hpp; sourceTree = SOURCE_ROOT; };
+		2A7A1853E3124CB686BC96AB /* /Users/xuanli/Desktop/cell/cell_app.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = cell_app.cpp; path = cell_app.cpp; sourceTree = SOURCE_ROOT; };
+		3641C41960A84594911E6DF5 /* cell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = cell; sourceTree = BUILT_PRODUCTS_DIR; };
+		43776ECA513B4C5EA6E1D00F /* /Users/xuanli/Desktop/cell/log_widget.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = log_widget.cpp; path = log_widget.cpp; sourceTree = SOURCE_ROOT; };
+		6730A7936A9347BBA7AC5F6C /* /Users/xuanli/Desktop/cell/file_combobox.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = file_combobox.hpp; path = file_combobox.hpp; sourceTree = SOURCE_ROOT; };
+		781DC31F461141638DA8F748 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		7FE9805591D946739391E118 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		9263B91F76BA46829BDFFD0E /* /Users/xuanli/Desktop/cell/display_widget.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = display_widget.hpp; path = display_widget.hpp; sourceTree = SOURCE_ROOT; };
+		993B375AA9044E2DA2259B23 /* /Users/xuanli/Desktop/cell/cell.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = cell.cpp; path = cell.cpp; sourceTree = SOURCE_ROOT; };
+		9FB6BFAC456D4E9596414C58 /* /Users/xuanli/Desktop/cell/log_widget.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = log_widget.hpp; path = log_widget.hpp; sourceTree = SOURCE_ROOT; };
+		AD40F1E5A9E24A1EB6A8F8B7 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = video_groupbox.cpp; path = video_groupbox.cpp; sourceTree = SOURCE_ROOT; };
+		AF56CA4930834416B43FE762 /* /Users/xuanli/Desktop/cell/display_widget.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = display_widget.cpp; path = display_widget.cpp; sourceTree = SOURCE_ROOT; };
+		C32FFED0263A4DA1BF89E4C9 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		D02E8406D12D4BECBA9B375A /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = mocs_compilation.cpp; path = build/cell_autogen/mocs_compilation.cpp; sourceTree = SOURCE_ROOT; };
+		DC0335B7F4E64E498EF92E83 /* /Users/xuanli/Desktop/cell/file_combobox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = file_combobox.cpp; path = file_combobox.cpp; sourceTree = SOURCE_ROOT; };
+		F3DEF02FBCED466183CA308A /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = control_panel_groupbox.hpp; path = control_panel_groupbox.hpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		0AF6322F30DE4E0BAF70DC5E /* CMake Rules */ = {
+		1691E297F1684FC68C58DF81 /* CMake Rules */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
-		2057BC20F34F408BA55D73E1 /* Header Files */ = {
+		1E55CA8E7F2A44D98C7DEC0B /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
-				9DF014297C504ACF9A8EC508 /* /Users/xuanli/Desktop/cell/cell_app.hpp */,
-				A86B5A37D1814FA8B3B73C9B /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */,
-				C25E03795E13413989E9AB30 /* /Users/xuanli/Desktop/cell/display_widget.hpp */,
-				898A6B1E49CF4642B7370440 /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */,
+				10FAC6C23C804A4EBC4DC82B /* /Users/xuanli/Desktop/cell/cell_app.hpp */,
+				F3DEF02FBCED466183CA308A /* /Users/xuanli/Desktop/cell/control_panel_groupbox.hpp */,
+				9263B91F76BA46829BDFFD0E /* /Users/xuanli/Desktop/cell/display_widget.hpp */,
+				6730A7936A9347BBA7AC5F6C /* /Users/xuanli/Desktop/cell/file_combobox.hpp */,
+				9FB6BFAC456D4E9596414C58 /* /Users/xuanli/Desktop/cell/log_widget.hpp */,
+				29521A79501B42679F49470B /* /Users/xuanli/Desktop/cell/video_groupbox.hpp */,
 			);
 			name = "Header Files";
 			sourceTree = "<group>";
 		};
-		5A820A896D984C4EBB18F6B9 /* ALL_BUILD */ = {
-			isa = PBXGroup;
-			children = (
-				0AF6322F30DE4E0BAF70DC5E /* CMake Rules */,
-				1F1DF1FEF1F54E36A299EDB8 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */,
-			);
-			name = ALL_BUILD;
-			sourceTree = "<group>";
-		};
-		71F4B7A84AC54BE2A431E5BA /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				EB1C88A00BD14265A78B0A75 /* Source Files */,
-				2057BC20F34F408BA55D73E1 /* Header Files */,
-				02227D7D3B654322B0663FE2 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */,
-			);
-			name = cell;
-			sourceTree = "<group>";
-		};
-		9E44D6BC3FC5454EB80CD78F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				79B0CC9334F24413A5DA430C /* cell */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A5A824E2D8A346069023F83F /* cell_autogen */ = {
-			isa = PBXGroup;
-			children = (
-				DE5D7B2A14174BC69301F19E /* CMake Rules */,
-				B217D46A697E4D958F24EBDF /* /Users/xuanli/Desktop/cell/CMakeLists.txt */,
-			);
-			name = cell_autogen;
-			sourceTree = "<group>";
-		};
-		BAE51B42AE894424AB779C23 = {
-			isa = PBXGroup;
-			children = (
-				71F4B7A84AC54BE2A431E5BA /* cell */,
-				A5A824E2D8A346069023F83F /* cell_autogen */,
-				5A820A896D984C4EBB18F6B9 /* ALL_BUILD */,
-				9E44D6BC3FC5454EB80CD78F /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		DE5D7B2A14174BC69301F19E /* CMake Rules */ = {
+		2CB94353E8DE4F21B6C63321 /* CMake Rules */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
-		EB1C88A00BD14265A78B0A75 /* Source Files */ = {
+		75923F8A493543A1A2FD8437 /* cell_autogen */ = {
 			isa = PBXGroup;
 			children = (
-				8A32A3DCF8474CC5BA825A41 /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */,
-				D3EE0C5EAED14FF48F5E152B /* /Users/xuanli/Desktop/cell/cell.cpp */,
-				DE2ED942C7934678A25055B3 /* /Users/xuanli/Desktop/cell/cell_app.cpp */,
-				54F34F14A7024CCDBA6F88A6 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */,
-				B0C914965DBA4CFE8DAE3C06 /* /Users/xuanli/Desktop/cell/display_widget.cpp */,
-				2F19014E1840416E9B0F2925 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */,
+				2CB94353E8DE4F21B6C63321 /* CMake Rules */,
+				C32FFED0263A4DA1BF89E4C9 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */,
+			);
+			name = cell_autogen;
+			sourceTree = "<group>";
+		};
+		86533BE1445844A2A6DBE33C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3641C41960A84594911E6DF5 /* cell */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A5A0E6C9DFE447DB37CED29 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				D02E8406D12D4BECBA9B375A /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */,
+				993B375AA9044E2DA2259B23 /* /Users/xuanli/Desktop/cell/cell.cpp */,
+				2A7A1853E3124CB686BC96AB /* /Users/xuanli/Desktop/cell/cell_app.cpp */,
+				16034A5E68CB4F98903D76F3 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */,
+				AF56CA4930834416B43FE762 /* /Users/xuanli/Desktop/cell/display_widget.cpp */,
+				DC0335B7F4E64E498EF92E83 /* /Users/xuanli/Desktop/cell/file_combobox.cpp */,
+				43776ECA513B4C5EA6E1D00F /* /Users/xuanli/Desktop/cell/log_widget.cpp */,
+				AD40F1E5A9E24A1EB6A8F8B7 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */,
 			);
 			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		D58943474C4E4EF686328050 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A5A0E6C9DFE447DB37CED29 /* Source Files */,
+				1E55CA8E7F2A44D98C7DEC0B /* Header Files */,
+				781DC31F461141638DA8F748 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		E5574A385E0347C6A0848E38 = {
+			isa = PBXGroup;
+			children = (
+				D58943474C4E4EF686328050 /* cell */,
+				75923F8A493543A1A2FD8437 /* cell_autogen */,
+				EB5BA1FCF11E4E33AEE61EA6 /* ALL_BUILD */,
+				86533BE1445844A2A6DBE33C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB5BA1FCF11E4E33AEE61EA6 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				1691E297F1684FC68C58DF81 /* CMake Rules */,
+				7FE9805591D946739391E118 /* /Users/xuanli/Desktop/cell/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,19 +247,19 @@
 /* Begin PBXNativeTarget section */
 		1713A8C5A711485E9D5D0076 /* cell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF5A6289B8FD4D858FD4F219 /* Build configuration list for PBXNativeTarget "cell" */;
+			buildConfigurationList = 1944F493D802456CB6F53E4F /* Build configuration list for PBXNativeTarget "cell" */;
 			buildPhases = (
-				6C3A31C6E24F4B7EA8D98C29 /* Sources */,
+				E66D574542EE4384B1BB50C5 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E9B9340731424211B1D213A5 /* PBXTargetDependency */,
-				80679343B8B64EB8AFF6BB18 /* PBXTargetDependency */,
+				E9E250A3D8AD4B798A019EAC /* PBXTargetDependency */,
+				101E93E212A94964BD5DDA84 /* PBXTargetDependency */,
 			);
 			name = cell;
 			productName = cell;
-			productReference = 79B0CC9334F24413A5DA430C /* cell */;
+			productReference = 3641C41960A84594911E6DF5 /* cell */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -259,18 +271,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1020;
 			};
-			buildConfigurationList = 38BB084CBF5A4F5F9855F43E /* Build configuration list for PBXProject "Cell" */;
+			buildConfigurationList = 92DAC52B76C94262BA886BBF /* Build configuration list for PBXProject "Cell" */;
 			buildSettings = {
 			};
 			buildStyles = (
-				6F2EB99C20914FAAAE11CB7D /* Debug */,
-				3F3E6494D9D841EBAA13AD58 /* Release */,
-				BEB6B3136A1B47A6ACD25C10 /* MinSizeRel */,
-				0A4E8473C65747E2A720A9C7 /* RelWithDebInfo */,
+				AE972E419A6144CCAB1117B8 /* Debug */,
+				CC091BE6A00C4AAFA23C7C12 /* Release */,
+				5146780D17FD43FCBDB7D378 /* MinSizeRel */,
+				61C608C8FBD84B7DBF156CB8 /* RelWithDebInfo */,
 			);
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
-			mainGroup = BAE51B42AE894424AB779C23;
+			mainGroup = E5574A385E0347C6A0848E38;
 			projectDirPath = ../;
 			projectRoot = "";
 			targets = (
@@ -283,29 +295,22 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B0CA3F96BB24E9A903DB610 /* CMake Rules */ = {
+		0DC02AA106A84828A7A94578 = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			name = "CMake Rules";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "make -C /Users/xuanli/Desktop/cell/build -f /Users/xuanli/Desktop/cell/build/CMakeScripts/cell_autogen_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
-			showEnvVarsInLog = 0;
-		};
-		29CF7A0F6F004F73B5B2BE1A /* CMake Rules */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputPaths = (
 			);
-			name = "CMake Rules";
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C /Users/xuanli/Desktop/cell/build -f /Users/xuanli/Desktop/cell/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			shellScript = "# shell script goes here
+exit 0";
 			showEnvVarsInLog = 0;
 		};
-		50DF6858E185429F8EE70284 /* CMake Rules */ = {
+		8344811BB9164F39BA798360 /* CMake Rules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -316,7 +321,29 @@
 			shellScript = "make -C /Users/xuanli/Desktop/cell/build -f /Users/xuanli/Desktop/cell/build/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
 			showEnvVarsInLog = 0;
 		};
-		5A72D4A2F70848CBB5D0B3FA = {
+		9A6D80D29C29415D8A12BFA6 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/xuanli/Desktop/cell/build -f /Users/xuanli/Desktop/cell/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
+		};
+		C312A80B959E4866A0FFE8F1 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/xuanli/Desktop/cell/build -f /Users/xuanli/Desktop/cell/build/CMakeScripts/cell_autogen_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
+		};
+		CEEC6D6557384D518BB70004 = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -331,22 +358,7 @@
 exit 0";
 			showEnvVarsInLog = 0;
 		};
-		9DD7B4659239404480C0A344 = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# shell script goes here
-exit 0";
-			showEnvVarsInLog = 0;
-		};
-		C4879F7FE6174EBAAB62B04E = {
+		F1EF147432F5486F8288B6F7 = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -364,99 +376,53 @@ exit 0";
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6C3A31C6E24F4B7EA8D98C29 /* Sources */ = {
+		E66D574542EE4384B1BB50C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				705AC3503BF54D09BBA3195D /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */,
-				527DB93205544ED5A497402D /* /Users/xuanli/Desktop/cell/cell.cpp */,
-				6FCC7D6305204627BA68AB8A /* /Users/xuanli/Desktop/cell/cell_app.cpp */,
-				9D852503CF6F4FF7874DE144 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */,
-				621BEA20578B4D48A387BACF /* /Users/xuanli/Desktop/cell/display_widget.cpp */,
-				0C91CB67C2824B48B53CD228 /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */,
+				B50AEBCEBBBC4E4694DAB1C8 /* /Users/xuanli/Desktop/cell/build/cell_autogen/mocs_compilation.cpp */,
+				2797286835744575B1BC3004 /* /Users/xuanli/Desktop/cell/cell.cpp */,
+				663B21210F1C421C8A455EB4 /* /Users/xuanli/Desktop/cell/cell_app.cpp */,
+				0BE998FBBA644E0291E769F0 /* /Users/xuanli/Desktop/cell/control_panel_groupbox.cpp */,
+				78C2E71A85B04C0D961DA2D0 /* /Users/xuanli/Desktop/cell/display_widget.cpp */,
+				0CA005F4CC8743AABE219293 /* /Users/xuanli/Desktop/cell/file_combobox.cpp */,
+				37BB1218A5C34AE99C7D461E /* /Users/xuanli/Desktop/cell/log_widget.cpp */,
+				E05AE832321C4DBF9678516D /* /Users/xuanli/Desktop/cell/video_groupbox.cpp */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3F96A2D0333C46B79B155DC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DE7EF7C26E1C46F6AFF5115D /* ZERO_CHECK */;
-			targetProxy = D1C68E6C699644C093E180D4 /* PBXContainerItemProxy */;
-		};
-		5BC95E4BADFE4BDE84596CF6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DE7EF7C26E1C46F6AFF5115D /* ZERO_CHECK */;
-			targetProxy = 23AFDFC6A1B3418185787A26 /* PBXContainerItemProxy */;
-		};
-		609CD09A5F1D4CEFAC207EBF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1713A8C5A711485E9D5D0076 /* cell */;
-			targetProxy = 2246AEF4808C4FCFAA473A25 /* PBXContainerItemProxy */;
-		};
-		80679343B8B64EB8AFF6BB18 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DE7EF7C26E1C46F6AFF5115D /* ZERO_CHECK */;
-			targetProxy = BDD641B7ADC74AAAA0392B96 /* PBXContainerItemProxy */;
-		};
-		E9B9340731424211B1D213A5 /* PBXTargetDependency */ = {
+		101E93E212A94964BD5DDA84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 50A130B4FC1949049E5FAE4D /* cell_autogen */;
-			targetProxy = 188D187CBCD947688E60B4DA /* PBXContainerItemProxy */;
+			targetProxy = 4E04EE797B66475699FF42A8 /* PBXContainerItemProxy */;
+		};
+		179AC75752864F56B4A954A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE7EF7C26E1C46F6AFF5115D /* ZERO_CHECK */;
+			targetProxy = BE5C8C002C02497CB02B0444 /* PBXContainerItemProxy */;
+		};
+		88B42C64668149CFAFFA7B8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE7EF7C26E1C46F6AFF5115D /* ZERO_CHECK */;
+			targetProxy = 9B9A0E9ABE8340AAA919A13D /* PBXContainerItemProxy */;
+		};
+		E9E250A3D8AD4B798A019EAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE7EF7C26E1C46F6AFF5115D /* ZERO_CHECK */;
+			targetProxy = 18D12AE847C24FCEBA58A06E /* PBXContainerItemProxy */;
+		};
+		EC27AF7825894895AD4ABD72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1713A8C5A711485E9D5D0076 /* cell */;
+			targetProxy = 3CE4E4C7FB304EC68891D187 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0083138F5502427D90249B0B /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		0959ACB2186F4A5B9C2CA504 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				FRAMEWORK_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_WIDGETS_LIB,QT_GUI_LIB,QT_CORE_LIB,QT_NO_DEBUG,QT_MULTIMEDIAWIDGETS_LIB,QT_MULTIMEDIA_LIB,QT_NETWORK_LIB);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (/Users/xuanli/Desktop/cell/build,/Users/xuanli/Desktop/cell,/Users/xuanli/Desktop/cell/build/cell_autogen/include_RelWithDebInfo);
-				INSTALL_PATH = "";
-				LD_RUNPATH_SEARCH_PATHS = /Applications/Qt/5.13.0/clang_64/lib;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG -fPIC '-std=gnu++11'  ";
-				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/QtMultimediaWidgets /Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets /Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/QtMultimedia /Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/QtGui /Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork /Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/QtCore";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = cell;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				SYSTEM_HEADER_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers,"/Applications/Qt/5.13.0/clang_64/./mkspecs/macx-clang",/Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/Headers);
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		23A8A9EAA61947708DE9A171 /* Debug */ = {
+		1D3E70A339C44A4797C4E7E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -476,202 +442,7 @@ exit 0";
 			};
 			name = Debug;
 		};
-		385D0CD7D10E492DA77FD160 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		3B32F2539A8542F383492EB5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
-				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
-			};
-			name = Debug;
-		};
-		43017ACABA564B4AB07D35D6 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		460E011237EF4BB88A08F086 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Release;
-		};
-		4681EB5197484A328987C741 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Release;
-		};
-		5CEA88E76DD7404CB35B1633 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = cell_autogen;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Release;
-		};
-		871C2911F6DA4BB9B93B0F68 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				FRAMEWORK_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_WIDGETS_LIB,QT_GUI_LIB,QT_CORE_LIB,QT_MULTIMEDIAWIDGETS_LIB,QT_MULTIMEDIA_LIB,QT_NETWORK_LIB);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (/Users/xuanli/Desktop/cell/build,/Users/xuanli/Desktop/cell,/Users/xuanli/Desktop/cell/build/cell_autogen/include_Debug);
-				INSTALL_PATH = "";
-				LD_RUNPATH_SEARCH_PATHS = /Applications/Qt/5.13.0/clang_64/lib;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CPLUSPLUSFLAGS = "   -fPIC '-std=gnu++11'  ";
-				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/QtMultimediaWidgets /Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets /Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/QtMultimedia /Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/QtGui /Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork /Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/QtCore";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = cell;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				SYSTEM_HEADER_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers,"/Applications/Qt/5.13.0/clang_64/./mkspecs/macx-clang",/Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/Headers);
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Debug;
-		};
-		90D5E66EB030421A96DE83AE /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
-				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
-			};
-			name = MinSizeRel;
-		};
-		90DA7FE67813405FB024FD94 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = cell_autogen;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		9A9738358DD14454B523A94B /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
-				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
-			};
-			name = RelWithDebInfo;
-		};
-		B965F7F336174C13A424DA9B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = Debug;
-		};
-		D4DB252BE3974B12ADBB4499 /* Debug */ = {
+		1F2A6046DC8144A7B418228F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -691,84 +462,7 @@ exit 0";
 			};
 			name = Debug;
 		};
-		E1281C919DB742B69C3AA721 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
-				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
-			};
-			name = Release;
-		};
-		E68FA01449214974B91EB49A /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		EBBA1C1215D246B2AA901FD2 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INSTALL_PATH = "";
-				OTHER_LDFLAGS = " ";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = cell_autogen;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = RelWithDebInfo;
-		};
-		EEB1DBAFB1054C4BAFDA981A /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				FRAMEWORK_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_WIDGETS_LIB,QT_GUI_LIB,QT_CORE_LIB,QT_NO_DEBUG,QT_MULTIMEDIAWIDGETS_LIB,QT_MULTIMEDIA_LIB,QT_NETWORK_LIB);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (/Users/xuanli/Desktop/cell/build,/Users/xuanli/Desktop/cell,/Users/xuanli/Desktop/cell/build/cell_autogen/include_MinSizeRel);
-				INSTALL_PATH = "";
-				LD_RUNPATH_SEARCH_PATHS = /Applications/Qt/5.13.0/clang_64/lib;
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG -fPIC '-std=gnu++11'  ";
-				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/QtMultimediaWidgets /Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets /Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/QtMultimedia /Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/QtGui /Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork /Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/QtCore";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = cell;
-				SECTORDER_FLAGS = "";
-				SYMROOT = /Users/xuanli/Desktop/cell/build;
-				SYSTEM_HEADER_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers,"/Applications/Qt/5.13.0/clang_64/./mkspecs/macx-clang",/Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/Headers);
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
-			};
-			name = MinSizeRel;
-		};
-		F80547BA95034885BB9E20F3 /* Release */ = {
+		4171BB42BB5D4B2788346B4A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -796,60 +490,380 @@ exit 0";
 			};
 			name = Release;
 		};
+		427D93E2CFB84703A1FABF7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		53D359EC6A1240968AD7AC6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		66DFE967BC1840D8B37CFCA1 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		74489CF682FF461F86D8EC72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cell_autogen;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		7AC28F2F28F24AE9BCB91CBA /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_WIDGETS_LIB,QT_GUI_LIB,QT_CORE_LIB,QT_NO_DEBUG,QT_MULTIMEDIAWIDGETS_LIB,QT_MULTIMEDIA_LIB,QT_NETWORK_LIB);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/xuanli/Desktop/cell/build,/Users/xuanli/Desktop/cell,/Users/xuanli/Desktop/cell/build/cell_autogen/include_RelWithDebInfo);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = /Applications/Qt/5.13.0/clang_64/lib;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG -fPIC '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/QtMultimediaWidgets /Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets /Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/QtMultimedia /Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/QtGui /Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork /Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/QtCore";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cell;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers,"/Applications/Qt/5.13.0/clang_64/./mkspecs/macx-clang",/Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/Headers);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		97E7652DD3D84820A67E9B16 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		9A56BFFE5E85424CA6D550CB /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_WIDGETS_LIB,QT_GUI_LIB,QT_CORE_LIB,QT_NO_DEBUG,QT_MULTIMEDIAWIDGETS_LIB,QT_MULTIMEDIA_LIB,QT_NETWORK_LIB);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/xuanli/Desktop/cell/build,/Users/xuanli/Desktop/cell,/Users/xuanli/Desktop/cell/build/cell_autogen/include_MinSizeRel);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = /Applications/Qt/5.13.0/clang_64/lib;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG -fPIC '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/QtMultimediaWidgets /Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets /Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/QtMultimedia /Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/QtGui /Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork /Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/QtCore";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cell;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers,"/Applications/Qt/5.13.0/clang_64/./mkspecs/macx-clang",/Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/Headers);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		9D089F15B16244619987B732 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cell_autogen;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		A4F85BE181494AFC909E1EB2 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cell_autogen;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		A4F9F49062C2476083C8AD42 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
+			};
+			name = MinSizeRel;
+		};
+		C7894C85DB264BA89DD70B0F /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		CFD014A2270B45018CB0B258 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		D06E9F2B61EA4A3FAB06D86D /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
+			};
+			name = RelWithDebInfo;
+		};
+		D660FD9102EB42AC941D6C6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
+			};
+			name = Release;
+		};
+		E2B7B5D9546441FDA9B2F938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		E3EA73B1717F40C4857410B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",QT_WIDGETS_LIB,QT_GUI_LIB,QT_CORE_LIB,QT_MULTIMEDIAWIDGETS_LIB,QT_MULTIMEDIA_LIB,QT_NETWORK_LIB);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/xuanli/Desktop/cell/build,/Users/xuanli/Desktop/cell,/Users/xuanli/Desktop/cell/build/cell_autogen/include_Debug);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = /Applications/Qt/5.13.0/clang_64/lib;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "   -fPIC '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  /Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/QtMultimediaWidgets /Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/QtWidgets /Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/QtMultimedia /Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/QtGui /Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/QtNetwork /Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/QtCore";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cell;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/xuanli/Desktop/cell/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/Applications/Qt/5.13.0/clang_64/lib/QtWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtGui.framework/Headers,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtCore.framework/Headers,"/Applications/Qt/5.13.0/clang_64/./mkspecs/macx-clang",/Applications/Qt/5.13.0/clang_64/lib/QtMultimediaWidgets.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtMultimedia.framework/Headers,/Applications/Qt/5.13.0/clang_64/lib/QtNetwork.framework/Headers);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		E7C31E547F9546249FCFE083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/xuanli/Desktop/cell/build/build;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		187A6167BFDD479E9BE1A159 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		1944F493D802456CB6F53E4F /* Build configuration list for PBXNativeTarget "cell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D4DB252BE3974B12ADBB4499 /* Debug */,
-				4681EB5197484A328987C741 /* Release */,
-				0083138F5502427D90249B0B /* MinSizeRel */,
-				43017ACABA564B4AB07D35D6 /* RelWithDebInfo */,
+				E3EA73B1717F40C4857410B1 /* Debug */,
+				4171BB42BB5D4B2788346B4A /* Release */,
+				9A56BFFE5E85424CA6D550CB /* MinSizeRel */,
+				7AC28F2F28F24AE9BCB91CBA /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		2EB0AAA8F42B418EB7C9EAB0 /* Build configuration list for PBXAggregateTarget "cell_autogen" */ = {
+		364675FA457B488D953F112B /* Build configuration list for PBXAggregateTarget "cell_autogen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				23A8A9EAA61947708DE9A171 /* Debug */,
-				5CEA88E76DD7404CB35B1633 /* Release */,
-				90DA7FE67813405FB024FD94 /* MinSizeRel */,
-				EBBA1C1215D246B2AA901FD2 /* RelWithDebInfo */,
+				1D3E70A339C44A4797C4E7E1 /* Debug */,
+				74489CF682FF461F86D8EC72 /* Release */,
+				9D089F15B16244619987B732 /* MinSizeRel */,
+				A4F85BE181494AFC909E1EB2 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		2FBBDB0BBA824C269C4746B2 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		92DAC52B76C94262BA886BBF /* Build configuration list for PBXProject "Cell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B965F7F336174C13A424DA9B /* Debug */,
-				460E011237EF4BB88A08F086 /* Release */,
-				385D0CD7D10E492DA77FD160 /* MinSizeRel */,
-				E68FA01449214974B91EB49A /* RelWithDebInfo */,
+				E7C31E547F9546249FCFE083 /* Debug */,
+				D660FD9102EB42AC941D6C6B /* Release */,
+				A4F9F49062C2476083C8AD42 /* MinSizeRel */,
+				D06E9F2B61EA4A3FAB06D86D /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		38BB084CBF5A4F5F9855F43E /* Build configuration list for PBXProject "Cell" */ = {
+		C2FC22CA95794A4C80E3C46E /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3B32F2539A8542F383492EB5 /* Debug */,
-				E1281C919DB742B69C3AA721 /* Release */,
-				90D5E66EB030421A96DE83AE /* MinSizeRel */,
-				9A9738358DD14454B523A94B /* RelWithDebInfo */,
+				53D359EC6A1240968AD7AC6D /* Debug */,
+				E2B7B5D9546441FDA9B2F938 /* Release */,
+				CFD014A2270B45018CB0B258 /* MinSizeRel */,
+				66DFE967BC1840D8B37CFCA1 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		EF5A6289B8FD4D858FD4F219 /* Build configuration list for PBXNativeTarget "cell" */ = {
+		F4FE24F675D14C27922265D7 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				871C2911F6DA4BB9B93B0F68 /* Debug */,
-				F80547BA95034885BB9E20F3 /* Release */,
-				EEB1DBAFB1054C4BAFDA981A /* MinSizeRel */,
-				0959ACB2186F4A5B9C2CA504 /* RelWithDebInfo */,
+				1F2A6046DC8144A7B418228F /* Debug */,
+				427D93E2CFB84703A1FABF7F /* Release */,
+				97E7652DD3D84820A67E9B16 /* MinSizeRel */,
+				C7894C85DB264BA89DD70B0F /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -5,12 +5,17 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 
+#include "log_widget.hpp"
+
 class DisplayWidget: public QVideoWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    DisplayWidget();
+    DisplayWidget(LogWidget *l);
+    
+    // Destructor
+    ~DisplayWidget();
     
 public slots:
     
@@ -21,11 +26,18 @@ public slots:
     void changePosition(int position);
     
     void changeFile(QString file);
+
+signals:
+    
+    void changedPlayButton(bool play);
     
 private:
     
     // Video player
     QMediaPlayer *player;
+    
+    // Log recorder
+    LogWidget *log;
 };
 
 #endif

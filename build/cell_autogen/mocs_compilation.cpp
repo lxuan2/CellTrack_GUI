@@ -2,4 +2,6 @@
 #include <EWIEGA46WW/moc_cell_app.cpp>
 #include <EWIEGA46WW/moc_control_panel_groupbox.cpp>
 #include <EWIEGA46WW/moc_display_widget.cpp>
+#include <EWIEGA46WW/moc_file_combobox.cpp>
+#include <EWIEGA46WW/moc_log_widget.cpp>
 #include <EWIEGA46WW/moc_video_groupbox.cpp>

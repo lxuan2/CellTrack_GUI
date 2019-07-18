@@ -10,15 +10,18 @@
 #include <QStyle>
 #include <QLayout>
 #include <QLabel>
-#include <QComboBox>
 #include <QFileDialog>
+#include <iostream>
 
-class VideoGroupBox: public QGroupBox{
+#include "file_combobox.hpp"
+#include "log_widget.hpp"
+
+class VideoGroupBox: public QGroupBox {
     Q_OBJECT
 public:
     
     // Default constructor
-    VideoGroupBox();
+    VideoGroupBox(LogWidget *l);
 
 public slots:
     
@@ -33,6 +36,8 @@ public slots:
     void loadOriginal();
     
     void loadResult();
+    
+    void changePlayButton(bool play);
     
 signals:
     
@@ -57,7 +62,10 @@ private:
     QSlider *trackSlider;
     
     // Combobox
-    QComboBox *fileCombobox;
+    FileCombobox *fileBox;
+    
+    // Log recorder
+    LogWidget *log;
 };
 
 #endif

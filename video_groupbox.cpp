@@ -1,6 +1,7 @@
 #include "video_groupbox.hpp"
 
-VideoGroupBox::VideoGroupBox() {
+VideoGroupBox::VideoGroupBox(LogWidget *l) {
+    log = l;
     setTitle("Video");
     loadOrgButton = new QPushButton("Load Original");
     QObject::connect(loadOrgButton, &QPushButton::clicked, this, &VideoGroupBox::loadOriginal);
@@ -23,9 +24,10 @@ VideoGroupBox::VideoGroupBox() {
     //trackSlider->setEnabled(false);
     QObject::connect(trackSlider, &QSlider::valueChanged, this, &VideoGroupBox::setPosition);
     
-    fileCombobox = new QComboBox();
-    fileCombobox->setEditable(true);
-    fileCombobox->setFrame(true);
+    fileBox = new FileCombobox();
+    fileBox->setEditable(true);
+    fileBox->setFrame(true);
+    QObject::connect(fileBox, &FileCombobox::enterPressed, this, &VideoGroupBox::loadOriginal);
     
     auto *layout = new QGridLayout();
     layout->addWidget(trackSlider, 0, 0, 1, 16);
@@ -39,7 +41,7 @@ VideoGroupBox::VideoGroupBox() {
     layout->addWidget(loadResButton, 2, 14, 1, 2);
     
     layout->addWidget(new QLabel("File Location:"), 3, 0);
-    layout->addWidget(fileCombobox, 3, 1, 1, 14);
+    layout->addWidget(fileBox, 3, 1, 1, 14);
     layout->addWidget(browseButton, 3, 15);
     setLayout(layout);
 }
@@ -57,20 +59,28 @@ void VideoGroupBox::playClicked() {
 }
 
 void VideoGroupBox::browse() {
-    QString fileName = QFileDialog::getOpenFileName(this, "Open File", QDir::homePath());
+    QString fileName = QFileDialog::getOpenFileName(this, "Open Video File", QDir::homePath());
     if (!fileName.isEmpty()) {
-        if (fileCombobox->findText(fileName) == -1)
-            fileCombobox->addItem(fileName);
-        fileCombobox->setCurrentIndex(fileCombobox->findText(fileName));
+        if (fileBox->findText(fileName) == -1)
+            fileBox->addItem(fileName);
+        fileBox->setCurrentIndex(fileBox->findText(fileName));
+        loadOriginal();
     }
 }
 
 void VideoGroupBox::loadOriginal() {
-    QString file = fileCombobox->currentText();
+    QString file = fileBox->currentText();
     emit changeFile(file);
 }
 
 void VideoGroupBox::loadResult() {
-    QString file = fileCombobox->currentText();
+    QString file = fileBox->currentText();
     emit changeFile(file);
+}
+
+void VideoGroupBox::changePlayButton(bool play) {
+    if (play)
+        playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    else
+        playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
 }

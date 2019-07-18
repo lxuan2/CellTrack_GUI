@@ -1,18 +1,39 @@
 #include "display_widget.hpp"
 
-DisplayWidget::DisplayWidget() {
+DisplayWidget::DisplayWidget(LogWidget *l) {
+    log = l;
     player = new QMediaPlayer();
     player->setVolume(50);
     player->setVideoOutput(this);
-    setMinimumSize(400, 250);
+    setMinimumSize(200, 250);
+}
+
+DisplayWidget::~DisplayWidget() {
+    player->~QMediaPlayer();
 }
 
 void DisplayWidget::play() {
     QMediaPlayer::State state = player->state();
-    if (state == QMediaPlayer::PlayingState)
+    QMediaPlayer::MediaStatus mediaState = player->mediaStatus();
+
+    // Playing state
+    if (state == QMediaPlayer::PlayingState) {
         player->pause();
-    else
+        emit changedPlayButton(false);
+    }
+    // Not playing state
+    else {
+        if (mediaState == QMediaPlayer::NoMedia){
+            // no media
+            return;
+        }
+        else if (mediaState == QMediaPlayer::UnknownMediaStatus || mediaState == QMediaPlayer::InvalidMedia){
+            // error
+            return;
+        }
         player->play();
+        emit changedPlayButton(true);
+    }
 }
 
 void DisplayWidget::changeVolume(int volume) {
