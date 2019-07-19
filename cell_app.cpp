@@ -7,7 +7,6 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     
     // Widget initialize
     videoWidget = new DisplayWidget(log);
-    log = new LogWidget();
     
     // Groupbox initialize
     videoBox = new VideoGroupBox(log);
@@ -20,10 +19,10 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     QObject::connect(videoWidget, &DisplayWidget::changedPlayButton, videoBox, &VideoGroupBox::changePlayButton);
     
     // Widget layout initialize
-    auto layout = new QGridLayout();
-    layout->addWidget(videoWidget, 1, 0, 9, 16);
-    layout->addWidget(videoBox, 10, 0, 1, 16);
-    layout->addWidget(controlBox, 16, 0, 1, 16);
-    layout->addWidget(log, 17, 0, 1, 16);
+    auto layout = new QVBoxLayout();
+    layout->addWidget(videoWidget, 0, 0);
+    layout->addWidget(videoBox, 1, 0);
+    layout->addWidget(controlBox, 2, 0);
+    layout->addWidget(log, 4, 0);
     setLayout(layout);
 }

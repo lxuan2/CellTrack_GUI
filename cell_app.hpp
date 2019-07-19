@@ -2,7 +2,6 @@
 #define CELL_APP_HPP
 
 #include <iostream>
-#include <QDebug>
 #include <QLabel>
 #include <QWidget>
 #include <QLayout>

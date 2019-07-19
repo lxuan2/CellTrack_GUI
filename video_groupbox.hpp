@@ -49,6 +49,10 @@ signals:
     
     void changeFile(QString file);
     
+    //void durationChanged(qint64 dur);
+    
+    //void positionChanged(qint64 progress);
+    
 private:
     
     // Buttons
@@ -66,6 +70,11 @@ private:
     
     // Log recorder
     LogWidget *log;
+    
+    // Max duration
+    qint64 duration;
+    
+
 };
 
 #endif

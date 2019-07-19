@@ -1,12 +1,13 @@
 #include "log_widget.hpp"
+#include <string>
+#include <iostream>
 
 LogWidget::LogWidget(): QPlainTextEdit() {
     setReadOnly(true);
 }
 
-void LogWidget::write(QString content, bool warn) {
-    
-    appendPlainText(content + "\n");
+void LogWidget::write(QString content) {
+    appendPlainText(content);
 }
 
 void LogWidget::clear() {

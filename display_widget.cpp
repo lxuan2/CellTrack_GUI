@@ -1,11 +1,11 @@
 #include "display_widget.hpp"
 
-DisplayWidget::DisplayWidget(LogWidget *l) {
+DisplayWidget::DisplayWidget(LogWidget *l): QVideoWidget(){
     log = l;
     player = new QMediaPlayer();
     player->setVolume(50);
     player->setVideoOutput(this);
-    setMinimumSize(200, 250);
+    setMinimumHeight(250);
 }
 
 DisplayWidget::~DisplayWidget() {
@@ -18,20 +18,23 @@ void DisplayWidget::play() {
 
     // Playing state
     if (state == QMediaPlayer::PlayingState) {
+        log->write("- Stop -");
         player->pause();
         emit changedPlayButton(false);
     }
     // Not playing state
     else {
         if (mediaState == QMediaPlayer::NoMedia){
-            // no media
+            log->write("Error: No video play.");
             return;
         }
         else if (mediaState == QMediaPlayer::UnknownMediaStatus || mediaState == QMediaPlayer::InvalidMedia){
-            // error
+            log->write("Error: Media State wrong. Please reload target video.");
             return;
         }
+        log->write("- Start -");
         player->play();
+        adjustSize();
         emit changedPlayButton(true);
     }
 }
@@ -45,5 +48,10 @@ void DisplayWidget::changePosition(int position) {
 }
 
 void DisplayWidget::changeFile(QString file) {
+    log->write("- New Video Loaded -");
     player->setMedia(QUrl::fromLocalFile(file));
+}
+
+QMediaPlayer* DisplayWidget::playerPtr() {
+    return player;
 }

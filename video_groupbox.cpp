@@ -21,6 +21,7 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     QObject::connect(volumeSlider, &QSlider::valueChanged, this, &VideoGroupBox::setVolume);
     
     trackSlider = new QSlider(Qt::Horizontal);
+    //trackSlider->setRange(0, player->duration() / 1000);
     //trackSlider->setEnabled(false);
     QObject::connect(trackSlider, &QSlider::valueChanged, this, &VideoGroupBox::setPosition);
     
@@ -69,18 +70,26 @@ void VideoGroupBox::browse() {
 }
 
 void VideoGroupBox::loadOriginal() {
+    changePlayButton(false);
     QString file = fileBox->currentText();
     emit changeFile(file);
 }
 
 void VideoGroupBox::loadResult() {
+    changePlayButton(false);
     QString file = fileBox->currentText();
     emit changeFile(file);
 }
 
 void VideoGroupBox::changePlayButton(bool play) {
     if (play)
-        playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    else
         playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+    else
+        playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
 }
+
+/*void VideoGroupBox::durationChanged(qint64 dur)
+{
+    duration = dur / 1000;
+    trackSlider->setMaximum(duration);
+}*/

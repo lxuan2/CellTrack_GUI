@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QLayout>
 #include <QLabel>
+#include <string>
 
 #include "log_widget.hpp"
 
@@ -18,6 +19,10 @@ public:
     
     // Default constructor
     ControPannelGroupBox(LogWidget *l);
+    
+public slots:
+    
+    void computation();
     
 private:
     

@@ -17,6 +17,9 @@ public:
     // Destructor
     ~DisplayWidget();
     
+    // Player pointer
+    QMediaPlayer* playerPtr();
+    
 public slots:
     
     void play();
