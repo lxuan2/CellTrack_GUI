@@ -1,8 +1,7 @@
 #include "video_groupbox.hpp"
 
-VideoGroupBox::VideoGroupBox(LogWidget *l, QMediaPlayer *p) {
+VideoGroupBox::VideoGroupBox(LogWidget *l) {
     log = l;
-    player = p;
     setTitle("Video");
     loadOrgButton = new QPushButton("Load Original");
     QObject::connect(loadOrgButton, &QPushButton::clicked, this, &VideoGroupBox::loadOriginal);
@@ -31,15 +30,18 @@ VideoGroupBox::VideoGroupBox(LogWidget *l, QMediaPlayer *p) {
     fileBox->setFrame(true);
     QObject::connect(fileBox, &FileCombobox::enterPressed, this, &VideoGroupBox::loadOriginal);
     
+    durLabel = new QLabel("--:-- / --:--");
+    
     auto *layout = new QGridLayout();
-    layout->addWidget(trackSlider, 0, 0, 1, 16);
+    layout->addWidget(trackSlider, 0, 0, 1, 15);
+    layout->addWidget(durLabel, 0, 15);
     
     layout->addWidget(new QLabel("Start/Stop:"), 1, 0);
     layout->addWidget(playButton, 1, 1);
     layout->addWidget(loadOrgButton, 1, 14, 1, 2);
     
     layout->addWidget(new QLabel("Volume:"), 2, 0);
-    layout->addWidget(volumeSlider, 2, 1);
+    layout->addWidget(volumeSlider, 2, 1, 1, 8);
     layout->addWidget(loadResButton, 2, 14, 1, 2);
     
     layout->addWidget(new QLabel("File Location:"), 3, 0);
@@ -99,5 +101,22 @@ void VideoGroupBox::changePosition(qint64 progress) {
     if (!trackSlider->isSliderDown())
         trackSlider->setValue(progress / 1000);
     
-    //updateDurationInfo(progress / 1000);
+    updateDurationInfo(progress / 1000);
+}
+
+void VideoGroupBox::updateDurationInfo(qint64 currentInfo) {
+    QString tStr;
+    if (currentInfo || duration) {
+        QTime currentTime((currentInfo / 3600) % 60, (currentInfo / 60) % 60,
+                          currentInfo % 60, (currentInfo * 1000) % 1000);
+        QTime totalTime((duration / 3600) % 60, (duration / 60) % 60,
+                        duration % 60, (duration * 1000) % 1000);
+        QString format = "mm:ss";
+        if (duration > 3600)
+            format = "hh:mm:ss";
+        tStr = currentTime.toString(format) + " / " + totalTime.toString(format);
+    }
+    else
+        tStr = "--:-- / --:--";
+    durLabel->setText(tStr);
 }

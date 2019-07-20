@@ -9,7 +9,7 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     videoWidget = new DisplayWidget(log);
     
     // Groupbox initialize
-    videoBox = new VideoGroupBox(log, videoWidget->playerPtr());
+    videoBox = new VideoGroupBox(log);
     controlBox = new ControPannelGroupBox(log);
     
     QObject::connect(videoBox, &VideoGroupBox::play, videoWidget, &DisplayWidget::play);

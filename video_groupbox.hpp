@@ -12,6 +12,7 @@
 #include <QLabel>
 #include <QFileDialog>
 #include <iostream>
+#include <QTime>
 
 #include "file_combobox.hpp"
 #include "log_widget.hpp"
@@ -21,7 +22,7 @@ class VideoGroupBox: public QGroupBox {
 public:
     
     // Default constructor
-    VideoGroupBox(LogWidget *l, QMediaPlayer *p);
+    VideoGroupBox(LogWidget *l);
 
 public slots:
     
@@ -74,7 +75,10 @@ private:
     // Max duration
     qint64 duration;
     
-    QMediaPlayer *player;
+    // Duration label
+    QLabel *durLabel;
+    
+    void updateDurationInfo(qint64 currentInfo);
 };
 
 #endif

@@ -58,10 +58,6 @@ void DisplayWidget::changeFile(QString file) {
     
 }
 
-QMediaPlayer* DisplayWidget::playerPtr() {
-    return player;
-}
-
 void DisplayWidget::durationChanged(qint64 duration) {
     emit changeDuration(duration);
 }
