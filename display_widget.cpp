@@ -6,6 +6,10 @@ DisplayWidget::DisplayWidget(LogWidget *l): QVideoWidget(){
     player->setVolume(50);
     player->setVideoOutput(this);
     setMinimumHeight(250);
+    
+    connect(player, &QMediaPlayer::durationChanged, this, &DisplayWidget::durationChanged);
+    connect(player, &QMediaPlayer::positionChanged, this, &DisplayWidget::positionChanged);
+    connect(player, &QMediaPlayer::stateChanged, this, &DisplayWidget::stateChanged);
 }
 
 DisplayWidget::~DisplayWidget() {
@@ -20,7 +24,7 @@ void DisplayWidget::play() {
     if (state == QMediaPlayer::PlayingState) {
         log->write("- Stop -");
         player->pause();
-        emit changedPlayButton(false);
+        emit changePlayButton(false);
     }
     // Not playing state
     else {
@@ -35,7 +39,7 @@ void DisplayWidget::play() {
         log->write("- Start -");
         player->play();
         adjustSize();
-        emit changedPlayButton(true);
+        emit changePlayButton(true);
     }
 }
 
@@ -43,15 +47,43 @@ void DisplayWidget::changeVolume(int volume) {
     player->setVolume(volume);
 }
 
-void DisplayWidget::changePosition(int position) {
-    player->setPosition(position);
-}
-
 void DisplayWidget::changeFile(QString file) {
-    log->write("- New Video Loaded -");
-    player->setMedia(QUrl::fromLocalFile(file));
+    QFileInfo check_file(file);
+    if (check_file.exists() && check_file.isFile()) {
+        log->write("- New Video Loaded -");
+        player->setMedia(QUrl::fromLocalFile(file));
+        return;
+    }
+    log->write("Error: No file or invalid file to be loaded.");
+    
 }
 
 QMediaPlayer* DisplayWidget::playerPtr() {
     return player;
+}
+
+void DisplayWidget::durationChanged(qint64 duration) {
+    emit changeDuration(duration);
+}
+
+void DisplayWidget::positionChanged(qint64 progress) {
+    emit changePosition(progress);
+}
+
+void DisplayWidget::seek(int seconds) {
+    player->setPosition(seconds * 1000);
+    if (player->state() != QMediaPlayer::PlayingState)
+        play();
+}
+
+void DisplayWidget::stateChanged(QMediaPlayer::State state) {
+    if(player->state() == QMediaPlayer::StoppedState){
+        log->write("- Stop -");
+        emit changePlayButton(false);
+    }
+}
+
+void DisplayWidget::mousePressEvent(QMouseEvent *event) {
+    play();
+    QWidget::mousePressEvent(event);
 }

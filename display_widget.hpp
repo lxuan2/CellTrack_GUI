@@ -4,6 +4,8 @@
 #include <QVideoWidget>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QFileInfo>
+#include <QMouseEvent>
 
 #include "log_widget.hpp"
 
@@ -26,13 +28,23 @@ public slots:
     
     void changeVolume(int volume);
     
-    void changePosition(int position);
-    
     void changeFile(QString file);
+    
+    void seek(int seconds);
+    
+    void durationChanged(qint64 duration);
+    
+    void positionChanged(qint64 progress);
+    
+    void stateChanged(QMediaPlayer::State state);
 
 signals:
     
-    void changedPlayButton(bool play);
+    void changePlayButton(bool play);
+    
+    void changeDuration(qint64 duration);
+    
+    void changePosition(qint64 progress);
     
 private:
     
@@ -41,6 +53,8 @@ private:
     
     // Log recorder
     LogWidget *log;
+    
+    void mousePressEvent(QMouseEvent *event);
 };
 
 #endif

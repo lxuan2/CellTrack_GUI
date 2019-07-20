@@ -9,14 +9,16 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     videoWidget = new DisplayWidget(log);
     
     // Groupbox initialize
-    videoBox = new VideoGroupBox(log);
+    videoBox = new VideoGroupBox(log, videoWidget->playerPtr());
     controlBox = new ControPannelGroupBox(log);
     
     QObject::connect(videoBox, &VideoGroupBox::play, videoWidget, &DisplayWidget::play);
     QObject::connect(videoBox, &VideoGroupBox::changeVolume, videoWidget, &DisplayWidget::changeVolume);
-    QObject::connect(videoBox, &VideoGroupBox::changePosition, videoWidget, &DisplayWidget::changePosition);
+    QObject::connect(videoBox, &VideoGroupBox::seek, videoWidget, &DisplayWidget::seek);
     QObject::connect(videoBox, &VideoGroupBox::changeFile, videoWidget, &DisplayWidget::changeFile);
-    QObject::connect(videoWidget, &DisplayWidget::changedPlayButton, videoBox, &VideoGroupBox::changePlayButton);
+    QObject::connect(videoWidget, &DisplayWidget::changePlayButton, videoBox, &VideoGroupBox::changePlayButton);
+    QObject::connect(videoWidget, &DisplayWidget::changeDuration, videoBox, &VideoGroupBox::changeDuration);
+    QObject::connect(videoWidget, &DisplayWidget::changePosition, videoBox, &VideoGroupBox::changePosition);
     
     // Widget layout initialize
     auto layout = new QVBoxLayout();

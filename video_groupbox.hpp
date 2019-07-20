@@ -21,13 +21,13 @@ class VideoGroupBox: public QGroupBox {
 public:
     
     // Default constructor
-    VideoGroupBox(LogWidget *l);
+    VideoGroupBox(LogWidget *l, QMediaPlayer *p);
 
 public slots:
     
     void setVolume(int volume);
     
-    void setPosition(int position);
+    void setPosition();
     
     void playClicked();
     
@@ -39,19 +39,19 @@ public slots:
     
     void changePlayButton(bool play);
     
+    void changeDuration(qint64 duration);
+    
+    void changePosition(qint64 progress);
+    
 signals:
     
     void play();
     
     void changeVolume(int volume);
     
-    void changePosition(int position);
-    
     void changeFile(QString file);
     
-    //void durationChanged(qint64 dur);
-    
-    //void positionChanged(qint64 progress);
+    void seek(int seconds);
     
 private:
     
@@ -74,7 +74,7 @@ private:
     // Max duration
     qint64 duration;
     
-
+    QMediaPlayer *player;
 };
 
 #endif

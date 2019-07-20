@@ -1,13 +1,14 @@
 #include "video_groupbox.hpp"
 
-VideoGroupBox::VideoGroupBox(LogWidget *l) {
+VideoGroupBox::VideoGroupBox(LogWidget *l, QMediaPlayer *p) {
     log = l;
+    player = p;
     setTitle("Video");
     loadOrgButton = new QPushButton("Load Original");
     QObject::connect(loadOrgButton, &QPushButton::clicked, this, &VideoGroupBox::loadOriginal);
     
     loadResButton = new QPushButton("Load Result");
-    QObject::connect(loadOrgButton, &QPushButton::clicked, this, &VideoGroupBox::loadResult);
+    QObject::connect(loadResButton, &QPushButton::clicked, this, &VideoGroupBox::loadResult);
     
     playButton = new QToolButton();
     playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
@@ -21,9 +22,9 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     QObject::connect(volumeSlider, &QSlider::valueChanged, this, &VideoGroupBox::setVolume);
     
     trackSlider = new QSlider(Qt::Horizontal);
-    //trackSlider->setRange(0, player->duration() / 1000);
+    trackSlider->setRange(0, 30);
     //trackSlider->setEnabled(false);
-    QObject::connect(trackSlider, &QSlider::valueChanged, this, &VideoGroupBox::setPosition);
+    QObject::connect(trackSlider, &QSlider::sliderReleased, this, &VideoGroupBox::setPosition);
     
     fileBox = new FileCombobox();
     fileBox->setEditable(true);
@@ -51,8 +52,9 @@ void VideoGroupBox::setVolume(int volume) {
     emit changeVolume(volume);
 }
 
-void VideoGroupBox::setPosition(int position){
-    emit changePosition(position);
+void VideoGroupBox::setPosition(){
+    int position = trackSlider->value();
+    emit seek(position);
 }
 
 void VideoGroupBox::playClicked() {
@@ -88,8 +90,14 @@ void VideoGroupBox::changePlayButton(bool play) {
         playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
 }
 
-/*void VideoGroupBox::durationChanged(qint64 dur)
-{
-    duration = dur / 1000;
-    trackSlider->setMaximum(duration);
-}*/
+void VideoGroupBox::changeDuration(qint64 duration) {
+    this->duration = duration / 1000;
+    trackSlider->setMaximum(this->duration);
+}
+
+void VideoGroupBox::changePosition(qint64 progress) {
+    if (!trackSlider->isSliderDown())
+        trackSlider->setValue(progress / 1000);
+    
+    //updateDurationInfo(progress / 1000);
+}
