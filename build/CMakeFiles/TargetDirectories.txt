@@ -1,4 +1,0 @@
-/Users/xuanli/Desktop/cell/build/CMakeFiles/cell.dir
-/Users/xuanli/Desktop/cell/build/CMakeFiles/cell_autogen.dir
-/Users/xuanli/Desktop/cell/build/CMakeFiles/ALL_BUILD.dir
-/Users/xuanli/Desktop/cell/build/CMakeFiles/ZERO_CHECK.dir
