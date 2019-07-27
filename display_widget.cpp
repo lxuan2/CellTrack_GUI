@@ -1,11 +1,12 @@
 #include "display_widget.hpp"
+#include <string>
 
 DisplayWidget::DisplayWidget(LogWidget *l): QVideoWidget(){
     log = l;
     player = new QMediaPlayer();
     player->setVolume(50);
     player->setVideoOutput(this);
-    setMinimumHeight(250);
+    setMinimumHeight(350);
     
     connect(player, &QMediaPlayer::durationChanged, this, &DisplayWidget::durationChanged);
     connect(player, &QMediaPlayer::positionChanged, this, &DisplayWidget::positionChanged);
@@ -51,7 +52,8 @@ void DisplayWidget::changeFile(QString file) {
     QFileInfo check_file(file);
     if (check_file.exists() && check_file.isFile()) {
         log->write("- New Video Loaded -");
-        player->setMedia(QUrl::fromLocalFile(file));
+		std::string x = file.toStdString();
+        player->setMedia(QUrl::fromLocalFile(QString::fromStdString(x)));
         return;
     }
     log->write("Error: No file or invalid file to be loaded.");

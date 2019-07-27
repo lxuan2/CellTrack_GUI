@@ -18,6 +18,7 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     
     volumeSlider = new QSlider(Qt::Horizontal);
     volumeSlider->setRange(0, 100);
+	volumeSlider->setValue(50);
     QObject::connect(volumeSlider, &QSlider::valueChanged, this, &VideoGroupBox::setVolume);
     
     trackSlider = new QSlider(Qt::Horizontal);
