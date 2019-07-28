@@ -11,6 +11,7 @@
 #include <QPushButton>
 #include <QFileDialog>
 
+#include "core.hpp"
 #include "log_widget.hpp"
 #include "display_widget.hpp"
 #include "video_groupbox.hpp"
@@ -35,6 +36,9 @@ private:
     // Group boxes
     VideoGroupBox *videoBox;
     ControPannelGroupBox *controlBox;
+    
+    // Computation Core
+    Core *core;
 };
 
 #endif

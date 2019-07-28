@@ -121,3 +121,7 @@ void VideoGroupBox::updateDurationInfo(qint64 currentInfo) {
         tStr = "--:-- / --:--";
     durLabel->setText(tStr);
 }
+
+QString VideoGroupBox::currentFile() {
+    return fileBox->currentText();
+}

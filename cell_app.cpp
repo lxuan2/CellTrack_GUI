@@ -12,6 +12,10 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     videoBox = new VideoGroupBox(log);
     controlBox = new ControPannelGroupBox(log);
     
+    // Compuation Core initialize
+    core = new Core(videoBox, controlBox, log);
+    
+    QObject::connect(controlBox, &ControPannelGroupBox::compute, core, &Core::compute);
     QObject::connect(videoBox, &VideoGroupBox::play, videoWidget, &DisplayWidget::play);
     QObject::connect(videoBox, &VideoGroupBox::changeVolume, videoWidget, &DisplayWidget::changeVolume);
     QObject::connect(videoBox, &VideoGroupBox::seek, videoWidget, &DisplayWidget::seek);

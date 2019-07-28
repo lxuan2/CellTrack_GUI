@@ -23,6 +23,8 @@ public:
     
     // Default constructor
     VideoGroupBox(LogWidget *l);
+    
+    QString currentFile();
 
 public slots:
     

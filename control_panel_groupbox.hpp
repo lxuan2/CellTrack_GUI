@@ -8,7 +8,7 @@
 #include <QPushButton>
 #include <QLayout>
 #include <QLabel>
-#include <string>
+#include <QCheckBox>
 
 #include "log_widget.hpp"
 
@@ -20,15 +20,26 @@ public:
     // Default constructor
     ControPannelGroupBox(LogWidget *l);
     
+    int maxSize();
+    
+    int minSize();
+    
 public slots:
     
-    void computation();
+    void anaButtonClicked();
+    
+signals:
+    
+    void compute();
     
 private:
     
     QSpinBox *maxCellSize;
     QSpinBox *minCellSize;
     QPushButton *analyzeButton;
+    QCheckBox *areaCheckbox;
+    QCheckBox *eccentricityChecbox;
+    QCheckBox *orientationCheckbox;
     
     // Log recorder
     LogWidget *log;
