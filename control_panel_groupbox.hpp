@@ -24,6 +24,12 @@ public:
     
     int minSize();
     
+    bool isAreaChecked();
+    
+    bool isEccentricityChecked();
+    
+    bool isOrientationChecked();
+    
 public slots:
     
     void anaButtonClicked();

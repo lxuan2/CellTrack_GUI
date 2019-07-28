@@ -5,6 +5,8 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     setTitle("Control Panel");
     maxCellSize = new QSpinBox();
     minCellSize = new QSpinBox();
+    maxCellSize->setMaximum(99999);
+    minCellSize->setMaximum(99999);
     
     analyzeButton = new QPushButton("Analyze");
     QObject::connect(analyzeButton, &QPushButton::clicked, this, &ControPannelGroupBox::anaButtonClicked);
@@ -13,16 +15,29 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     eccentricityChecbox = new QCheckBox("Eccentricity");
     orientationCheckbox = new QCheckBox("Orientation");
     
-    auto *layout = new QGridLayout();
-    layout->addWidget(new QLabel("Cell Size:"), 0, 0);
-    layout->addWidget(new QLabel("max"), 0, 1);
-    layout->addWidget(maxCellSize, 0, 2, 1, 4);
-    layout->addWidget(new QLabel("min"), 0, 6);
-    layout->addWidget(minCellSize, 0, 7, 1, 4);
-    // TODO:
-    layout->addWidget(areaCheckbox, 0, 7, 1, 4);
+    // Cell Size Widget
+    QWidget * cellSizeWidget = new QWidget();
+    auto csLayout = new QHBoxLayout();
+    csLayout->addWidget(new QLabel("Cell Size:"));
+    csLayout->addWidget(new QLabel("max"));
+    csLayout->addWidget(maxCellSize);
+    csLayout->addWidget(new QLabel("min"));
+    csLayout->addWidget(minCellSize);
+    cellSizeWidget->setLayout(csLayout);
     
-    layout->addWidget(analyzeButton, 2, 11);
+    // Checkbox Widget
+    QWidget * checkboxWidget = new QWidget();
+    auto cLayout = new QHBoxLayout();
+    cLayout->addWidget(areaCheckbox);
+    cLayout->addWidget(eccentricityChecbox);
+    cLayout->addWidget(orientationCheckbox);
+    checkboxWidget->setLayout(cLayout);
+    
+    
+    auto *layout = new QGridLayout();
+    layout->addWidget(cellSizeWidget, 0, 0, 1, 6);
+    layout->addWidget(checkboxWidget, 1, 0, 1, 6);
+    layout->addWidget(analyzeButton, 2, 5);
     setLayout(layout);
 }
 
@@ -36,4 +51,16 @@ int ControPannelGroupBox::maxSize() {
 
 int ControPannelGroupBox::minSize() {
     return minCellSize->value();
+}
+
+bool ControPannelGroupBox::isAreaChecked() {
+    return areaCheckbox->isChecked();
+}
+
+bool ControPannelGroupBox::isEccentricityChecked() {
+    return eccentricityChecbox->isChecked();
+}
+
+bool ControPannelGroupBox::isOrientationChecked() {
+    return orientationCheckbox->isChecked();
 }

@@ -2,6 +2,7 @@
 #define CORE_HPP
 
 #include <QFile>
+#include <string>
 
 #include "video_groupbox.hpp"
 #include "control_panel_groupbox.hpp"

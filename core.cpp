@@ -7,23 +7,39 @@ Core::Core(VideoGroupBox *v, ControPannelGroupBox *c, LogWidget *l) {
 }
 
 void Core::compute() {
-    log->write("\n- Start Analysis -");
+    log->write("\n-- Start Analysis --\n");
     
     QString fileFullName = videoBox->currentFile();
     if (fileFullName.isEmpty())
-        return log->write("- No video file to be analyzed -\n- Finish Analysis -\n");
+        return log->write("Error: No video file to be analyzed\n-- Finish Analysis --\n");
         
     QFile file(fileFullName);
     if (!file.exists())
-        return log->write("- File does not exist and cannot be analyzed -\n- Finish Analysis -\n");
-    // TODO: get current path
+        return log->write("Error: File does not exist and cannot be analyzed\n-- Finish Analysis --\n");
     
-    log->write("Cell Size setting:");
-    std::string max = std::to_string(controlBox->maxSize());
-    std::string min = std::to_string(controlBox->minSize());
-    log->write(QString::fromStdString("max: " + max + ", min: " + min));
+    // TODO: get videoPath
+    std::string videoName = file.fileName().toStdString();
+    int maxSize = controlBox->maxSize();
+    int minSize = controlBox->minSize();
+    int areaBool = controlBox->isAreaChecked();
+    int eccentricityBool = controlBox->isEccentricityChecked();
+    int orientationBool = controlBox->isOrientationChecked();
     
-    // matlab code
+    // Print out settings
+    log->write(QString::fromStdString("   cell size: max: " + std::to_string(maxSize) + ", min: " + std::to_string(minSize)));
+    std::string areaString = areaBool? "Yes": "No";
+    std::string eccentricityString = eccentricityBool? "Yes": "No";
+    std::string orientationString = orientationBool? "Yes": "No";
+    log->write(QString::fromStdString("   Area:         " + areaString));
+    log->write(QString::fromStdString("   Eccentricity: " + eccentricityString));
+    log->write(QString::fromStdString("   Orientation:  " + orientationString));
     
-    log->write("- Finish Analysis -\n");
+    // input: videoPath, videoName, maxSize, minSize, areaBool, eccentricityBool, orientationBool
+    
+    log->write("\n   Running MATLAB Code...\n");
+    // TODO: run matlab code
+    
+    // output:
+    
+    log->write("-- Finish Analysis --\n");
 }

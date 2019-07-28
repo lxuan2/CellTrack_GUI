@@ -25,10 +25,10 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     QObject::connect(videoWidget, &DisplayWidget::changePosition, videoBox, &VideoGroupBox::changePosition);
     
     // Widget layout initialize
-    auto layout = new QVBoxLayout();
+    auto layout = new QGridLayout();
     layout->addWidget(videoWidget, 0, 0);
     layout->addWidget(videoBox, 1, 0);
-    layout->addWidget(controlBox, 2, 0);
-    layout->addWidget(log, 4, 0);
+    layout->addWidget(controlBox, 0, 1);
+    layout->addWidget(log, 1, 1);
     setLayout(layout);
 }
