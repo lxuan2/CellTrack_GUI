@@ -1,7 +1,7 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <QFile>
+#include <QFileInfo>
 #include <string>
 
 #include "video_groupbox.hpp"

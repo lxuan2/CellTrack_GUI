@@ -13,11 +13,12 @@ void Core::compute() {
     if (fileFullName.isEmpty())
         return log->write("Error: No video file to be analyzed\n-- Finish Analysis --\n");
         
-    QFile file(fileFullName);
+    QFileInfo file(fileFullName);
     if (!file.exists())
         return log->write("Error: File does not exist and cannot be analyzed\n-- Finish Analysis --\n");
     
     // TODO: get videoPath
+    std::string videoPath = file.path().toStdString();
     std::string videoName = file.fileName().toStdString();
     int maxSize = controlBox->maxSize();
     int minSize = controlBox->minSize();
@@ -26,7 +27,9 @@ void Core::compute() {
     int orientationBool = controlBox->isOrientationChecked();
     
     // Print out settings
-    log->write(QString::fromStdString("   cell size: max: " + std::to_string(maxSize) + ", min: " + std::to_string(minSize)));
+    log->write(QString::fromStdString("   File path: " + videoPath));
+    log->write(QString::fromStdString("   File name: " + videoName));
+    log->write(QString::fromStdString("   Cell size: max: " + std::to_string(maxSize) + ", min: " + std::to_string(minSize)));
     std::string areaString = areaBool? "Yes": "No";
     std::string eccentricityString = eccentricityBool? "Yes": "No";
     std::string orientationString = orientationBool? "Yes": "No";
