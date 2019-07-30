@@ -47,6 +47,8 @@ private:
     QCheckBox *eccentricityChecbox;
     QCheckBox *orientationCheckbox;
     
+    
+    
     // Log recorder
     LogWidget *log;
 };

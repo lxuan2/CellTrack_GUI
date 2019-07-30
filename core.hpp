@@ -3,7 +3,7 @@
 
 #include <QFileInfo>
 #include <string>
-#include <Windows.h>
+//#include <Windows.h>
 #include <fstream>
 
 #include "video_groupbox.hpp"

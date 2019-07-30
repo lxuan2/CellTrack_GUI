@@ -1,7 +1,6 @@
 #ifndef CELL_APP_HPP
 #define CELL_APP_HPP
 
-#include <iostream>
 #include <QLabel>
 #include <QWidget>
 #include <QLayout>

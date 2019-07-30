@@ -3,7 +3,6 @@
 
 #include <QPlainTextEdit>
 #include <QString>
-#include <QDebug>
 
 class LogWidget: public QPlainTextEdit {
     Q_OBJECT

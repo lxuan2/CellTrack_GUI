@@ -10,12 +10,11 @@
 #include <QStyle>
 #include <QLayout>
 #include <QLabel>
-#include <QFileDialog>
-#include <iostream>
 #include <QTime>
 
 #include "file_combobox.hpp"
 #include "log_widget.hpp"
+#include "file_finder.hpp"
 
 class VideoGroupBox: public QGroupBox {
     Q_OBJECT
@@ -33,8 +32,6 @@ public slots:
     void setPosition();
     
     void playClicked();
-    
-    void browse();
     
     void loadOriginal();
     
@@ -62,14 +59,13 @@ private:
     QPushButton *loadOrgButton;
     QPushButton *loadResButton;
     QToolButton *playButton;
-    QPushButton *browseButton;
     
     // Sliders
     QSlider *volumeSlider;
     QSlider *trackSlider;
     
-    // Combobox
-    FileCombobox *fileBox;
+    // File finder
+    FileFinder *finder;
     
     // Log recorder
     LogWidget *log;

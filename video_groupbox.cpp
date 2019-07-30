@@ -13,9 +13,6 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     QObject::connect(playButton, &QToolButton::clicked, this, &VideoGroupBox::playClicked);
     
-    browseButton = new QPushButton("Browse");
-    QObject::connect(browseButton, &QPushButton::clicked, this, &VideoGroupBox::browse);
-    
     volumeSlider = new QSlider(Qt::Horizontal);
     volumeSlider->setRange(0, 100);
 	volumeSlider->setValue(50);
@@ -26,28 +23,24 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     //trackSlider->setEnabled(false);
     QObject::connect(trackSlider, &QSlider::sliderReleased, this, &VideoGroupBox::setPosition);
     
-    fileBox = new FileCombobox();
-    fileBox->setEditable(true);
-    fileBox->setFrame(true);
-    QObject::connect(fileBox, &FileCombobox::enterPressed, this, &VideoGroupBox::loadOriginal);
-    
     durLabel = new QLabel("--:-- / --:--");
     
+    finder = new FileFinder("File location");
+    QObject::connect(finder, &FileFinder::contentChanged, this, &VideoGroupBox::loadOriginal);
+    
     auto *layout = new QGridLayout();
-    layout->addWidget(trackSlider, 0, 0, 1, 15);
-    layout->addWidget(durLabel, 0, 15);
+    layout->addWidget(trackSlider, 0, 1, 1, 15);
+    layout->addWidget(durLabel, 0, 16);
     
-    layout->addWidget(new QLabel("Start/Stop:"), 1, 0);
-    layout->addWidget(playButton, 1, 1);
-    layout->addWidget(loadOrgButton, 1, 14, 1, 2);
+    layout->addWidget(new QLabel("Start/Stop:"), 1, 1);
+    layout->addWidget(playButton, 1, 2);
+    layout->addWidget(loadOrgButton, 1, 15, 1, 2);
     
-    layout->addWidget(new QLabel("Volume:"), 2, 0);
-    layout->addWidget(volumeSlider, 2, 1, 1, 8);
-    layout->addWidget(loadResButton, 2, 14, 1, 2);
+    layout->addWidget(new QLabel("Volume:"), 2, 1);
+    layout->addWidget(volumeSlider, 2, 2, 1, 8);
+    layout->addWidget(loadResButton, 2, 15, 1, 2);
     
-    layout->addWidget(new QLabel("File Location:"), 3, 0);
-    layout->addWidget(fileBox, 3, 1, 1, 14);
-    layout->addWidget(browseButton, 3, 15);
+    layout->addWidget(finder, 3, 0, 1, 18);
     setLayout(layout);
 }
 
@@ -64,26 +57,14 @@ void VideoGroupBox::playClicked() {
     emit play();
 }
 
-void VideoGroupBox::browse() {
-    QString fileName = QFileDialog::getOpenFileName(this, "Open Video File", QDir::homePath());
-    if (!fileName.isEmpty()) {
-        if (fileBox->findText(fileName) == -1)
-            fileBox->addItem(fileName);
-        fileBox->setCurrentIndex(fileBox->findText(fileName));
-        loadOriginal();
-    }
-}
-
 void VideoGroupBox::loadOriginal() {
     changePlayButton(false);
-    QString file = fileBox->currentText();
-    emit changeFile(file);
+    emit changeFile(finder->currentText());
 }
 
 void VideoGroupBox::loadResult() {
     changePlayButton(false);
-    QString file = fileBox->currentText();
-    emit changeFile(file);
+    emit changeFile(finder->currentText());
 }
 
 void VideoGroupBox::changePlayButton(bool play) {
@@ -123,5 +104,5 @@ void VideoGroupBox::updateDurationInfo(qint64 currentInfo) {
 }
 
 QString VideoGroupBox::currentFile() {
-    return fileBox->currentText();
+    return finder->currentText();
 }

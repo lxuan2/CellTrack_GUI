@@ -52,7 +52,7 @@ void Core::compute() {
 }
 
 void Core::matlabCode(std::string exe) {
-	STARTUPINFO info = { sizeof(info) };
+	/*STARTUPINFO info = { sizeof(info) };
 	PROCESS_INFORMATION processInfo;
 	//const char x[50] = "C:/Users/Xuan/Desktop/Release/CombinedCodeApp.exe";
 	const char *exeChar = exe.c_str();
@@ -61,5 +61,5 @@ void Core::matlabCode(std::string exe) {
 		WaitForSingleObject(processInfo.hProcess, INFINITE);
 		CloseHandle(processInfo.hProcess);
 		CloseHandle(processInfo.hThread);
-	}
+	}*/
 }

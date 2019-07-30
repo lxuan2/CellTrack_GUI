@@ -1,6 +1,5 @@
 #include "log_widget.hpp"
 #include <string>
-#include <iostream>
 
 LogWidget::LogWidget(): QPlainTextEdit() {
     setReadOnly(true);
