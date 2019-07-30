@@ -14,7 +14,6 @@ public:
     void write(QString content);
     
     void clear();
-    
 };
 
 #endif

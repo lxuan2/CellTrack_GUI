@@ -6,7 +6,7 @@ DisplayWidget::DisplayWidget(LogWidget *l): QVideoWidget(){
     player = new QMediaPlayer();
     player->setVolume(50);
     player->setVideoOutput(this);
-    setMinimumHeight(350);
+	setMinimumSize(700, 700);
     
     connect(player, &QMediaPlayer::durationChanged, this, &DisplayWidget::durationChanged);
     connect(player, &QMediaPlayer::positionChanged, this, &DisplayWidget::positionChanged);
@@ -51,7 +51,7 @@ void DisplayWidget::changeVolume(int volume) {
 void DisplayWidget::changeFile(QString file) {
     QFileInfo check_file(file);
     if (check_file.exists() && check_file.isFile()) {
-        log->write("- New Video Loaded -");
+        log->write(QString::fromStdString("- New Video Loaded: ") + file);
 		std::string x = file.toStdString();
         player->setMedia(QUrl::fromLocalFile(QString::fromStdString(x)));
         return;

@@ -36,7 +36,7 @@ void Core::compute() {
     log->write(QString::fromStdString("   Area:         " + areaString));
     log->write(QString::fromStdString("   Eccentricity: " + eccentricityString));
     log->write(QString::fromStdString("   Orientation:  " + orientationString));
-	std::ofstream out("tempPort.txt");
+	std::ofstream out((path + "/tempPort.txt"));
 	out << videoPath << "\n" << videoName << "\n" << maxSize << "\n" << minSize << "\n" << areaBool << "\n" << eccentricityBool << "\n" << orientationBool;
 	out.close();
     
@@ -46,8 +46,25 @@ void Core::compute() {
 
     //run matlab code
 	matlabCode();
-    // output:
-    
+    // output: totalcells_GT, totalcells, stoppedcells_GT, stoppedcells, stoppedpercent_GT, 
+	//		   stopped_percent,tracking_accuracy, stoppedcell_accuracy, output_filename
+	std::ifstream in((path + "/tempPort.txt"));
+	std::string tmp[9];
+	for (int i = 0; i < 9; i++) {
+		in >> tmp[i];
+	}
+
+	log->write(QString::fromStdString("   Total number of cells present (Ground Truth):\n\t" + tmp[0] +
+				"\n   Total number of cells detected by tracking:\n\t" + tmp[1] +
+				"\n   Number of cells that stopped (Ground Truth):\n\t" + tmp[2] +
+				"\n   Number of cells that stopped:\n\t" + tmp[3] +
+				"\n   Percentage of cells that stopped (Ground Truth):\n\t" + tmp[4] +
+				"\n   Percentage of cells that stopped:\n\t" + tmp[5] +
+				"\n   Accuracy in tracking cells:\n\t" + tmp[6] +
+				"\n   Accuracy in tracking stopped cells:\n\t" + tmp[7] +
+				"\n   Output file name:\n\t" + tmp[8] + "\n"));
+
+	emit loadResualt(tmp[8]);
     log->write("-- Finish Analysis --\n");
 }
 
@@ -56,7 +73,6 @@ void Core::matlabCode() {
 #ifdef OS_Windows
     STARTUPINFO info = { sizeof(info) };
     PROCESS_INFORMATION processInfo;
-    //const char x[50] = "C:/Users/Xuan/Desktop/Release/CombinedCodeApp.exe";
     const char *exeChar = exeLoc.c_str();
     if (CreateProcess(exeChar, NULL, NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
     {
@@ -64,10 +80,15 @@ void Core::matlabCode() {
         CloseHandle(processInfo.hProcess);
         CloseHandle(processInfo.hThread);
     }
+	else {
+		log->write("Error: fail to run C# application.");
+	}
 #endif
     
 }
 
 void Core::setExe(QString exeLoc) {
-    Core::exeLoc = exeLoc.toStdString();
+	Core::exeLoc = exeLoc.toStdString();
+	QFileInfo info(exeLoc);
+	path = info.path().toStdString();
 }

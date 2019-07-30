@@ -59,12 +59,14 @@ void VideoGroupBox::playClicked() {
 
 void VideoGroupBox::loadOriginal() {
     changePlayButton(false);
+	QFileInfo info(finder->currentText());
+	resultPath = info.path().toStdString();
     emit changeFile(finder->currentText());
 }
 
 void VideoGroupBox::loadResult() {
-    changePlayButton(false);
-    emit changeFile(finder->currentText());
+	changePlayButton(false);
+    emit changeFile(QString::fromStdString(resultFullName));
 }
 
 void VideoGroupBox::changePlayButton(bool play) {
@@ -105,4 +107,9 @@ void VideoGroupBox::updateDurationInfo(qint64 currentInfo) {
 
 QString VideoGroupBox::currentFile() {
     return finder->currentText();
+}
+
+void VideoGroupBox::setResualtName(std::string fn) {
+	resultFullName = resultPath + "/" + fn;
+	loadResult();
 }

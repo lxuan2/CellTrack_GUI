@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include <QString>
+#include <stdio.h>
 
 #include "video_groupbox.hpp"
 #include "control_panel_groupbox.hpp"
@@ -26,6 +27,10 @@ public:
     
     void setExe(QString exeLoc);
 
+signals:
+
+	void loadResualt(std::string fn);
+
 public slots:
     
     void compute();
@@ -39,6 +44,8 @@ private:
     ControPannelGroupBox *controlBox;
     
     std::string exeLoc;
+	
+	std::string path;
     
     // Log recorder
     LogWidget *log;

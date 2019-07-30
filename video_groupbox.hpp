@@ -11,6 +11,8 @@
 #include <QLayout>
 #include <QLabel>
 #include <QTime>
+#include <string>
+#include <QFileInfo>
 
 #include "file_combobox.hpp"
 #include "log_widget.hpp"
@@ -27,6 +29,8 @@ public:
 
 public slots:
     
+	void setResualtName(std::string fn);
+		
     void setVolume(int volume);
     
     void setPosition();
@@ -75,6 +79,9 @@ private:
     
     // Duration label
     QLabel *durLabel;
+
+	std::string resultFullName;
+	std::string resultPath;
     
     void updateDurationInfo(qint64 currentInfo);
 };

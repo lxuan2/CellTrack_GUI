@@ -16,6 +16,7 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     core = new Core(videoBox, controlBox, log);
     
     QObject::connect(controlBox, &ControPannelGroupBox::compute, core, &Core::compute);
+	QObject::connect(core, &Core::loadResualt, videoBox, &VideoGroupBox::setResualtName);
     QObject::connect(videoBox, &VideoGroupBox::play, videoWidget, &DisplayWidget::play);
     QObject::connect(videoBox, &VideoGroupBox::changeVolume, videoWidget, &DisplayWidget::changeVolume);
     QObject::connect(videoBox, &VideoGroupBox::seek, videoWidget, &DisplayWidget::seek);
@@ -34,6 +35,6 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
 }
 
 void CellApp::showWindow(QString exeLoc) {
-    
+	core->setExe(exeLoc);
     show();
 }
