@@ -11,11 +11,11 @@ void Core::compute() {
     
     QString fileFullName = videoBox->currentFile();
     if (fileFullName.isEmpty())
-        return log->write("Error: No video file to be analyzed\n-- Finish Analysis --\n");
+        return log->write("Error: No video file to be analyzed\n\n-- Finish Analysis --\n");
         
     QFileInfo file(fileFullName);
     if (!file.exists())
-        return log->write("Error: File does not exist and cannot be analyzed\n-- Finish Analysis --\n");
+        return log->write("Error: File does not exist and cannot be analyzed\n\n-- Finish Analysis --\n");
     
     // TODO: get videoPath
     std::string videoPath = file.path().toStdString();
@@ -36,13 +36,30 @@ void Core::compute() {
     log->write(QString::fromStdString("   Area:         " + areaString));
     log->write(QString::fromStdString("   Eccentricity: " + eccentricityString));
     log->write(QString::fromStdString("   Orientation:  " + orientationString));
+	std::ofstream out("tempPort.txt");
+	out << videoPath << "\n" << videoName << "\n" << maxSize << "\n" << minSize << "\n" << areaBool << "\n" << eccentricityBool << "\n" << orientationBool;
+	out.close();
     
     // input: videoPath, videoName, maxSize, minSize, areaBool, eccentricityBool, orientationBool
     
     log->write("\n   Running MATLAB Code...\n");
-    // TODO: run matlab code
-    
+
+    //run matlab code
+	matlabCode("C:/Users/Xuan/Desktop/hello.exe");
     // output:
     
     log->write("-- Finish Analysis --\n");
+}
+
+void Core::matlabCode(std::string exe) {
+	STARTUPINFO info = { sizeof(info) };
+	PROCESS_INFORMATION processInfo;
+	//const char x[50] = "C:/Users/Xuan/Desktop/Release/CombinedCodeApp.exe";
+	const char *exeChar = exe.c_str();
+	if (CreateProcess(exeChar, NULL, NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
+	{
+		WaitForSingleObject(processInfo.hProcess, INFINITE);
+		CloseHandle(processInfo.hProcess);
+		CloseHandle(processInfo.hThread);
+	}
 }

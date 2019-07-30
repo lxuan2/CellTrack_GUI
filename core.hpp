@@ -3,6 +3,8 @@
 
 #include <QFileInfo>
 #include <string>
+#include <Windows.h>
+#include <fstream>
 
 #include "video_groupbox.hpp"
 #include "control_panel_groupbox.hpp"
@@ -14,12 +16,14 @@ public:
     
     // Default Constructor
     Core(VideoGroupBox *v, ControPannelGroupBox *c, LogWidget *l);
-    
+
 public slots:
     
     void compute();
     
 private:
+
+	void matlabCode(std::string exe);
     
     VideoGroupBox *videoBox;
     

@@ -6,6 +6,7 @@
 #include <QMediaPlaylist>
 #include <QFileInfo>
 #include <QMouseEvent>
+#include <QResizeEvent>
 
 #include "log_widget.hpp"
 
