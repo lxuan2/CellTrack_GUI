@@ -25,6 +25,8 @@ private slots:
     
     void browse();
     
+    void checkEmpty();
+    
 signals:
     
     void contentChanged();

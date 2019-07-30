@@ -8,7 +8,7 @@ FileFinder::FileFinder(std::string label): QWidget(nullptr) {
     fileBox = new FileCombobox();
     fileBox->setEditable(true);
     fileBox->setFrame(true);
-    QObject::connect(fileBox, &FileCombobox::enterPressed, this, &FileFinder::contentChanged);
+    QObject::connect(fileBox, &FileCombobox::enterPressed, this, &FileFinder::checkEmpty);
     
     auto *layout = new QGridLayout();
     layout->addWidget(new QLabel(QString::fromStdString(label + ":")), 0, 0);
@@ -29,4 +29,10 @@ void FileFinder::browse() {
         fileBox->setCurrentIndex(fileBox->findText(fileName));
         emit contentChanged();
     }
+}
+
+void FileFinder::checkEmpty() {
+    if(fileBox->currentText().isEmpty())
+        return;
+    emit contentChanged();
 }

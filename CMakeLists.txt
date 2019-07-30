@@ -14,6 +14,7 @@ add_executable(cell cell.cpp
 	file_combobox.hpp file_combobox.cpp
 	log_widget.hpp log_widget.cpp
 	core.hpp core.cpp
-	file_finder.hpp file_finder.cpp)
+	file_finder.hpp file_finder.cpp
+	setting_app.hpp setting_app.cpp)
 set_property(TARGET cell PROPERTY CXX_STANDARD 11)
 target_link_libraries(cell Qt5::Widgets Qt5::MultimediaWidgets)

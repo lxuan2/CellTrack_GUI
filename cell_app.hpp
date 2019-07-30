@@ -2,6 +2,7 @@
 #define CELL_APP_HPP
 
 #include <QLabel>
+#include <QString>
 #include <QWidget>
 #include <QLayout>
 #include <QSpinBox>
@@ -22,6 +23,10 @@ public:
     
     // Default constructor
     CellApp(QWidget *parent = nullptr);
+    
+public slots:
+    
+    void showWindow(QString exeLoc);
     
 private:
     

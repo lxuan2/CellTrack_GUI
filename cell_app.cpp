@@ -32,3 +32,8 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     layout->addWidget(log, 1, 1);
     setLayout(layout);
 }
+
+void CellApp::showWindow(QString exeLoc) {
+    
+    show();
+}

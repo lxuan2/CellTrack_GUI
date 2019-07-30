@@ -45,21 +45,29 @@ void Core::compute() {
     log->write("\n   Running MATLAB Code...\n");
 
     //run matlab code
-	matlabCode("C:/Users/Xuan/Desktop/hello.exe");
+	matlabCode();
     // output:
     
     log->write("-- Finish Analysis --\n");
 }
 
-void Core::matlabCode(std::string exe) {
-	/*STARTUPINFO info = { sizeof(info) };
-	PROCESS_INFORMATION processInfo;
-	//const char x[50] = "C:/Users/Xuan/Desktop/Release/CombinedCodeApp.exe";
-	const char *exeChar = exe.c_str();
-	if (CreateProcess(exeChar, NULL, NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
-	{
-		WaitForSingleObject(processInfo.hProcess, INFINITE);
-		CloseHandle(processInfo.hProcess);
-		CloseHandle(processInfo.hThread);
-	}*/
+void Core::matlabCode() {
+    
+#ifdef OS_Windows
+    STARTUPINFO info = { sizeof(info) };
+    PROCESS_INFORMATION processInfo;
+    //const char x[50] = "C:/Users/Xuan/Desktop/Release/CombinedCodeApp.exe";
+    const char *exeChar = exeLoc.c_str();
+    if (CreateProcess(exeChar, NULL, NULL, NULL, TRUE, 0, NULL, NULL, &info, &processInfo))
+    {
+        WaitForSingleObject(processInfo.hProcess, INFINITE);
+        CloseHandle(processInfo.hProcess);
+        CloseHandle(processInfo.hThread);
+    }
+#endif
+    
+}
+
+void Core::setExe(QString exeLoc) {
+    Core::exeLoc = exeLoc.toStdString();
 }
