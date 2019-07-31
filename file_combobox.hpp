@@ -13,6 +13,7 @@ public:
     
 signals:
     
+    // Enter button pressed signal
     void enterPressed();
     
 private:

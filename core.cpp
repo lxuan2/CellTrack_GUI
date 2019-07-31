@@ -40,14 +40,18 @@ void Core::compute() {
 	out << videoPath << "\n" << videoName << "\n" << maxSize << "\n" << minSize << "\n" << areaBool << "\n" << eccentricityBool << "\n" << orientationBool;
 	out.close();
     
-    // input: videoPath, videoName, maxSize, minSize, areaBool, eccentricityBool, orientationBool
-    
     log->write("\n   Running MATLAB Code...\n");
-
-    //run matlab code
-	matlabCode();
-    // output: totalcells_GT, totalcells, stoppedcells_GT, stoppedcells, stoppedpercent_GT, 
-	//		   stopped_percent,tracking_accuracy, stoppedcell_accuracy, output_filename
+    
+    // Run matlab code
+    //input: videoPath, videoName, maxSize, minSize, areaBool, eccentricityBool, orientationBool
+    
+    if (!matlabCode())
+        return log->write("\n-- Finish Analysis --\n");
+    
+    /* Output: totalcells_GT, totalcells, stoppedcells_GT, stoppedcells, stoppedpercent_GT,
+    stopped_percent,tracking_accuracy, stoppedcell_accuracy, output_filename
+    */
+    
 	std::ifstream in((path + "/tempPort.txt"));
 	std::string tmp[9];
 	for (int i = 0; i < 9; i++) {
@@ -68,7 +72,7 @@ void Core::compute() {
     log->write("-- Finish Analysis --\n");
 }
 
-void Core::matlabCode() {
+bool Core::matlabCode() {
     
 #ifdef OS_Windows
     STARTUPINFO info = { sizeof(info) };
@@ -79,12 +83,13 @@ void Core::matlabCode() {
         WaitForSingleObject(processInfo.hProcess, INFINITE);
         CloseHandle(processInfo.hProcess);
         CloseHandle(processInfo.hThread);
+        return true;
     }
-	else {
-		log->write("Error: fail to run C# application.");
-	}
+    log->write("Error: fail to run C# application.");
+#else
+    log->write("Error: To generate the video, Windows system is needed.");
 #endif
-    
+    return false;
 }
 
 void Core::setExe(QString exeLoc) {

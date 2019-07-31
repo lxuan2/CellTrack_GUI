@@ -1,13 +1,13 @@
 #ifndef FILE_FINDER_HPP
 #define FILE_FINDER_HPP
 
-#include <QPushButton>
-#include <QFileDialog>
+#include <string>
 #include <QLabel>
 #include <QLayout>
 #include <QString>
 #include <QWidget>
-#include <string>
+#include <QPushButton>
+#include <QFileDialog>
 
 #include "file_combobox.hpp"
 
@@ -23,12 +23,15 @@ public:
     
 private slots:
     
+    // Browse button function
     void browse();
     
+    // Check combobox is empty
     void checkEmpty();
     
 signals:
     
+    // Content in the combobox is changed
     void contentChanged();
     
 private:

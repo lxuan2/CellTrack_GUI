@@ -27,17 +27,15 @@ public:
     
 public slots:
     
+    // Show CellApp as a window
     void showWindow(QString exeLoc);
     
 private:
-    
-    void resizeEvent(QResizeEvent *event);
     
     // Video widget
     DisplayWidget *videoWidget;
     
     // Log widget
-    
     LogWidget *log;
 
     // Group boxes

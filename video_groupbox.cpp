@@ -20,7 +20,6 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     
     trackSlider = new QSlider(Qt::Horizontal);
     trackSlider->setRange(0, 30);
-    //trackSlider->setEnabled(false);
     QObject::connect(trackSlider, &QSlider::sliderReleased, this, &VideoGroupBox::setPosition);
     
     durLabel = new QLabel("--:-- / --:--");

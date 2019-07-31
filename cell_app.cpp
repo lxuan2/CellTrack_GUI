@@ -38,9 +38,3 @@ void CellApp::showWindow(QString exeLoc) {
 	core->setExe(exeLoc);
     show();
 }
-
-void CellApp::resizeEvent(QResizeEvent *event) {
-    //videoWidget->resize(width() / 4, height() / 4);
-    
-    QWidget::resizeEvent(event);
-}
