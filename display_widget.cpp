@@ -1,12 +1,13 @@
 #include "display_widget.hpp"
-#include <string>
+
 
 DisplayWidget::DisplayWidget(LogWidget *l): QVideoWidget(){
     log = l;
     player = new QMediaPlayer();
     player->setVolume(50);
     player->setVideoOutput(this);
-	setMinimumSize(700, 700);
+	setMinimumSize(400, 400);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     
     connect(player, &QMediaPlayer::durationChanged, this, &DisplayWidget::durationChanged);
     connect(player, &QMediaPlayer::positionChanged, this, &DisplayWidget::positionChanged);

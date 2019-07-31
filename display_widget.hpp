@@ -7,6 +7,8 @@
 #include <QFileInfo>
 #include <QMouseEvent>
 #include <QResizeEvent>
+#include <string>
+#include <QSizePolicy>
 
 #include "log_widget.hpp"
 

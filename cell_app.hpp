@@ -10,6 +10,7 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QFileDialog>
+#include <QResizeEvent>
 
 #include "core.hpp"
 #include "log_widget.hpp"
@@ -29,6 +30,8 @@ public slots:
     void showWindow(QString exeLoc);
     
 private:
+    
+    void resizeEvent(QResizeEvent *event);
     
     // Video widget
     DisplayWidget *videoWidget;
