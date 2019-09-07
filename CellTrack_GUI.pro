@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = cell
+TARGET = CellTrack_GUI
 
 QT += network \
       xml \
@@ -28,6 +28,6 @@ SOURCES = cell.cpp \
     file_finder.cpp \
     setting_app.cpp
 
-target.path = /Users/xuanli/Desktop/cell/src
+target.path = /Users/xuanli/Developer/CellTrack_GUI/src
 INSTALLS += target
 ICON = cell.icns
