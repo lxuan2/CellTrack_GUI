@@ -30,3 +30,4 @@ SOURCES = cell.cpp \
 
 target.path = /Users/xuanli/Desktop/cell/src
 INSTALLS += target
+ICON = cell.icns
