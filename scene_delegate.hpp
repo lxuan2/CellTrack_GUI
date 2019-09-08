@@ -9,7 +9,7 @@ class SceneDelegate: public QObject {
 public:
     
     // Default Constructor
-    SceneDelegate();
+    SceneDelegate(QString appDirPath);
     
 public slots:
     
@@ -18,6 +18,8 @@ public slots:
     void pushFromPViewToCView(QString str);
     
 private:
+    
+    QString applicationDirPath;
     
     // Main content view
     ContentView *conView;

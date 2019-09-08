@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 	QApplication app(argc, argv);
     
     // Delegate sence to view controller
-    SceneDelegate scene;
+    SceneDelegate scene(app.applicationDirPath());
     
     // Start the application
     return app.exec();

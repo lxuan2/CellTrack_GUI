@@ -23,7 +23,7 @@ class ContentView: public QWidget{
 public:
     
     // Default constructor
-    ContentView(QWidget *parent = nullptr);
+    ContentView(QWidget *parent = nullptr, QString appDirPath = "");
     
     // Set C# Application location
     void setExeLoc(QString exeLoc);

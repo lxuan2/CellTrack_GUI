@@ -1,9 +1,9 @@
 #include "content_view.hpp"
 
-ContentView::ContentView(QWidget *parent): QWidget(parent) {
+ContentView::ContentView(QWidget *parent, QString appDirPath): QWidget(parent) {
     
     // Log initialize
-    log = new LogWidget();
+    log = new LogWidget(appDirPath);
     
     // Widget initialize
     videoWidget = new DisplayWidget(log);

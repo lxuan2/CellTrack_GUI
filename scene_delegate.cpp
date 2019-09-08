@@ -1,6 +1,9 @@
 #include "scene_delegate.hpp"
 
-SceneDelegate::SceneDelegate() {
+SceneDelegate::SceneDelegate(QString appDirPath) {
+    
+    // Set application directory path
+    applicationDirPath = appDirPath;
     
     preView = new PreSettingView();
     
@@ -24,7 +27,7 @@ void SceneDelegate::createView(int id) {
                 conView->raise();
                 break;
             }
-            conView = new ContentView();
+            conView = new ContentView(nullptr, applicationDirPath);
             QObject::connect(conView, &ContentView::createView, this, &SceneDelegate::createView);
             conView->show();
             break;

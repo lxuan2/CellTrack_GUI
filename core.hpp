@@ -23,7 +23,7 @@ class Core: public QObject {
     Q_OBJECT
 public:
     
-    // Default Constructor
+    // Parameterized Constructor
     Core(VideoGroupBox *v, ControPannelGroupBox *c, LogWidget *l);
     
     // Set C# App .exe name and path
