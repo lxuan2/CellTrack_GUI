@@ -7,16 +7,19 @@
 
 #include "file_finder.hpp"
 
-class SettingApp: public QWidget{
+class PreSettingView: public QWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    SettingApp(QWidget *parent = nullptr);
+    PreSettingView(QWidget *parent = nullptr);
     
 signals:
+
+    void createView(int id);
     
-    void toMain(QString exeLoc);
+    void setExeLoc(QString exeLoc);
+
     
 private slots:
     

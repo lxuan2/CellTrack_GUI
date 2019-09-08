@@ -1,5 +1,5 @@
-#ifndef CELL_APP_HPP
-#define CELL_APP_HPP
+#ifndef CONTENT_VIEW_HPP
+#define CONTENT_VIEW_HPP
 
 #include <QLabel>
 #include <QString>
@@ -18,17 +18,19 @@
 #include "video_groupbox.hpp"
 #include "control_panel_groupbox.hpp"
 
-class CellApp: public QWidget{
+class ContentView: public QWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    CellApp(QWidget *parent = nullptr);
+    ContentView(QWidget *parent = nullptr);
     
-public slots:
+    // Set C# Application location
+    void setExeLoc(QString exeLoc);
     
-    // Show CellApp as a window
-    void showWindow(QString exeLoc);
+signals:
+    
+    void createView(int id);
     
 private:
     

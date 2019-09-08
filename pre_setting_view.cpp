@@ -1,8 +1,8 @@
-#include "setting_app.hpp"
+#include "pre_setting_view.hpp"
 
-SettingApp::SettingApp(QWidget *parent): QWidget(parent) {
+PreSettingView::PreSettingView(QWidget *parent): QWidget(parent) {
     finder = new FileFinder("Open File");
-    QObject::connect(finder, &FileFinder::contentChanged, this, &SettingApp::closeWindow);
+    QObject::connect(finder, &FileFinder::contentChanged, this, &PreSettingView::closeWindow);
     
     // Widget layout initialize
     auto layout = new QGridLayout();
@@ -11,8 +11,9 @@ SettingApp::SettingApp(QWidget *parent): QWidget(parent) {
     setLayout(layout);
 }
 
-void SettingApp::closeWindow() {
-    emit toMain(finder->currentText());
+void PreSettingView::closeWindow() {
+    createView(0);
+    emit setExeLoc(finder->currentText());
     close();
 }
 

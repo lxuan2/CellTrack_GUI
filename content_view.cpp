@@ -1,6 +1,6 @@
-#include "cell_app.hpp"
+#include "content_view.hpp"
 
-CellApp::CellApp(QWidget *parent): QWidget(parent) {
+ContentView::ContentView(QWidget *parent): QWidget(parent) {
     
     // Log initialize
     log = new LogWidget();
@@ -34,7 +34,6 @@ CellApp::CellApp(QWidget *parent): QWidget(parent) {
     setLayout(layout);
 }
 
-void CellApp::showWindow(QString exeLoc) {
+void ContentView::setExeLoc(QString exeLoc) {
 	core->setExe(exeLoc);
-    show();
 }
