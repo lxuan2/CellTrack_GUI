@@ -15,13 +15,27 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     eccentricityChecbox = new QCheckBox("Eccentricity");
     orientationCheckbox = new QCheckBox("Orientation");
     
+    // QLabels
+    QLabel *csLabel = new QLabel("Cell Size:");
+    QLabel *maxLabel = new QLabel("max");
+    QLabel *minLabel = new QLabel("min");
+    csLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    maxLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    minLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    
+    // Seperator Line
+    QWidget *lineA = new QWidget;
+    lineA->setFixedHeight(2);
+    lineA->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    lineA->setStyleSheet(QString("background-color: #c0c0c0;"));
+    
     // Cell Size Widget
     QWidget * cellSizeWidget = new QWidget();
     auto csLayout = new QHBoxLayout();
-    csLayout->addWidget(new QLabel("Cell Size:"));
-    csLayout->addWidget(new QLabel("max"));
+    csLayout->addWidget(csLabel);
+    csLayout->addWidget(maxLabel);
     csLayout->addWidget(maxCellSize);
-    csLayout->addWidget(new QLabel("min"));
+    csLayout->addWidget(minLabel);
     csLayout->addWidget(minCellSize);
     cellSizeWidget->setLayout(csLayout);
     
@@ -33,11 +47,12 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     cLayout->addWidget(orientationCheckbox);
     checkboxWidget->setLayout(cLayout);
     
-    
     auto *layout = new QGridLayout();
     layout->addWidget(cellSizeWidget, 0, 0, 1, 6);
     layout->addWidget(checkboxWidget, 1, 0, 1, 6);
     layout->addWidget(analyzeButton, 2, 5);
+    layout->addWidget(lineA, 3, 0, 1, 6);
+    
     setLayout(layout);
 }
 

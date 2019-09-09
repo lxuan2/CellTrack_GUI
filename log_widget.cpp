@@ -2,7 +2,9 @@
 
 LogWidget::LogWidget(QString appDirPath):QPlainTextEdit(), file((appDirPath + "/Log.txt")), stream(&file) {
     file.open(QIODevice::Append | QIODevice::Text);
-    stream << QDateTime::currentDateTime().toString() << endl;
+    auto time = QDateTime::currentDateTime().toString();
+    appendPlainText(time);
+    stream << time << endl;
     setReadOnly(true);
 }
 
@@ -16,7 +18,7 @@ void LogWidget::write(QString content) {
     }
     
     // Write to widget and file
-    appendPlainText(content);
+    appendPlainText("  " + content);
     stream << "  " << content << endl;
 }
 
