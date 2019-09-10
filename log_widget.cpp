@@ -3,7 +3,7 @@
 LogWidget::LogWidget(QString appDirPath):QPlainTextEdit(), file((appDirPath + "/Log.txt")), stream(&file) {
     file.open(QIODevice::Append | QIODevice::Text);
     auto time = QDateTime::currentDateTime().toString();
-    appendPlainText(time);
+    appendPlainText(time + "\nStart Logging...");
     stream << time << endl;
     setReadOnly(true);
 }
@@ -24,4 +24,9 @@ void LogWidget::write(QString content) {
 
 void LogWidget::clear() {
     QPlainTextEdit::clear();
+}
+
+QString LogWidget::logPath() {
+    QFileInfo info(file);
+    return info.absoluteFilePath();
 }

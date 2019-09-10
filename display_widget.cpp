@@ -6,7 +6,7 @@ DisplayWidget::DisplayWidget(LogWidget *l): QVideoWidget(){
     player = new QMediaPlayer();
     player->setVolume(50);
     player->setVideoOutput(this);
-	setMinimumSize(400, 400);
+	setMinimumSize(450, 350);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     
     connect(player, &QMediaPlayer::durationChanged, this, &DisplayWidget::durationChanged);

@@ -11,6 +11,9 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     analyzeButton = new QPushButton("Analyze");
     QObject::connect(analyzeButton, &QPushButton::clicked, this, &ControPannelGroupBox::anaButtonClicked);
     
+    logButton = new QPushButton("View All Log");
+    QObject::connect(logButton, &QPushButton::clicked, this, &ControPannelGroupBox::logButtonClicked);
+    
     areaCheckbox = new QCheckBox("Area");
     eccentricityChecbox = new QCheckBox("Eccentricity");
     orientationCheckbox = new QCheckBox("Orientation");
@@ -48,16 +51,23 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     checkboxWidget->setLayout(cLayout);
     
     auto *layout = new QGridLayout();
-    layout->addWidget(cellSizeWidget, 0, 0, 1, 6);
-    layout->addWidget(checkboxWidget, 1, 0, 1, 6);
-    layout->addWidget(analyzeButton, 2, 5);
-    layout->addWidget(lineA, 3, 0, 1, 6);
-    
+    layout->addWidget(cellSizeWidget, 1, 0, 1, 6);
+    layout->addWidget(new QLabel(""), 2, 0);
+    layout->addWidget(checkboxWidget, 3, 0, 1, 6);
+    layout->addWidget(analyzeButton, 5, 0, 1, 6);
+    layout->addWidget(lineA, 6, 0, 1, 6);
+    layout->addWidget(log, 7, 0, 1, 6);
+    layout->addWidget(logButton, 8, 5);
     setLayout(layout);
 }
 
 void ControPannelGroupBox::anaButtonClicked() {
     emit compute();
+}
+
+void ControPannelGroupBox::logButtonClicked() {
+    LogPreview msgbox(log->logPath());
+    msgbox.exec();
 }
 
 int ControPannelGroupBox::maxSize() {

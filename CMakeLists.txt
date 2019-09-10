@@ -16,6 +16,8 @@ add_executable(CellTrack main.cpp
 	log_widget.hpp log_widget.cpp
 	core.hpp core.cpp
 	file_finder.hpp file_finder.cpp
-	pre_setting_view.hpp pre_setting_view.cpp)
+	pre_setting_view.hpp pre_setting_view.cpp
+	log_preview.hpp log_preview.cpp
+)
 set_property(TARGET CellTrack PROPERTY CXX_STANDARD 11)
 target_link_libraries(CellTrack Qt5::Widgets Qt5::MultimediaWidgets)

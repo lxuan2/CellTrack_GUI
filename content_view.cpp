@@ -29,8 +29,7 @@ ContentView::ContentView(QWidget *parent, QString appDirPath): QWidget(parent) {
     auto layout = new QGridLayout();
     layout->addWidget(videoWidget, 0, 0);
     layout->addWidget(videoBox, 1, 0);
-    layout->addWidget(controlBox, 0, 1);
-    layout->addWidget(log, 1, 1);
+    layout->addWidget(controlBox, 0, 1, 2, 1);
     setLayout(layout);
 }
 

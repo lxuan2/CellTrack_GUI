@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include <QString>
 #include <QFile>
+#include <QFileInfo>
 #include <QDateTime>
 #include <QPlainTextEdit>
 
@@ -19,6 +20,10 @@ public:
     
     // Clear all the content
     void clear();
+    
+    // Give Log file path
+    
+    QString logPath();
     
 private:
     

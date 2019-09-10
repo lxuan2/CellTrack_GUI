@@ -24,19 +24,24 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     
     durLabel = new QLabel("--:-- / --:--");
     
-    finder = new FileFinder("File location");
+    finder = new FileFinder("Video location");
     QObject::connect(finder, &FileFinder::contentChanged, this, &VideoGroupBox::loadOriginal);
+    
+    QLabel *playLabel = new QLabel("Start/Stop:");
+    QLabel *volumeLabel = new QLabel("Volume:");
+    playLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    volumeLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     
     auto *layout = new QGridLayout();
     layout->addWidget(trackSlider, 0, 1, 1, 15);
     layout->addWidget(durLabel, 0, 16);
     
-    layout->addWidget(new QLabel("Start/Stop:"), 1, 1);
-    layout->addWidget(playButton, 1, 2);
+    layout->addWidget(playLabel, 1, 1);
+    layout->addWidget(playButton, 1, 3);
     layout->addWidget(loadOrgButton, 1, 15, 1, 2);
     
-    layout->addWidget(new QLabel("Volume:"), 2, 1);
-    layout->addWidget(volumeSlider, 2, 2, 1, 8);
+    layout->addWidget(volumeLabel, 2, 1);
+    layout->addWidget(volumeSlider, 2, 3, 1, 8);
     layout->addWidget(loadResButton, 2, 15, 1, 2);
     
     layout->addWidget(finder, 3, 0, 1, 18);

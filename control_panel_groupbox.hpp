@@ -2,6 +2,7 @@
 #define CONTROL_PANNEL_GROUPBOX_HPP
 
 #include <QLabel>
+#include <QDialog>
 #include <QSlider>
 #include <QLayout>
 #include <QSpinBox>
@@ -11,6 +12,7 @@
 #include <QMediaPlayer>
 
 #include "log_widget.hpp"
+#include "log_preview.hpp"
 
 class ControPannelGroupBox: public QGroupBox
 {
@@ -40,6 +42,9 @@ public slots:
     // Anaylze button clicked recieving block
     void anaButtonClicked();
     
+    // View Log button clicked recieving block
+    void logButtonClicked();
+    
 signals:
     
     // Call C# app and generate video
@@ -53,13 +58,14 @@ private:
     
     // Button
     QPushButton *analyzeButton;
+    QPushButton *logButton;
     
     // CheckBox
     QCheckBox *areaCheckbox;
     QCheckBox *eccentricityChecbox;
     QCheckBox *orientationCheckbox;
     
-    // Log recorder
+    // Log widget
     LogWidget *log;
 };
 
