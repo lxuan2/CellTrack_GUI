@@ -1,6 +1,6 @@
 #include "core.hpp"
 
-Core::Core(VideoGroupBox *v, ControPannelGroupBox *c, LogWidget *l) {
+Core::Core(VideoGroupBox *v, ControlPannel *c, LogWidget *l) {
     videoBox = v;
     controlBox = c;
     log = l;

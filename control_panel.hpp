@@ -1,5 +1,5 @@
-#ifndef CONTROL_PANNEL_GROUPBOX_HPP
-#define CONTROL_PANNEL_GROUPBOX_HPP
+#ifndef CONTROL_PANNEL_HPP
+#define CONTROL_PANNEL_HPP
 
 #include <QLabel>
 #include <QDialog>
@@ -14,13 +14,13 @@
 #include "log_widget.hpp"
 #include "log_preview.hpp"
 
-class ControPannelGroupBox: public QGroupBox
+class ControlPannel: public QGroupBox
 {
     Q_OBJECT
 public:
     
     // Default constructor
-    ControPannelGroupBox(LogWidget *l);
+    ControlPannel(LogWidget *l);
     
     // Max cell size in the spinbox
     int maxSize();

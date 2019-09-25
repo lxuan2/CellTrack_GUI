@@ -1,6 +1,6 @@
-#include "control_panel_groupbox.hpp"
+#include "control_panel.hpp"
 
-ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
+ControlPannel::ControlPannel(LogWidget *l) {
     log = l;
     setTitle("Control Panel");
     maxCellSize = new QSpinBox();
@@ -9,10 +9,10 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     minCellSize->setMaximum(99999);
     
     analyzeButton = new QPushButton("Analyze");
-    QObject::connect(analyzeButton, &QPushButton::clicked, this, &ControPannelGroupBox::anaButtonClicked);
+    QObject::connect(analyzeButton, &QPushButton::clicked, this, &ControlPannel::anaButtonClicked);
     
     logButton = new QPushButton("View All Log");
-    QObject::connect(logButton, &QPushButton::clicked, this, &ControPannelGroupBox::logButtonClicked);
+    QObject::connect(logButton, &QPushButton::clicked, this, &ControlPannel::logButtonClicked);
     
     areaCheckbox = new QCheckBox("Area");
     eccentricityChecbox = new QCheckBox("Eccentricity");
@@ -61,31 +61,31 @@ ControPannelGroupBox::ControPannelGroupBox(LogWidget *l) {
     setLayout(layout);
 }
 
-void ControPannelGroupBox::anaButtonClicked() {
+void ControlPannel::anaButtonClicked() {
     emit compute();
 }
 
-void ControPannelGroupBox::logButtonClicked() {
+void ControlPannel::logButtonClicked() {
     LogPreview msgbox(log->logPath());
     msgbox.exec();
 }
 
-int ControPannelGroupBox::maxSize() {
+int ControlPannel::maxSize() {
     return maxCellSize->value();
 }
 
-int ControPannelGroupBox::minSize() {
+int ControlPannel::minSize() {
     return minCellSize->value();
 }
 
-bool ControPannelGroupBox::isAreaChecked() {
+bool ControlPannel::isAreaChecked() {
     return areaCheckbox->isChecked();
 }
 
-bool ControPannelGroupBox::isEccentricityChecked() {
+bool ControlPannel::isEccentricityChecked() {
     return eccentricityChecbox->isChecked();
 }
 
-bool ControPannelGroupBox::isOrientationChecked() {
+bool ControlPannel::isOrientationChecked() {
     return orientationCheckbox->isChecked();
 }

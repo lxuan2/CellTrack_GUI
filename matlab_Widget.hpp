@@ -1,5 +1,5 @@
-#ifndef CONTENT_VIEW_HPP
-#define CONTENT_VIEW_HPP
+#ifndef MATLAB_WIDGET_HPP
+#define MATLAB_WIDGET_HPP
 
 #include <QLabel>
 #include <QString>
@@ -14,16 +14,16 @@
 
 #include "core.hpp"
 #include "log_widget.hpp"
-#include "display_widget.hpp"
+#include "video_view.hpp"
 #include "video_groupbox.hpp"
-#include "control_panel_groupbox.hpp"
+#include "control_panel.hpp"
 
-class ContentView: public QWidget{
+class MatlabWidget: public QWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    ContentView(QWidget *parent = nullptr, QString appDirPath = "");
+    MatlabWidget(QWidget *parent = nullptr, QString appDirPath = "");
     
     // Set C# Application location
     void setExeLoc(QString exeLoc);
@@ -35,14 +35,14 @@ signals:
 private:
     
     // Video widget
-    DisplayWidget *videoWidget;
+    VideoView *videoWidget;
     
     // Log widget
     LogWidget *log;
 
     // Group boxes
     VideoGroupBox *videoBox;
-    ControPannelGroupBox *controlBox;
+    ControlPannel *controlBox;
     
     // Computation Core
     Core *core;

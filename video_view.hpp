@@ -1,5 +1,5 @@
-#ifndef DISPLAY_WIDGET_HPP
-#define DISPLAY_WIDGET_HPP
+#ifndef VIDEO_VIEW_HPP
+#define VIDEO_VIEW_HPP
 
 #include <string>
 #include <QFileInfo>
@@ -12,15 +12,15 @@
 
 #include "log_widget.hpp"
 
-class DisplayWidget: public QVideoWidget{
+class VideoView: public QVideoWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    DisplayWidget(LogWidget *l);
+    VideoView(LogWidget *l);
     
     // Destructor
-    ~DisplayWidget();
+    ~VideoView();
     
 public slots:
     

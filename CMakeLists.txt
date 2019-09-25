@@ -8,15 +8,15 @@ find_package(Qt5MultimediaWidgets REQUIRED)
 
 add_executable(CellTrack main.cpp
 	scene_delegate.hpp scene_delegate.cpp
-	content_view.hpp content_view.cpp
-	display_widget.hpp display_widget.cpp
+	matlab_widget.hpp matlab_widget.cpp
+	video_view.hpp video_view.cpp
 	video_groupbox.hpp video_groupbox.cpp
-	control_panel_groupbox.hpp control_panel_groupbox.cpp
+	control_panel.hpp control_panel.cpp
 	file_combobox.hpp file_combobox.cpp
 	log_widget.hpp log_widget.cpp
 	core.hpp core.cpp
 	file_finder.hpp file_finder.cpp
-	pre_setting_view.hpp pre_setting_view.cpp
+	intro_widget.hpp intro_widget.cpp
 	log_preview.hpp log_preview.cpp
 )
 set_property(TARGET CellTrack PROPERTY CXX_STANDARD 11)

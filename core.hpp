@@ -16,7 +16,7 @@
 
 #include "log_widget.hpp"
 #include "video_groupbox.hpp"
-#include "control_panel_groupbox.hpp"
+#include "control_panel.hpp"
 
 
 class Core: public QObject {
@@ -24,7 +24,7 @@ class Core: public QObject {
 public:
     
     // Parameterized Constructor
-    Core(VideoGroupBox *v, ControPannelGroupBox *c, LogWidget *l);
+    Core(VideoGroupBox *v, ControlPannel *c, LogWidget *l);
     
     // Set C# App .exe name and path
     void setExe(QString exeLoc);
@@ -45,7 +45,7 @@ private:
     VideoGroupBox *videoBox;
     
     // Control pannel Pointer
-    ControPannelGroupBox *controlBox;
+    ControlPannel *controlBox;
     
     // C# App .exe Full path (include path and file name)
     std::string exeLoc;

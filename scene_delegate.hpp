@@ -1,8 +1,8 @@
 #ifndef SCENE_DELEGATE_HPP
 #define SCENE_DELEGATE_HPP
 
-#include "content_view.hpp"
-#include "pre_setting_view.hpp"
+#include "matlab_Widget.hpp"
+#include "intro_widget.hpp"
 
 class SceneDelegate: public QObject {
     Q_OBJECT
@@ -22,10 +22,10 @@ private:
     QString applicationDirPath;
     
     // Main content view
-    ContentView *conView;
+    MatlabWidget *conView;
     
     // Setting view for locating C# application
-    PreSettingView *preView;
+    IntroWidget *preView;
 };
 
 #endif

@@ -5,14 +5,14 @@ SceneDelegate::SceneDelegate(QString appDirPath) {
     // Set application directory path
     applicationDirPath = appDirPath;
     
-    preView = new PreSettingView();
+    preView = new IntroWidget();
     
     // Authorization to create a view
     
-    QObject::connect(preView, &PreSettingView::createView, this, &SceneDelegate::createView);
+    QObject::connect(preView, &IntroWidget::createView, this, &SceneDelegate::createView);
     
     // View communication
-    QObject::connect(preView, &PreSettingView::setExeLoc, this, &SceneDelegate::pushFromPViewToCView);
+    QObject::connect(preView, &IntroWidget::setExeLoc, this, &SceneDelegate::pushFromPViewToCView);
     
     // First scene shows up
     preView->show();
@@ -27,8 +27,8 @@ void SceneDelegate::createView(int id) {
                 conView->raise();
                 break;
             }
-            conView = new ContentView(nullptr, applicationDirPath);
-            QObject::connect(conView, &ContentView::createView, this, &SceneDelegate::createView);
+            conView = new MatlabWidget(nullptr, applicationDirPath);
+            QObject::connect(conView, &MatlabWidget::createView, this, &SceneDelegate::createView);
             conView->show();
             break;
             
@@ -39,8 +39,8 @@ void SceneDelegate::createView(int id) {
                 preView->raise();
                 break;
             }
-            preView = new PreSettingView();
-            QObject::connect(preView, &PreSettingView::setExeLoc, conView, &ContentView::setExeLoc);
+            preView = new IntroWidget();
+            QObject::connect(preView, &IntroWidget::setExeLoc, conView, &MatlabWidget::setExeLoc);
             preView->show();
             break;
             

@@ -1,5 +1,5 @@
-#ifndef SETTING_APP_HPP
-#define SETTING_APP_HPP
+#ifndef INTRO_WIDGET_HPP
+#define INTRO_WIDGET_HPP
 
 #include <QWidget>
 #include <QLayout>
@@ -7,12 +7,12 @@
 
 #include "file_finder.hpp"
 
-class PreSettingView: public QWidget{
+class IntroWidget: public QWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    PreSettingView(QWidget *parent = nullptr);
+    IntroWidget(QWidget *parent = nullptr);
     
 signals:
 
