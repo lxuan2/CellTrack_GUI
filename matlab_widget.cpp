@@ -6,24 +6,17 @@ MatlabWidget::MatlabWidget(QWidget *parent, QString appDirPath): QWidget(parent)
     log = new LogWidget(appDirPath);
     
     // Widget initialize
-    videoWidget = new VideoView(log);
+    videoWidget = new VideoView();
     
     // Groupbox initialize
-    videoBox = new VideoGroupBox(log);
+    videoBox = new VideoGroupBox(videoWidget, log);
     controlBox = new ControlPannel(log);
     
     // Compuation Core initialize
     core = new Core(videoBox, controlBox, log);
     
     QObject::connect(controlBox, &ControlPannel::compute, core, &Core::compute);
-	QObject::connect(core, &Core::loadResualt, videoBox, &VideoGroupBox::setResualtName);
-    QObject::connect(videoBox, &VideoGroupBox::play, videoWidget, &VideoView::play);
-    QObject::connect(videoBox, &VideoGroupBox::changeVolume, videoWidget, &VideoView::changeVolume);
-    QObject::connect(videoBox, &VideoGroupBox::seek, videoWidget, &VideoView::seek);
-    QObject::connect(videoBox, &VideoGroupBox::changeFile, videoWidget, &VideoView::changeFile);
-    QObject::connect(videoWidget, &VideoView::changePlayButton, videoBox, &VideoGroupBox::changePlayButton);
-    QObject::connect(videoWidget, &VideoView::changeDuration, videoBox, &VideoGroupBox::changeDuration);
-    QObject::connect(videoWidget, &VideoView::changePosition, videoBox, &VideoGroupBox::changePosition);
+    QObject::connect(core, &Core::loadResualt, videoBox, &::VideoGroupBox::setResultPath);
     
     // Widget layout initialize
     auto layout = new QGridLayout();

@@ -9,7 +9,7 @@ Core::Core(VideoGroupBox *v, ControlPannel *c, LogWidget *l) {
 void Core::compute() {
     log->write("\n-- Start Analysis --\n");
     
-    QString fileFullName = videoBox->currentFile();
+    QString fileFullName = videoBox->finderFilePath();
     if (fileFullName.isEmpty())
         return log->write("Error: No video file to be analyzed\n\n-- Finish Analysis --\n");
         
@@ -17,7 +17,6 @@ void Core::compute() {
     if (!file.exists())
         return log->write("Error: File does not exist and cannot be analyzed\n\n-- Finish Analysis --\n");
     
-    // TODO: get videoPath
     std::string videoPath = file.path().toStdString();
     std::string videoName = file.fileName().toStdString();
     int maxSize = controlBox->maxSize();
@@ -68,7 +67,7 @@ void Core::compute() {
 				"\n   Accuracy in tracking stopped cells:\n\t" + tmp[7] +
 				"\n   Output file name:\n\t" + tmp[8] + "\n"));
 
-	emit loadResualt(tmp[8]);
+	emit loadResualt(file.path() + QString::fromStdString("/" + tmp[8]));
     log->write("-- Finish Analysis --\n");
 }
 

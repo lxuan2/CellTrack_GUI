@@ -32,7 +32,7 @@ public:
 signals:
 
     // Load Result video signal
-	void loadResualt(std::string fn);
+	void loadResualt(QString fn);
 
 public slots:
     

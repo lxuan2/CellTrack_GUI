@@ -22,7 +22,7 @@ QString FileFinder::currentText() {
 }
 
 void FileFinder::browse() {
-    QString fileName = QFileDialog::getOpenFileName(this, "Open Video File", QDir::homePath());
+    QString fileName = QFileDialog::getOpenFileName(nullptr, "Open Video File", QDir::homePath());
     if (!fileName.isEmpty()) {
         if (fileBox->findText(fileName) == -1)
             fileBox->addItem(fileName);

@@ -1,8 +1,18 @@
 #include "video_groupbox.hpp"
 
-VideoGroupBox::VideoGroupBox(LogWidget *l) {
+VideoGroupBox::VideoGroupBox(VideoView *out, LogWidget *l) {
     log = l;
     setTitle("Video");
+    QObject::connect(this, &VideoGroupBox::adaptToView, out, &::VideoView::adaptToView);
+    QObject::connect(out, &VideoView::playButtonClicked, this, &::VideoGroupBox::playClicked);
+    
+    player = new QMediaPlayer();
+    player->setVolume(50);
+    player->setVideoOutput(out);
+    connect(player, &QMediaPlayer::durationChanged, this, &VideoGroupBox::setDuration);
+    connect(player, &QMediaPlayer::positionChanged, this, &VideoGroupBox::setPosition);
+    connect(player, &QMediaPlayer::stateChanged, this, &VideoGroupBox::stateChanged);
+    
     loadOrgButton = new QPushButton("Load Original");
     QObject::connect(loadOrgButton, &QPushButton::clicked, this, &VideoGroupBox::loadOriginal);
     
@@ -16,11 +26,12 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     volumeSlider = new QSlider(Qt::Horizontal);
     volumeSlider->setRange(0, 100);
 	volumeSlider->setValue(50);
-    QObject::connect(volumeSlider, &QSlider::valueChanged, this, &VideoGroupBox::setVolume);
+    QObject::connect(volumeSlider, &QSlider::valueChanged, this, &VideoGroupBox::volumeChanged);
     
     trackSlider = new QSlider(Qt::Horizontal);
     trackSlider->setRange(0, 30);
-    QObject::connect(trackSlider, &QSlider::sliderReleased, this, &VideoGroupBox::setPosition);
+    trackSlider->setEnabled(false);
+    QObject::connect(trackSlider, &QSlider::sliderReleased, this, &VideoGroupBox::positionChanged);
     
     durLabel = new QLabel("--:-- / --:--");
     
@@ -48,29 +59,81 @@ VideoGroupBox::VideoGroupBox(LogWidget *l) {
     setLayout(layout);
 }
 
-void VideoGroupBox::setVolume(int volume) {
-    emit changeVolume(volume);
+VideoGroupBox::~VideoGroupBox() {
+    player->~QMediaPlayer();
 }
 
-void VideoGroupBox::setPosition(){
-    int position = trackSlider->value();
-    emit seek(position);
+QString VideoGroupBox::finderFilePath() {
+    return finder->currentText();
+}
+
+void VideoGroupBox::setResultPath(QString fn) {
+    resAbsPath = fn;
+    loadResult();
 }
 
 void VideoGroupBox::playClicked() {
-    emit play();
+    QMediaPlayer::State state = player->state();
+    if (state == QMediaPlayer::PlayingState){
+        play(false);
+        log->write("- Stop -");
+    } else {
+        if (play(true))
+            log->write("- Start -");
+    }
+}
+
+/*###########################################
+ #           Private Functions              #
+ ###########################################*/
+
+void VideoGroupBox::setPosition(qint64 progress) {
+    if (!trackSlider->isSliderDown())
+        trackSlider->setValue(progress / 1000);
+    
+    updateDurationInfo(progress / 1000);
+}
+
+void VideoGroupBox::setDuration(qint64 duration) {
+    this->duration = duration / 1000;
+    trackSlider->setMaximum(this->duration);
+    trackSlider->setEnabled(true);
 }
 
 void VideoGroupBox::loadOriginal() {
-    changePlayButton(false);
-	QFileInfo info(finder->currentText());
-	resultPath = info.path().toStdString();
-    emit changeFile(finder->currentText());
+    QString fileAbsPath = finder->currentText();
+    if(!loadFile(fileAbsPath)) {
+        return log->write("Error: No file or invalid file loaded.");
+    }
+    log->write(QString::fromStdString("- New Video Loaded: ") + fileAbsPath);
+    orgAbsPath = fileAbsPath;
 }
 
 void VideoGroupBox::loadResult() {
-	changePlayButton(false);
-    emit changeFile(QString::fromStdString(resultFullName));
+    if(!loadFile(resAbsPath)) {
+        return log->write("Error: No analyed video or invalid analyed video loaded.");
+    }
+    log->write(QString::fromStdString("- Analyzed Video Loaded: ") + resAbsPath);
+}
+
+void VideoGroupBox::positionChanged(){
+    QMediaPlayer::State state = player->state();
+    play(false);
+    int position = trackSlider->value();
+    player->setPosition(position * 1000);
+    if (state == QMediaPlayer::PlayingState)
+        play(true);
+}
+
+void VideoGroupBox::volumeChanged(int volume) {
+    player->setVolume(volume);
+}
+
+void VideoGroupBox::stateChanged(QMediaPlayer::State state) {
+    if(player->state() == QMediaPlayer::StoppedState){
+        log->write("- Stop -");
+        emit changePlayButton(false);
+    }
 }
 
 void VideoGroupBox::changePlayButton(bool play) {
@@ -80,16 +143,42 @@ void VideoGroupBox::changePlayButton(bool play) {
         playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
 }
 
-void VideoGroupBox::changeDuration(qint64 duration) {
-    this->duration = duration / 1000;
-    trackSlider->setMaximum(this->duration);
+bool VideoGroupBox::play(bool ans) {
+    if (!ans) {
+        player->pause();
+        changePlayButton(false);
+        return true;
+    }
+    QMediaPlayer::MediaStatus mediaState = player->mediaStatus();
+    if (mediaState == QMediaPlayer::NoMedia){
+        log->write("Error: No video play.");
+        return false;
+    }
+    else if (mediaState == QMediaPlayer::UnknownMediaStatus || mediaState == QMediaPlayer::InvalidMedia){
+        log->write("Error: Media State wrong. Please reload target video.");
+        return false;
+    }
+    player->play();
+    changePlayButton(true);
+    emit adaptToView();
+    return true;
 }
 
-void VideoGroupBox::changePosition(qint64 progress) {
-    if (!trackSlider->isSliderDown())
-        trackSlider->setValue(progress / 1000);
-    
-    updateDurationInfo(progress / 1000);
+bool VideoGroupBox::loadFile(QString fileAbsPath) {
+    play(false);
+    QFileInfo info(fileAbsPath);
+    if (info.exists() && info.isFile()) {
+        player->setMedia(QUrl::fromLocalFile(fileAbsPath));
+        // Re-check all media status and make sure media loaded.
+        QMediaPlayer::MediaStatus mediaState = player->mediaStatus();
+        if (mediaState == QMediaPlayer::NoMedia ||
+            mediaState == QMediaPlayer::UnknownMediaStatus ||
+            mediaState == QMediaPlayer::InvalidMedia) {
+            return false;
+        }
+        return true;
+    }
+    return false;
 }
 
 void VideoGroupBox::updateDurationInfo(qint64 currentInfo) {
@@ -107,13 +196,4 @@ void VideoGroupBox::updateDurationInfo(qint64 currentInfo) {
     else
         tStr = "--:-- / --:--";
     durLabel->setText(tStr);
-}
-
-QString VideoGroupBox::currentFile() {
-    return finder->currentText();
-}
-
-void VideoGroupBox::setResualtName(std::string fn) {
-	resultFullName = resultPath + "/" + fn;
-	loadResult();
 }

@@ -7,41 +7,48 @@
 #include <QStyle>
 #include <QLayout>
 #include <QSlider>
-#include <QWidget>
 #include <QFileInfo>
 #include <QGroupBox>
 #include <QToolButton>
 #include <QPushButton>
 #include <QMediaPlayer>
 
-
 #include "log_widget.hpp"
+#include "video_view.hpp"
 #include "file_finder.hpp"
-#include "file_combobox.hpp"
 
 class VideoGroupBox: public QGroupBox {
     Q_OBJECT
 public:
     
     // Default constructor
-    VideoGroupBox(LogWidget *l);
+    VideoGroupBox(VideoView *out = nullptr, LogWidget *l = nullptr);
     
-    // Current file full path
-    QString currentFile();
-
+    // Destructor
+    ~VideoGroupBox();
+    
+    // Absolute path for current file in file finder
+    QString finderFilePath();
+    
+signals:
+    
+    void adaptToView();
+    
 public slots:
+
+    // Set result video Name and load
+    void setResultPath(QString fn);
     
-    // Set result video Name
-	void setResualtName(std::string fn);
+    // Play clicked
+    void playClicked();
     
-    // Set Volume
-    void setVolume(int volume);
+private slots:
     
     // Set playback postion
-    void setPosition();
+    void setPosition(qint64 progress);
     
-    // Play button clicked
-    void playClicked();
+    // Set video duration
+    void setDuration(qint64 duration);
     
     // Load Original Video to player
     void loadOriginal();
@@ -49,30 +56,19 @@ public slots:
     // Load Result Video to player
     void loadResult();
     
-    // Change Play button icon
-    void changePlayButton(bool play);
+    // Playback postion changed by slider
+    void positionChanged();
     
-    // Change video duration
-    void changeDuration(qint64 duration);
+    // Volume changed by slider
+    void volumeChanged(int volume);
     
-    // Change playback postion
-    void changePosition(qint64 progress);
-    
-signals:
-    
-    // Play button clicked
-    void play();
-    
-    // Change volume
-    void changeVolume(int volume);
-    
-    // Change video file
-    void changeFile(QString file);
-    
-    // Seek playback postion
-    void seek(int seconds);
+    // Media player state changed
+    void stateChanged(QMediaPlayer::State state);
     
 private:
+    
+    // Video player
+    QMediaPlayer *player;
     
     // Buttons
     QPushButton *loadOrgButton;
@@ -96,10 +92,19 @@ private:
     QLabel *durLabel;
 
     // Result video full name(path + name)
-	std::string resultFullName;
+	QString resAbsPath;
     
-    // Result video directory
-	std::string resultPath;
+    // video directory
+	QString orgAbsPath;
+    
+    // Start or stop the player
+    bool play(bool ans);
+    
+    // Load file to the player
+    bool loadFile(QString fileAbsPath);
+    
+    // Change Play button icon
+    void changePlayButton(bool play);
     
     // Update duration info label
     void updateDurationInfo(qint64 currentInfo);
