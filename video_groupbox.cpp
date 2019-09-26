@@ -1,6 +1,6 @@
 #include "video_groupbox.hpp"
 
-VideoGroupBox::VideoGroupBox(VideoView *out, LogWidget *l) {
+VideoGroupBox::VideoGroupBox(VideoView *out, LogView *l) {
     log = l;
     setTitle("Video");
     QObject::connect(this, &VideoGroupBox::adaptToView, out, &::VideoView::adaptToView);
@@ -35,7 +35,7 @@ VideoGroupBox::VideoGroupBox(VideoView *out, LogWidget *l) {
     
     durLabel = new QLabel("--:-- / --:--");
     
-    finder = new FileFinder("Video location");
+    finder = new FileFinder("Video");
     QObject::connect(finder, &FileFinder::contentChanged, this, &VideoGroupBox::loadOriginal);
     
     QLabel *playLabel = new QLabel("Start/Stop:");

@@ -1,9 +1,6 @@
 #include "scene_delegate.hpp"
 
-SceneDelegate::SceneDelegate(QString appDirPath) {
-    
-    // Set application directory path
-    applicationDirPath = appDirPath;
+SceneDelegate::SceneDelegate() {
     
     preView = new IntroWidget();
     
@@ -27,7 +24,7 @@ void SceneDelegate::createView(int id) {
                 conView->raise();
                 break;
             }
-            conView = new MatlabWidget(nullptr, applicationDirPath);
+            conView = new MatlabWidget();
             QObject::connect(conView, &MatlabWidget::createView, this, &SceneDelegate::createView);
             conView->show();
             break;

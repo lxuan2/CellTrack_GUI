@@ -1,7 +1,7 @@
 #ifndef SCENE_DELEGATE_HPP
 #define SCENE_DELEGATE_HPP
 
-#include "matlab_Widget.hpp"
+#include "matlab_widget.hpp"
 #include "intro_widget.hpp"
 
 class SceneDelegate: public QObject {
@@ -9,7 +9,7 @@ class SceneDelegate: public QObject {
 public:
     
     // Default Constructor
-    SceneDelegate(QString appDirPath);
+    SceneDelegate();
     
 public slots:
     
@@ -18,8 +18,6 @@ public slots:
     void pushFromPViewToCView(QString str);
     
 private:
-    
-    QString applicationDirPath;
     
     // Main content view
     MatlabWidget *conView;

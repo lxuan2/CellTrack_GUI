@@ -1,33 +1,24 @@
-#include "matlab_Widget.hpp"
+#include "matlab_widget.hpp"
 
-MatlabWidget::MatlabWidget(QWidget *parent, QString appDirPath): QWidget(parent) {
+MatlabWidget::MatlabWidget(){
     
-    // Log initialize
-    log = new LogWidget(appDirPath);
+    // Initialize tab views
+    log = new LogView();
+    general = new GeneralView(log);
+    hiddenVar = new HiddenVarView();
     
-    // Widget initialize
-    videoWidget = new VideoView();
+    QTabWidget *tabView = new QTabWidget();
+    tabView->addTab(general, "General");
+    tabView->addTab(hiddenVar, "Hidden Variables");
+    tabView->addTab(log, "Log");
     
-    // Groupbox initialize
-    videoBox = new VideoGroupBox(videoWidget, log);
-    controlBox = new ControlPannel(log);
-    
-    // Compuation Core initialize
-    core = new Core(videoBox, controlBox, log);
-    
-    QObject::connect(controlBox, &ControlPannel::compute, core, &Core::compute);
-    QObject::connect(core, &Core::loadResualt, videoBox, &::VideoGroupBox::setResultPath);
-    
-    // Widget layout initialize
-    auto layout = new QGridLayout();
-    layout->addWidget(videoWidget, 0, 0);
-    layout->addWidget(videoBox, 1, 0);
-    layout->addWidget(controlBox, 0, 1, 2, 1);
+    QVBoxLayout *layout = new QVBoxLayout();
+    layout->addWidget(tabView);
     setLayout(layout);
     setWindowTitle("CellTrack_GUI");
     resize(800, 600);
 }
 
 void MatlabWidget::setExeLoc(QString exeLoc) {
-	core->setExe(exeLoc);
+	
 }

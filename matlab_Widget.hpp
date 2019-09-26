@@ -1,29 +1,17 @@
 #ifndef MATLAB_WIDGET_HPP
 #define MATLAB_WIDGET_HPP
 
-#include <QLabel>
-#include <QString>
-#include <QWidget>
-#include <QLayout>
-#include <QSpinBox>
-#include <QGroupBox>
-#include <QComboBox>
-#include <QPushButton>
-#include <QFileDialog>
-#include <QResizeEvent>
+#include <QTabWidget>
 
-#include "core.hpp"
-#include "log_widget.hpp"
-#include "video_view.hpp"
-#include "video_groupbox.hpp"
-#include "control_panel.hpp"
+#include "general_view.hpp"
+#include "hidden_var_view.hpp"
 
 class MatlabWidget: public QWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    MatlabWidget(QWidget *parent = nullptr, QString appDirPath = "");
+    MatlabWidget();
     
     // Set C# Application location
     void setExeLoc(QString exeLoc);
@@ -34,18 +22,13 @@ signals:
     
 private:
     
-    // Video widget
-    VideoView *videoWidget;
+    GeneralView *general;
     
-    // Log widget
-    LogWidget *log;
-
-    // Group boxes
-    VideoGroupBox *videoBox;
-    ControlPannel *controlBox;
+    HiddenVarView *hiddenVar;
     
-    // Computation Core
-    Core *core;
+    // Log View
+    LogView *log;
+    
 };
 
 #endif

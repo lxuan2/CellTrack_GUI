@@ -11,8 +11,7 @@
 #include <QPushButton>
 #include <QMediaPlayer>
 
-#include "log_widget.hpp"
-#include "log_preview.hpp"
+#include "log_view.hpp"
 
 class ControlPannel: public QGroupBox
 {
@@ -20,7 +19,7 @@ class ControlPannel: public QGroupBox
 public:
     
     // Default constructor
-    ControlPannel(LogWidget *l);
+    ControlPannel(LogView *l);
     
     // Max cell size in the spinbox
     int maxSize();
@@ -42,9 +41,6 @@ public slots:
     // Anaylze button clicked recieving block
     void anaButtonClicked();
     
-    // View Log button clicked recieving block
-    void logButtonClicked();
-    
 signals:
     
     // Call C# app and generate video
@@ -58,7 +54,6 @@ private:
     
     // Button
     QPushButton *analyzeButton;
-    QPushButton *logButton;
     
     // CheckBox
     QCheckBox *areaCheckbox;
@@ -66,7 +61,7 @@ private:
     QCheckBox *orientationCheckbox;
     
     // Log widget
-    LogWidget *log;
+    LogView *log;
 };
 
 #endif

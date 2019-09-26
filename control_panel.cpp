@@ -1,6 +1,6 @@
 #include "control_panel.hpp"
 
-ControlPannel::ControlPannel(LogWidget *l) {
+ControlPannel::ControlPannel(LogView *l) {
     log = l;
     setTitle("Control Panel");
     maxCellSize = new QSpinBox();
@@ -11,8 +11,6 @@ ControlPannel::ControlPannel(LogWidget *l) {
     analyzeButton = new QPushButton("Analyze");
     QObject::connect(analyzeButton, &QPushButton::clicked, this, &ControlPannel::anaButtonClicked);
     
-    logButton = new QPushButton("View All Log");
-    QObject::connect(logButton, &QPushButton::clicked, this, &ControlPannel::logButtonClicked);
     
     areaCheckbox = new QCheckBox("Area");
     eccentricityChecbox = new QCheckBox("Eccentricity");
@@ -56,18 +54,11 @@ ControlPannel::ControlPannel(LogWidget *l) {
     layout->addWidget(checkboxWidget, 3, 0, 1, 6);
     layout->addWidget(analyzeButton, 5, 0, 1, 6);
     layout->addWidget(lineA, 6, 0, 1, 6);
-    layout->addWidget(log, 7, 0, 1, 6);
-    layout->addWidget(logButton, 8, 5);
     setLayout(layout);
 }
 
 void ControlPannel::anaButtonClicked() {
     emit compute();
-}
-
-void ControlPannel::logButtonClicked() {
-    LogPreview msgbox(log->logPath());
-    msgbox.exec();
 }
 
 int ControlPannel::maxSize() {

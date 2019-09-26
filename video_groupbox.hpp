@@ -13,7 +13,7 @@
 #include <QPushButton>
 #include <QMediaPlayer>
 
-#include "log_widget.hpp"
+#include "log_view.hpp"
 #include "video_view.hpp"
 #include "file_finder.hpp"
 
@@ -22,7 +22,7 @@ class VideoGroupBox: public QGroupBox {
 public:
     
     // Default constructor
-    VideoGroupBox(VideoView *out = nullptr, LogWidget *l = nullptr);
+    VideoGroupBox(VideoView *out = nullptr, LogView *l = nullptr);
     
     // Destructor
     ~VideoGroupBox();
@@ -83,7 +83,7 @@ private:
     FileFinder *finder;
     
     // Log recorder
-    LogWidget *log;
+    LogView *log;
     
     // Max duration
     qint64 duration;

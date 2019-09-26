@@ -1,5 +1,5 @@
-#ifndef LOG_WIDGET_HPP
-#define LOG_WIDGET_HPP
+#ifndef LOG_VIEW_HPP
+#define LOG_VIEW_HPP
 
 #include <QTextStream>
 #include <QString>
@@ -7,13 +7,18 @@
 #include <QFileInfo>
 #include <QDateTime>
 #include <QPlainTextEdit>
+#include <QCoreApplication>
+#include <QLayout>
+#include <QPushButton>
 
-class LogWidget: public QPlainTextEdit {
+#include "log_preview.hpp"
+
+class LogView: public QWidget{
     Q_OBJECT
 public:
     
     // Default Constructor
-    LogWidget(QString appDirPath);
+    LogView();
     
     // Write the content to display
     void write(QString content);
@@ -21,15 +26,20 @@ public:
     // Clear all the content
     void clear();
     
-    // Give Log file path
+private slots:
     
-    QString logPath();
+    // View Log button clicked recieving block
+    void logButtonClicked();
     
 private:
     
     QFile file;
     
     QTextStream stream;
+    
+    QPushButton *logButton;
+    
+    QPlainTextEdit *textView;
 };
 
 #endif

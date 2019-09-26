@@ -14,7 +14,7 @@
 #include <QString>
 #include <stdio.h>
 
-#include "log_widget.hpp"
+#include "log_view.hpp"
 #include "video_groupbox.hpp"
 #include "control_panel.hpp"
 
@@ -24,7 +24,7 @@ class Core: public QObject {
 public:
     
     // Parameterized Constructor
-    Core(VideoGroupBox *v, ControlPannel *c, LogWidget *l);
+    Core(VideoGroupBox *v, ControlPannel *c, LogView *l);
     
     // Set C# App .exe name and path
     void setExe(QString exeLoc);
@@ -54,7 +54,7 @@ private:
 	std::string path;
     
     // Log recorder
-    LogWidget *log;
+    LogView *log;
     
     // compute() helper function
     bool matlabCode();
