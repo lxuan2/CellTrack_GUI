@@ -6,7 +6,7 @@ Core::Core(VideoGroupBox *v, ControlPannel *c, LogView *l) {
     log = l;
 }
 
-void Core::compute() {
+void Core::compute(bool ans) {
     log->write("\n-- Start Analysis --\n");
     
     QString fileFullName = videoBox->finderFilePath();
@@ -39,7 +39,7 @@ void Core::compute() {
 	out << videoPath << "\n" << videoName << "\n" << maxSize << "\n" << minSize << "\n" << areaBool << "\n" << eccentricityBool << "\n" << orientationBool;
 	out.close();
     
-    log->write("\n   Running MATLAB Code...\n");
+    log->write("\n  Running MATLAB Code...\n");
     
     // Run matlab code
     //input: videoPath, videoName, maxSize, minSize, areaBool, eccentricityBool, orientationBool

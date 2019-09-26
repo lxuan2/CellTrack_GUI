@@ -7,7 +7,7 @@ LogView::LogView():file((QCoreApplication::applicationDirPath() + "/Log.txt")), 
     textView->setReadOnly(true);
     file.open(QIODevice::Append | QIODevice::Text);
     
-    logButton = new QPushButton("View All Log");
+    logButton = new QPushButton("Preview Log File");
     QObject::connect(logButton, &QPushButton::clicked, this, &LogView::logButtonClicked);
     
     // Record section time

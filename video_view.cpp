@@ -1,6 +1,4 @@
 #include "video_view.hpp"
-
-
 VideoView::VideoView(): QVideoWidget(){
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }

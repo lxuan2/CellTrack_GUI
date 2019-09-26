@@ -42,6 +42,9 @@ public slots:
     // Play clicked
     void playClicked();
     
+    // Start or stop the player
+    bool play(bool ans);
+    
 private slots:
     
     // Set playback postion
@@ -96,9 +99,6 @@ private:
     
     // video directory
 	QString orgAbsPath;
-    
-    // Start or stop the player
-    bool play(bool ans);
     
     // Load file to the player
     bool loadFile(QString fileAbsPath);

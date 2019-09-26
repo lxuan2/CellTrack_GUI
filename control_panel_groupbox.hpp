@@ -12,6 +12,7 @@
 #include <QMediaPlayer>
 
 #include "log_view.hpp"
+#include "run_groupbox.hpp"
 
 class ControlPannel: public QGroupBox
 {
@@ -36,24 +37,11 @@ public:
     // Orientation seleted or unselected
     bool isOrientationChecked();
     
-public slots:
-    
-    // Anaylze button clicked recieving block
-    void anaButtonClicked();
-    
-signals:
-    
-    // Call C# app and generate video
-    void compute();
-    
 private:
     
     // SpinBox
     QSpinBox *maxCellSize;
     QSpinBox *minCellSize;
-    
-    // Button
-    QPushButton *analyzeButton;
     
     // CheckBox
     QCheckBox *areaCheckbox;

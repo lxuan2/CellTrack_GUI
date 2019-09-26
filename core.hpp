@@ -16,7 +16,7 @@
 
 #include "log_view.hpp"
 #include "video_groupbox.hpp"
-#include "control_panel.hpp"
+#include "control_panel_groupbox.hpp"
 
 
 class Core: public QObject {
@@ -37,7 +37,7 @@ signals:
 public slots:
     
     // Computation function that runs C# App and generate the video
-    void compute();
+    void compute(bool ans);
     
 private:
     

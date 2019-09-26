@@ -1,16 +1,12 @@
-#include "control_panel.hpp"
+#include "control_panel_groupbox.hpp"
 
 ControlPannel::ControlPannel(LogView *l) {
     log = l;
-    setTitle("Control Panel");
+    setTitle("Parameters");
     maxCellSize = new QSpinBox();
     minCellSize = new QSpinBox();
     maxCellSize->setMaximum(99999);
     minCellSize->setMaximum(99999);
-    
-    analyzeButton = new QPushButton("Analyze");
-    QObject::connect(analyzeButton, &QPushButton::clicked, this, &ControlPannel::anaButtonClicked);
-    
     
     areaCheckbox = new QCheckBox("Area");
     eccentricityChecbox = new QCheckBox("Eccentricity");
@@ -52,13 +48,8 @@ ControlPannel::ControlPannel(LogView *l) {
     layout->addWidget(cellSizeWidget, 1, 0, 1, 6);
     layout->addWidget(new QLabel(""), 2, 0);
     layout->addWidget(checkboxWidget, 3, 0, 1, 6);
-    layout->addWidget(analyzeButton, 5, 0, 1, 6);
     layout->addWidget(lineA, 6, 0, 1, 6);
     setLayout(layout);
-}
-
-void ControlPannel::anaButtonClicked() {
-    emit compute();
 }
 
 int ControlPannel::maxSize() {

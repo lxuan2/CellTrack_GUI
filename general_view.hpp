@@ -5,7 +5,7 @@
 #include "log_view.hpp"
 #include "video_view.hpp"
 #include "video_groupbox.hpp"
-#include "control_panel.hpp"
+#include "control_panel_groupbox.hpp"
 
 class GeneralView: public QWidget{
     Q_OBJECT
@@ -25,6 +25,7 @@ private:
     // Group boxes
     VideoGroupBox *videoBox;
     ControlPannel *controlBox;
+    RunGroupBox   *runBox;
     
     // Computation Core
     Core *core;

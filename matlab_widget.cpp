@@ -9,8 +9,8 @@ MatlabWidget::MatlabWidget(){
     
     QTabWidget *tabView = new QTabWidget();
     tabView->addTab(general, "General");
-    tabView->addTab(hiddenVar, "Hidden Variables");
-    tabView->addTab(log, "Log");
+    tabView->addTab(hiddenVar, "Hidden Parameters");
+    tabView->addTab(log, "Log History");
     
     QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(tabView);
