@@ -2,17 +2,10 @@
 
 SceneDelegate::SceneDelegate() {
     
-    preView = new IntroWidget();
-    
-    // Authorization to create a view
-    
-    QObject::connect(preView, &IntroWidget::createView, this, &SceneDelegate::createView);
-    
-    // View communication
-    QObject::connect(preView, &IntroWidget::setExeLoc, this, &SceneDelegate::pushFromPViewToCView);
+    conView = new MatlabWidget();
     
     // First scene shows up
-    preView->show();
+    conView->show();
 }
 
 void SceneDelegate::createView(int id) {

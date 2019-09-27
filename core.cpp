@@ -8,7 +8,7 @@ Core::Core(VideoGroupBox *v, ControlPannel *c, LogView *l) {
 
 void Core::compute(bool ans) {
     log->write("\n-- Start Analysis --\n");
-    emit loadResualt("/Users/xuanli/Documents/fast.mov");
+    
     QString fileFullName = videoBox->finderFilePath();
     if (fileFullName.isEmpty())
         return log->write("Error: No video file to be analyzed\n\n-- Finish Analysis --\n");
