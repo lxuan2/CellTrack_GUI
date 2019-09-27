@@ -9,7 +9,7 @@ FileFinder::FileFinder(std::string label): QWidget(nullptr) {
     fileBox->setEditable(true);
     fileBox->setFrame(true);
     //fileBox->setSizeAdjustPolicy(FileCombobox::AdjustToContents);
-    fileBox->setMinimumWidth(100);
+    fileBox->setMinimumWidth(150);
     QObject::connect(fileBox, &FileCombobox::enterPressed, this, &FileFinder::checkEmpty);
     
     QHBoxLayout *layout = new QHBoxLayout();

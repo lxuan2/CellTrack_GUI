@@ -1,9 +1,10 @@
 #include "video_groupbox.hpp"
 
-VideoGroupBox::VideoGroupBox(VideoView *out, LogView *l) {
+VideoGroupBox::VideoGroupBox(VideoView *out, RunGroupBox *run, LogView *l) {
     log = l;
     setTitle("Video");
     QObject::connect(this, &VideoGroupBox::adaptToView, out, &::VideoView::adaptToView);
+    QObject::connect(this, &VideoGroupBox::updateSrc, run, &RunGroupBox::updateSrc);
     QObject::connect(out, &VideoView::playButtonClicked, this, &::VideoGroupBox::playClicked);
     
     player = new QMediaPlayer();
@@ -35,7 +36,7 @@ VideoGroupBox::VideoGroupBox(VideoView *out, LogView *l) {
     
     durLabel = new QLabel("--:-- / --:--");
     
-    finder = new FileFinder("Video");
+    finder = new FileFinder("Source");
     QObject::connect(finder, &FileFinder::contentChanged, this, &VideoGroupBox::loadOriginal);
     
     QLabel *playLabel = new QLabel("Start/Stop:");
@@ -103,8 +104,10 @@ void VideoGroupBox::setDuration(qint64 duration) {
 void VideoGroupBox::loadOriginal() {
     QString fileAbsPath = finder->currentText();
     if(!loadFile(fileAbsPath)) {
+        emit updateSrc("N/A");
         return log->write("Error: No file or invalid file loaded.");
     }
+    emit updateSrc(fileAbsPath);
     log->write(QString::fromStdString("- New Video Loaded: ") + fileAbsPath);
     orgAbsPath = fileAbsPath;
 }

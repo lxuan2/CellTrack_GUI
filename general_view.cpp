@@ -5,16 +5,17 @@ GeneralView::GeneralView(LogView *log){
     videoView = new VideoView();
     
     // Groupbox initialize
-    videoBox   = new VideoGroupBox(videoView, log);
-    controlBox = new ControlPannel(log);
     runBox     = new RunGroupBox(log);
+    videoBox   = new VideoGroupBox(videoView, runBox, log);
+    controlBox = new ControlPannel(log);
     
     // Compuation Core initialize
     core = new Core(videoBox, controlBox, log);
     
     QObject::connect(runBox, &RunGroupBox::compute, core, &Core::compute);
     QObject::connect(runBox, &RunGroupBox::compute, videoBox, &VideoGroupBox::play);
-    QObject::connect(core, &Core::loadResualt, videoBox, &::VideoGroupBox::setResultPath);
+    QObject::connect(core, &Core::loadResualt, videoBox, &VideoGroupBox::setResultPath);
+    QObject::connect(core, &Core::loadResualt, runBox, &RunGroupBox::updateRes);
     
     // Widget layout initialize
     auto layout = new QGridLayout();

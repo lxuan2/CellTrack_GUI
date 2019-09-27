@@ -16,13 +16,14 @@
 #include "log_view.hpp"
 #include "video_view.hpp"
 #include "file_finder.hpp"
+#include "run_groupbox.hpp"
 
 class VideoGroupBox: public QGroupBox {
     Q_OBJECT
 public:
     
     // Default constructor
-    VideoGroupBox(VideoView *out = nullptr, LogView *l = nullptr);
+    VideoGroupBox(VideoView *out = nullptr, RunGroupBox *run = nullptr, LogView *l = nullptr);
     
     // Destructor
     ~VideoGroupBox();
@@ -33,6 +34,8 @@ public:
 signals:
     
     void adaptToView();
+    
+    void updateSrc(QString fp);
     
 public slots:
 

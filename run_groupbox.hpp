@@ -2,8 +2,10 @@
 #define run_groupbox_hpp
 
 #include <QGroupBox>
+#include <QToolButton>
 
 #include "log_view.hpp"
+#include "log_preview.hpp"
 #include "file_finder.hpp"
 
 class RunGroupBox: public QGroupBox
@@ -19,11 +21,20 @@ signals:
     // Call C# app and generate video
     void compute(bool ans);
     
+public slots:
+    
+    void updateSrc(QString fp);
+    void updateRes(QString fp);
+    
 private slots:
     
     void loadCsharp();
     
     void analyzeButtonClicked();
+    
+    void revealOrgClicked();
+    
+    void revealResClicked();
     
 private:
     
@@ -31,6 +42,22 @@ private:
     
     // Button
     QPushButton *analyzeButton;
+    QToolButton *revealOrgButton;
+    QToolButton *revealResButton;
+    
+    QPixmap applyPixmap;
+    QPixmap cancelPixmap;
+    
+    QLabel *sourceApply;
+    QLabel *appApply;
+    
+    QLabel *sourceName;
+    QLabel *appName;
+    QLabel *resultName;
+    
+    QString srcPath;
+    QString appPath;
+    QString resPath;
     
     // Log widget
     LogView *log;

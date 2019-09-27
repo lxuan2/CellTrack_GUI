@@ -1,5 +1,6 @@
 #include "run_groupbox.hpp"
-RunGroupBox::RunGroupBox(LogView *l) {
+#include <iostream>
+RunGroupBox::RunGroupBox(LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N/A"){
     log = l;
     setTitle("Run");
     
@@ -9,23 +10,110 @@ RunGroupBox::RunGroupBox(LogView *l) {
     analyzeButton = new QPushButton("Start Analysis");
     QObject::connect(analyzeButton, &QPushButton::clicked, this, &RunGroupBox::analyzeButtonClicked);
     
-    QLabel *videoLabel = new QLabel("Source File");
-    QLabel *cSharpLabel = new QLabel("C# Application");
-    QLabel *resultLabel = new QLabel("Result");
+    QIcon icon = style()->standardIcon(QStyle::SP_DialogApplyButton);
+    QIcon icon1 = style()->standardIcon(QStyle::SP_DialogCancelButton);
+    applyPixmap = icon.pixmap(QSize(16, 16));
+    cancelPixmap = icon1.pixmap(QSize(16, 16));
+    
+    sourceApply = new QLabel();
+    appApply = new QLabel();
+    sourceApply->setPixmap(cancelPixmap);
+    appApply->setPixmap(cancelPixmap);
+    
+    QLabel *videoLabel = new QLabel("Source File:");
+    QLabel *cSharpLabel = new QLabel("C# Application:");
+    QLabel *resultLabel = new QLabel("Result:");
+    
+    sourceName = new QLabel(srcPath);
+    appName = new QLabel(appPath);
+    resultName = new QLabel(resPath);
+    sourceName->setMaximumSize(120, 100);
+    appName->setMaximumSize(120, 100);
+    resultName->setMaximumSize(120, 100);
+    
+    revealOrgButton = new QToolButton();
+    revealOrgButton->setIcon(style()->standardIcon(QStyle::SP_ArrowForward));
+    revealOrgButton->setDisabled(true);
+    QObject::connect(revealOrgButton, &QToolButton::clicked, this, &RunGroupBox::revealOrgClicked);
+    
+    revealResButton = new QToolButton();
+    revealResButton->setIcon(style()->standardIcon(QStyle::SP_ArrowForward));
+    revealResButton->setDisabled(true);
+    QObject::connect(revealResButton, &QToolButton::clicked, this, &RunGroupBox::revealResClicked);
     
     QGridLayout *layout = new QGridLayout();
-    layout->addWidget(finder, 0, 0, 1, 5);
-    layout->addWidget(videoLabel, 1, 2);
-    layout->addWidget(cSharpLabel, 2, 2);
-    layout->addWidget(resultLabel, 3, 2);
-    layout->addWidget( analyzeButton, 4, 3, 1, 2);
+    layout->addWidget(finder, 0, 0, 1, 4);
+    layout->addWidget(sourceApply, 1, 0, Qt::AlignRight);
+    layout->addWidget(appApply, 2, 0, Qt::AlignRight);
+    layout->addWidget(videoLabel, 1, 1);
+    layout->addWidget(cSharpLabel, 2, 1);
+    layout->addWidget(resultLabel, 3, 1);
+    layout->addWidget(sourceName, 1, 2, 1, 2, Qt::AlignLeft);
+    layout->addWidget(appName, 2, 2, 1, 2, Qt::AlignLeft);
+    layout->addWidget(resultName, 3, 2, 1, 2, Qt::AlignLeft);
+    layout->addWidget(revealOrgButton, 1, 3, Qt::AlignRight);
+    layout->addWidget(revealResButton, 3, 3, Qt::AlignRight);
+    layout->addWidget(analyzeButton, 4, 3, Qt::AlignLeft);
     setLayout(layout);
 }
 
 void RunGroupBox::loadCsharp() {
-    
+    if (finder->currentText() == appPath)
+        return;
+    updateRes("N/A");
+    QFileInfo file(finder->currentText());
+    if (!file.exists()) {
+        appPath = QString::fromStdString("N/A");
+        appName->setText(appPath);
+        appApply->setPixmap(cancelPixmap);
+        return log->write("Error: Cannot load C# application, since it not exist.");
+    }
+    appPath = finder->currentText();
+    appName->setText(file.fileName());
+    appApply->setPixmap(applyPixmap);
 }
 
 void RunGroupBox::analyzeButtonClicked() {
     emit compute(false);
+}
+
+void RunGroupBox::revealOrgClicked() {
+    if(sourceName->text() != QString::fromStdString("N/A"))
+        showFileInFolder(srcPath);
+}
+
+void RunGroupBox::revealResClicked() {
+    if(resultName->text() != QString::fromStdString("N/A"))
+        showFileInFolder(resPath);
+}
+
+void RunGroupBox::updateSrc(QString fp) {
+    if (fp == srcPath)
+        return;
+    updateRes("N/A");
+    QFileInfo file(fp);
+    if (!file.exists()) {
+        srcPath = QString::fromStdString("N/A");
+        sourceName->setText(srcPath);
+        sourceApply->setPixmap(cancelPixmap);
+        revealOrgButton->setDisabled(true);
+        return;
+    }
+    srcPath = fp;
+    sourceName->setText(file.fileName());
+    sourceApply->setPixmap(applyPixmap);
+    revealOrgButton->setDisabled(false);
+}
+
+void RunGroupBox::updateRes(QString fp) {
+    QFileInfo file(fp);
+    if (!file.exists()) {
+        resPath = QString::fromStdString("N/A");
+        resultName->setText(resPath);
+        revealResButton->setDisabled(true);
+        return;
+    }
+    resPath = fp;
+    resultName->setText(file.fileName());
+    revealResButton->setDisabled(false);
 }
