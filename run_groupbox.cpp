@@ -32,12 +32,12 @@ RunGroupBox::RunGroupBox(LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N
     resultName->setMaximumSize(120, 100);
     
     revealOrgButton = new QToolButton();
-    revealOrgButton->setIcon(style()->standardIcon(QStyle::SP_ArrowForward));
+    revealOrgButton->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
     revealOrgButton->setDisabled(true);
     QObject::connect(revealOrgButton, &QToolButton::clicked, this, &RunGroupBox::revealOrgClicked);
     
     revealResButton = new QToolButton();
-    revealResButton->setIcon(style()->standardIcon(QStyle::SP_ArrowForward));
+    revealResButton->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
     revealResButton->setDisabled(true);
     QObject::connect(revealResButton, &QToolButton::clicked, this, &RunGroupBox::revealResClicked);
     

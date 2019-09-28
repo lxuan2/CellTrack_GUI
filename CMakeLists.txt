@@ -21,6 +21,7 @@ add_executable(CellTrack main.cpp
 	general_view.hpp   general_view.cpp
 	hidden_var_view.hpp hidden_var_view.cpp
 	run_groupbox.hpp   run_groupbox.cpp
+    hidden_variable.hpp hidden_variable.cpp
 )
 set_property(TARGET CellTrack PROPERTY CXX_STANDARD 11)
 target_link_libraries(CellTrack Qt5::Widgets Qt5::MultimediaWidgets)
