@@ -5,11 +5,11 @@
 #include <QDoubleSpinBox>
 #include <QString>
 
-class HiddenVar: public QObject{
+class VarItem: public QObject{
     Q_OBJECT
 public:
     
-    HiddenVar(QString name = QString("untitled"), double value = 0.0);
+    VarItem(QString name = QString("untitled"), double value = 0.0);
     
     QLabel *nameLabel;
     
@@ -17,7 +17,7 @@ public:
     
 signals:
     
-    void valueChanged(QString name, double value);
+    void valueChanged(VarItem *param);
     
 public slots:
     

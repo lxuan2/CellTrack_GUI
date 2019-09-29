@@ -13,7 +13,8 @@
 #include <QCheckBox>
 
 #include "log_view.hpp"
-#include "hidden_variable.hpp"
+#include "var_item.hpp"
+#include "user_data.hpp"
 
 class HiddenVarView: public QWidget{
     Q_OBJECT
@@ -22,17 +23,19 @@ public:
     // Default constructor
     HiddenVarView(LogView * l);
     
+    void saveToFile();
+    
 private slots:
     
-    void parameterChanged(QString name, double value);
+    void parameterChanged(VarItem *param);
     
     void updateParameter(const QString &currentText);
-    
-    void saveToFile();
     
     void addButtonClicked();
     
     void removeButtonClicked();
+    
+    void autoLoadClicked(int state);
     
 private:
     
@@ -46,14 +49,18 @@ private:
     
     LogView * log;
     
-    HiddenVar *param0;
-    HiddenVar *param1;
-    HiddenVar *param2;
-    HiddenVar *param3;
-    HiddenVar *param4;
-    HiddenVar *param5;
-    HiddenVar *param6;
-    HiddenVar *param7;
+    QGroupBox *group;
+    
+    VarItem *param0;
+    VarItem *param1;
+    VarItem *param2;
+    VarItem *param3;
+    VarItem *param4;
+    VarItem *param5;
+    VarItem *param6;
+    VarItem *param7;
+    
+    UserData data;
     
     void addItem(QString name);
     

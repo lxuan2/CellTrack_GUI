@@ -1,6 +1,6 @@
 #include "hidden_var_view.hpp"
 #include <iostream>
-HiddenVarView::HiddenVarView(LogView * l) {
+HiddenVarView::HiddenVarView(LogView * l):data() {
     log = l;
     list = new QListWidget();
     QObject::connect(list, &QListWidget::currentTextChanged, this, &HiddenVarView::updateParameter);
@@ -16,23 +16,23 @@ HiddenVarView::HiddenVarView(LogView * l) {
     addButton->setDisabled(true);
     removeButton->setDisabled(true);
     
-    param0 = new HiddenVar("Parameter 0", 0.0);
-    param1 = new HiddenVar("Parameter 1", 0.0);
-    param2 = new HiddenVar("Parameter 2", 0.0);
-    param3 = new HiddenVar("Parameter 3", 0.0);
-    param4 = new HiddenVar("Parameter 4", 0.0);
-    param5 = new HiddenVar("Parameter 5", 0.0);
-    param6 = new HiddenVar("Parameter 6", 0.0);
-    param7 = new HiddenVar("Parameter 7", 0.0);
+    param0 = new VarItem("Parameter 0", 0.0);
+    param1 = new VarItem("Parameter 1", 0.0);
+    param2 = new VarItem("Parameter 2", 0.0);
+    param3 = new VarItem("Parameter 3", 0.0);
+    param4 = new VarItem("Parameter 4", 0.0);
+    param5 = new VarItem("Parameter 5", 0.0);
+    param6 = new VarItem("Parameter 6", 0.0);
+    param7 = new VarItem("Parameter 7", 0.0);
     
-    QObject::connect(param0, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param1, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param2, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param3, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param4, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param5, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param6, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param7, &HiddenVar::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param0, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param1, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param2, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param3, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param4, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param5, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param6, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param7, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
     
     QGridLayout *lay = new QGridLayout();
     lay->addWidget(param0->nameLabel, 0, 0, Qt::AlignRight);
@@ -52,7 +52,7 @@ HiddenVarView::HiddenVarView(LogView * l) {
     lay->addWidget(param5->valueBox, 5, 1, 1, 2, Qt::AlignLeft);
     lay->addWidget(param6->valueBox, 6, 1, 1, 2, Qt::AlignLeft);
     lay->addWidget(param7->valueBox, 7, 1, 1, 2, Qt::AlignLeft);
-    QGroupBox *group = new QGroupBox();
+    group = new QGroupBox();
     group->setTitle("Hidden Parameters");
     group->setLayout(lay);
     
@@ -62,7 +62,7 @@ HiddenVarView::HiddenVarView(LogView * l) {
     title->setFont(it);
     
     autoLoadCheckBox = new QCheckBox("Always load hidden parameters if the name matches");
-    autoLoadCheckBox->setChecked(true);
+    QObject::connect(autoLoadCheckBox, &QCheckBox::stateChanged, this, &HiddenVarView::autoLoadClicked);
     
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(title, 0, 0, Qt::AlignLeft);
@@ -76,6 +76,7 @@ HiddenVarView::HiddenVarView(LogView * l) {
     
     // Load presetting from the json file
     loadfromFile();
+    autoLoadCheckBox->setChecked(data.userPreference().autoLoadParameter);
 }
 
 void HiddenVarView::addItem(QString name) {
@@ -94,25 +95,46 @@ void HiddenVarView::addItem(QString name) {
 }
 
 void HiddenVarView::loadfromFile() {
-    addItem("first");
-    addItem("second");
-    // TODO:
+    if (!data.loadJson((QCoreApplication::applicationDirPath() + "/userData.json")))
+        log->write("Error: fail to load user data from json file.");
+    if (data.hiddenVarList().length() == 0)
+        return;
+    for (HVarSet i : data.hiddenVarList()){
+        addItem(i.fileName);
+    }
+    updateParameter(data.hiddenVarList().at(0).fileName);
+    list->setCurrentRow(0);
 }
 
-void HiddenVarView::parameterChanged(QString name, double value) {
-    // TODO: save to data in list
+void HiddenVarView::parameterChanged(VarItem *param) {
     saveButton->setEnabled(true);
-    std::cout<<name.toStdString()<<" "<<value<<std::endl;
+    data.setHiddenVariable(list->currentItem()->text(), param->nameLabel->text(), param->valueBox->value());
 }
 
 void HiddenVarView::saveToFile() {
-    // TODO: if close, have to save to file. Optional
+    parameterChanged(param0);
+    parameterChanged(param1);
+    parameterChanged(param2);
+    parameterChanged(param3);
+    parameterChanged(param4);
+    parameterChanged(param5);
+    parameterChanged(param6);
+    parameterChanged(param7);
     saveButton->setEnabled(false);
+    data.saveJson(QCoreApplication::applicationDirPath() + "/userData.json");
 }
 
 void HiddenVarView::updateParameter(const QString &currentText) {
-    // TODO: load last one
-    std::cout<<currentText.toStdString()<<std::endl;
+    //std::cout<<currentText.toStdString()<<std::endl;
+    auto i = data.hiddenVariable(currentText);
+    param0->valueBox->setValue(i.param0);
+    param1->valueBox->setValue(i.param1);
+    param2->valueBox->setValue(i.param2);
+    param3->valueBox->setValue(i.param3);
+    param4->valueBox->setValue(i.param4);
+    param5->valueBox->setValue(i.param5);
+    param6->valueBox->setValue(i.param6);
+    param7->valueBox->setValue(i.param7);
 }
 
 void HiddenVarView::addButtonClicked() {
@@ -121,4 +143,8 @@ void HiddenVarView::addButtonClicked() {
 
 void HiddenVarView::removeButtonClicked() {
     
+}
+
+void HiddenVarView::autoLoadClicked(int state) {
+    data.setAutoLoad(autoLoadCheckBox->isChecked());
 }

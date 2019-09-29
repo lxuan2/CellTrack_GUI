@@ -2,6 +2,7 @@
 #define MATLAB_WIDGET_HPP
 
 #include <QTabWidget>
+#include <QCloseEvent>
 
 #include "general_view.hpp"
 #include "hidden_var_view.hpp"
@@ -15,6 +16,8 @@ public:
     
     // Set C# Application location
     void setExeLoc(QString exeLoc);
+    
+    void closeEvent(QCloseEvent *event);
     
 signals:
     

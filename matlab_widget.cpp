@@ -8,9 +8,8 @@ MatlabWidget::MatlabWidget(){
     hiddenVar = new HiddenVarView(log);
     
     QTabWidget *tabView = new QTabWidget();
-    tabView->addTab(hiddenVar, "Hidden Parameters");
     tabView->addTab(general, "General");
-    
+    tabView->addTab(hiddenVar, "Hidden Parameters");
     tabView->addTab(log, "Log History");
     
     QVBoxLayout *layout = new QVBoxLayout();
@@ -22,4 +21,9 @@ MatlabWidget::MatlabWidget(){
 
 void MatlabWidget::setExeLoc(QString exeLoc) {
 	
+}
+
+void MatlabWidget::closeEvent(QCloseEvent *event) {
+    hiddenVar->saveToFile();
+    QWidget::closeEvent(event);
 }
