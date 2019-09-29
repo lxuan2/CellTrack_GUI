@@ -9,6 +9,8 @@
 #define hidden_variables_hpp
 
 #include <QListWidget>
+#include <QGroupBox>
+#include <QCheckBox>
 
 #include "log_view.hpp"
 #include "hidden_variable.hpp"
@@ -20,11 +22,27 @@ public:
     // Default constructor
     HiddenVarView(LogView * l);
     
+private slots:
+    
+    void parameterChanged(QString name, double value);
+    
+    void updateParameter(const QString &currentText);
+    
+    void saveToFile();
+    
+    void addButtonClicked();
+    
+    void removeButtonClicked();
+    
 private:
     
     QListWidget * list;
     
     QPushButton * saveButton;
+    QPushButton * addButton;
+    QPushButton * removeButton;
+    
+    QCheckBox * autoLoadCheckBox;
     
     LogView * log;
     
@@ -38,6 +56,8 @@ private:
     HiddenVar *param7;
     
     void addItem(QString name);
+    
+    void loadfromFile();
 };
 
 #endif

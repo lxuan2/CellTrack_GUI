@@ -1,26 +1,15 @@
 #include "hidden_variable.hpp"
+#include <iostream>
 HiddenVar::HiddenVar(QString name, double value) {
     nameLabel = new QLabel(name + ":");
     valueBox = new QDoubleSpinBox();
+    valueBox->setRange(-999999999, 999999999);
+    valueBox->setDecimals(5);
     valueBox->setValue(value);
-    QHBoxLayout *l = new QHBoxLayout();
-    l->addWidget(nameLabel);
-    l->addWidget(valueBox);
-    setLayout(l);
+    
+    QObject::connect(valueBox, &QDoubleSpinBox::editingFinished, this, &HiddenVar::updateValue);
 }
 
-QString HiddenVar::name() {
-    return nameLabel->text();
-}
-
-double HiddenVar::value() {
-    return valueBox->value();
-}
-
-void HiddenVar::setName(QString name) {
-    nameLabel->setText(name);
-}
-
-void HiddenVar::setValue(double value) {
-    valueBox->setValue(value);
+void HiddenVar::updateValue() {
+    emit valueChanged(nameLabel->text(), valueBox->value());
 }

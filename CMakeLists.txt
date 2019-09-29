@@ -23,5 +23,7 @@ add_executable(CellTrack main.cpp
 	run_groupbox.hpp   run_groupbox.cpp
     hidden_variable.hpp hidden_variable.cpp
 )
-set_property(TARGET CellTrack PROPERTY CXX_STANDARD 11)
+# require a C++11 compiler for all targets
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 target_link_libraries(CellTrack Qt5::Widgets Qt5::MultimediaWidgets)
