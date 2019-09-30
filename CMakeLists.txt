@@ -21,8 +21,8 @@ add_executable(CellTrack main.cpp
 	general_view.hpp   general_view.cpp
 	hidden_var_view.hpp hidden_var_view.cpp
 	run_groupbox.hpp   run_groupbox.cpp
-    var_item.hpp       var_item.cpp
-    user_data.hpp      user_data.cpp
+	var_item.hpp       var_item.cpp
+	user_data.hpp      user_data.cpp
 )
 # require a C++11 compiler for all targets
 set(CMAKE_CXX_STANDARD 11)
