@@ -29,8 +29,9 @@ private:
     
     HiddenVarView *hiddenVar;
     
-    // Log View
     LogView *log;
+    
+    UserData data;
     
 };
 

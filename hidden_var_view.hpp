@@ -21,9 +21,9 @@ class HiddenVarView: public QWidget{
 public:
     
     // Default constructor
-    HiddenVarView(LogView * l);
+    HiddenVarView(UserData *d, LogView * l);
     
-    void saveToFile();
+    void saveHiddenVar();
     
 private slots:
     
@@ -60,11 +60,11 @@ private:
     VarItem *param6;
     VarItem *param7;
     
-    UserData data;
+    UserData *data;
     
     void addItem(QString name);
     
-    void loadfromFile();
+    void loadParameters();
 };
 
 #endif

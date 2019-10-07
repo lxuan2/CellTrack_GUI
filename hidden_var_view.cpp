@@ -1,13 +1,14 @@
 #include "hidden_var_view.hpp"
-#include <iostream>
-HiddenVarView::HiddenVarView(LogView * l):data() {
+
+HiddenVarView::HiddenVarView(UserData *d, LogView * l){
+    data = d;
     log = l;
     list = new QListWidget();
     QObject::connect(list, &QListWidget::currentTextChanged, this, &HiddenVarView::updateParameter);
     //list->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     //list->setMaximumWidth(200);
     saveButton = new QPushButton("Save Data");
-    QObject::connect(saveButton, &QPushButton::clicked, this, &HiddenVarView::saveToFile);
+    QObject::connect(saveButton, &QPushButton::clicked, this, &HiddenVarView::saveHiddenVar);
     addButton = new QPushButton("Add");
     QObject::connect(addButton, &QPushButton::clicked, this, &HiddenVarView::addButtonClicked);
     removeButton = new QPushButton("Remove");
@@ -75,8 +76,8 @@ HiddenVarView::HiddenVarView(LogView * l):data() {
     setLayout(layout);
     
     // Load presetting from the json file
-    loadfromFile();
-    autoLoadCheckBox->setChecked(data.userPreference().autoLoadParameter);
+    loadParameters();
+    autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
 }
 
 void HiddenVarView::addItem(QString name) {
@@ -94,24 +95,24 @@ void HiddenVarView::addItem(QString name) {
     list->addItem(newItem);
 }
 
-void HiddenVarView::loadfromFile() {
-    if (!data.loadJson((QCoreApplication::applicationDirPath() + "/userData.json")))
-        log->write("Error: fail to load user data from json file.");
-    if (data.hiddenVarList().length() == 0)
+void HiddenVarView::loadParameters() {
+    if (data->hiddenVarList().length() == 0)
         return;
-    for (HVarSet i : data.hiddenVarList()){
+    for (HVarSet i : data->hiddenVarList()){
         addItem(i.fileName);
     }
-    updateParameter(data.hiddenVarList().at(0).fileName);
+    updateParameter(data->hiddenVarList().at(0).fileName);
     list->setCurrentRow(0);
 }
 
 void HiddenVarView::parameterChanged(VarItem *param) {
+    if (list->currentItem() == nullptr)
+        return;
     saveButton->setEnabled(true);
-    data.setHiddenVariable(list->currentItem()->text(), param->nameLabel->text(), param->valueBox->value());
+    data->setHiddenVariable(list->currentItem()->text(), param->nameLabel->text(), param->valueBox->value());
 }
 
-void HiddenVarView::saveToFile() {
+void HiddenVarView::saveHiddenVar() {
     parameterChanged(param0);
     parameterChanged(param1);
     parameterChanged(param2);
@@ -121,12 +122,11 @@ void HiddenVarView::saveToFile() {
     parameterChanged(param6);
     parameterChanged(param7);
     saveButton->setEnabled(false);
-    data.saveJson(QCoreApplication::applicationDirPath() + "/userData.json");
 }
 
 void HiddenVarView::updateParameter(const QString &currentText) {
     //std::cout<<currentText.toStdString()<<std::endl;
-    auto i = data.hiddenVariable(currentText);
+    auto i = data->hiddenVariable(currentText);
     param0->valueBox->setValue(i.param0);
     param1->valueBox->setValue(i.param1);
     param2->valueBox->setValue(i.param2);
@@ -146,5 +146,5 @@ void HiddenVarView::removeButtonClicked() {
 }
 
 void HiddenVarView::autoLoadClicked(int state) {
-    data.setAutoLoad(autoLoadCheckBox->isChecked());
+    data->setAutoLoad(autoLoadCheckBox->isChecked());
 }

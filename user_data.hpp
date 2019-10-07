@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QCoreApplication>
 
 struct HVarSet {
     QString fileName;
@@ -30,9 +31,9 @@ public:
     
     UserData();
     
-    bool loadJson(QString filePath);
+    bool loadJson();
     
-    bool saveJson(QString filePath);
+    bool saveJson();
     
     HVarSet hiddenVariable(QString name);
     

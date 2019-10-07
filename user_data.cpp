@@ -1,9 +1,12 @@
 #include "user_data.hpp"
-#include <QDebug>
+
 UserData::UserData() {}
 
-bool UserData::loadJson(QString filePath) {
-    QFile loadFile(filePath);
+bool UserData::loadJson() {
+    QFile loadFile((QCoreApplication::applicationDirPath() + "/userData.json"));
+    if (!loadFile.exists())
+        return false;
+    
     if (!loadFile.open(QIODevice::ReadOnly))
         return false;
     
@@ -20,8 +23,8 @@ bool UserData::loadJson(QString filePath) {
     return true;
 }
 
-bool UserData::saveJson(QString filePath) {
-    QFile saveFile(filePath);
+bool UserData::saveJson() {
+    QFile saveFile((QCoreApplication::applicationDirPath() + "/userData.json"));
 
     if (!saveFile.open(QIODevice::WriteOnly))
         return false;
