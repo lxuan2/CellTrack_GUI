@@ -160,19 +160,22 @@ void HiddenVarView::addButtonClicked() {
 
 void HiddenVarView::removeButtonClicked() {
     if (list->count() == 0) return;
-    QMessageBox msgBox;
-    msgBox.setText("Remove operation detected.");
-    msgBox.setInformativeText("Do you want to remove the current item from the list?");
-    msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
-    msgBox.setDefaultButton(QMessageBox::NoButton);
-    msgBox.setIcon(QMessageBox::Warning);
-    
-    if (msgBox.exec() == QMessageBox::Yes) {
+    int ret = QMessageBox::Yes;
+    if (!rmWithoutAskCheckBox->isChecked()) {
+        QMessageBox msgBox;
+        msgBox.setText("Remove operation detected.");
+        msgBox.setInformativeText("Do you want to remove the current item from the list?");
+        msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
+        msgBox.setDefaultButton(QMessageBox::NoButton);
+        msgBox.setIcon(QMessageBox::Warning);
+        ret = msgBox.exec();
+    }
+    if (ret == QMessageBox::Yes) {
         if (!data->removeHiddenVariable(list->currentItem()->text())) {
             log->write("Error: Fail to remove item, since it does not exist in the list");
             QMessageBox msg;
             msg.setText("Error: Fail to remove item, since it does not exist in the list");
-            msgBox.setIcon(QMessageBox::Critical);
+            msg.setIcon(QMessageBox::Critical);
             msg.exec();
             return;
         }
