@@ -67,20 +67,25 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l){
     autoLoadCheckBox = new QCheckBox("Always apply hidden parameters if the name matches");
     QObject::connect(autoLoadCheckBox, &QCheckBox::stateChanged, this, &HiddenVarView::autoLoadClicked);
     
+    rmWithoutAskCheckBox = new QCheckBox("Do not ask verification for remove operation");
+    QObject::connect(rmWithoutAskCheckBox, &QCheckBox::stateChanged, this, &HiddenVarView::rmWithoutAskClicked);
+    
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(title, 0, 0, Qt::AlignLeft);
     layout->addWidget(group, 1, 4, 15, 5);
     layout->addWidget(list, 1, 0, 18, 2);
     layout->addWidget(addButton, 19, 0);
     layout->addWidget(removeButton, 19, 1);
+    layout->addWidget(rmWithoutAskCheckBox, 19, 4, 1, 4);
     layout->addWidget(discardAllBT, 20, 0, 1, 2);
     layout->addWidget(showInFolderBT, 20, 8);
-    layout->addWidget(autoLoadCheckBox, 20, 4, 1, 4, Qt::AlignCenter);
+    layout->addWidget(autoLoadCheckBox, 20, 4, 1, 4);
     setLayout(layout);
     
     // Load presetting from the json file
     loadParameters();
     autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
+    rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
 }
 
 void HiddenVarView::addItem(QString name) {
@@ -180,10 +185,6 @@ void HiddenVarView::removeButtonClicked() {
     }
 }
 
-void HiddenVarView::autoLoadClicked(int state) {
-    data->setAutoLoad(autoLoadCheckBox->isChecked());
-}
-
 void HiddenVarView::showInFolderClicked() {
     showFileInFolder((QCoreApplication::applicationDirPath() + "/userData.json"));
 }
@@ -195,4 +196,13 @@ void HiddenVarView::discardAllBTClicked() {
     data->loadJson();
     loadParameters();
     autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
+    rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
+}
+
+void HiddenVarView::autoLoadClicked(int state) {
+    data->setAutoLoad(autoLoadCheckBox->isChecked());
+}
+
+void HiddenVarView::rmWithoutAskClicked(int state) {
+    data->setRmWithoutAsk(rmWithoutAskCheckBox->isChecked());
 }

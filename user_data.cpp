@@ -55,18 +55,22 @@ UPref UserData::userPreference() {
 void UserData::clear() {
     hVarList.clear();
     pref.autoLoadParameter = true;
+    pref.rmWithoutAsk = false;
 }
 
  bool UserData::read(const QJsonObject &json) {
-     
+     bool pass = true;
      if (json.contains("userPreference") && json["userPreference"].isObject()) {
          QJsonObject obj = json["userPreference"].toObject();
          if (obj.contains("autoLoadParameter") && obj["autoLoadParameter"].isBool())
              pref.autoLoadParameter = obj["autoLoadParameter"].toBool();
-         else return false;
+         else pass = false;
+         if (obj.contains("rmWithoutAsk") && obj["rmWithoutAsk"].isBool())
+             pref.rmWithoutAsk = obj["rmWithoutAsk"].toBool();
+         else pass = false;
      }
      else
-         return false;
+         pass = false;
      
      if (json.contains("hiddenVariable") && json["hiddenVariable"].isArray()) {
          QJsonArray varArray = json["hiddenVariable"].toArray();
@@ -77,44 +81,43 @@ void UserData::clear() {
              HVarSet set;
              if (varObject.contains("fileName") && varObject["fileName"].isString())
                  set.fileName = varObject["fileName"].toString();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter0") && varObject["parameter0"].isDouble())
                  set.param0 = varObject["parameter0"].toDouble();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter1") && varObject["parameter1"].isDouble())
                  set.param1 = varObject["parameter1"].toDouble();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter2") && varObject["parameter2"].isDouble())
                  set.param2 = varObject["parameter2"].toDouble();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter3") && varObject["parameter3"].isDouble())
                  set.param3 = varObject["parameter3"].toDouble();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter4") && varObject["parameter4"].isDouble())
                  set.param4 = varObject["parameter4"].toDouble();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter5") && varObject["parameter5"].isDouble())
                  set.param5 = varObject["parameter5"].toDouble();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter6") && varObject["parameter6"].isDouble())
                  set.param6 = varObject["parameter6"].toDouble();
-             else return false;
+             else pass = false;
             
              if (varObject.contains("parameter7") && varObject["parameter7"].isDouble())
                  set.param7 = varObject["parameter7"].toDouble();
-             else return false;
+             else pass = false;
              hVarList.append(set);
          }
-         return true;
-     }
-     return false;
+     } else pass = false;
+     return pass;
 }
 
 void UserData::write(QJsonObject &json) {
@@ -136,6 +139,7 @@ void UserData::write(QJsonObject &json) {
     
     QJsonObject prefObject;
     prefObject["autoLoadParameter"] = pref.autoLoadParameter;
+    prefObject["rmWithoutAsk"] = pref.rmWithoutAsk;
     json["userPreference"] = prefObject;
 }
 
@@ -176,6 +180,10 @@ void UserData::setHiddenVariableStr(QString filename, QString param, QString val
 
 void UserData::setAutoLoad(bool i) {
     pref.autoLoadParameter = i;
+}
+
+void UserData::setRmWithoutAsk(bool i) {
+    pref.rmWithoutAsk = i;
 }
 
 void UserData::addHiddenVariable(QString filename) {

@@ -44,6 +44,8 @@ private slots:
     
     void autoLoadClicked(int state);
     
+    void rmWithoutAskClicked(int state);
+    
 private:
     
     QListWidget * list;
@@ -54,6 +56,7 @@ private:
     QPushButton * discardAllBT;
     
     QCheckBox * autoLoadCheckBox;
+    QCheckBox * rmWithoutAskCheckBox;
     
     LogView * log;
     

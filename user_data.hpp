@@ -23,6 +23,7 @@ struct HVarSet {
 
 struct UPref {
     bool autoLoadParameter;
+    bool rmWithoutAsk;
 };
 
 class UserData {
@@ -55,6 +56,8 @@ public:
     void setHiddenVariableStr(QString filename, QString param, QString value);
     
     void setAutoLoad(bool i);
+    
+    void setRmWithoutAsk(bool i);
     
 private:
     
