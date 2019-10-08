@@ -1,5 +1,5 @@
 #include "var_item.hpp"
-#include <iostream>
+
 VarItem::VarItem(QString name, double value) {
     nameLabel = new QLabel(name + ":");
     valueBox = new QDoubleSpinBox();
@@ -11,5 +11,17 @@ VarItem::VarItem(QString name, double value) {
 }
 
 void VarItem::updateValue() {
+    emit valueChanged(this);
+}
+
+StrVarItem::StrVarItem(QString name, QString value) {
+    nameLabel = new QLabel(name + ":");
+    valueBox = new QLineEdit();
+    valueBox->setText(value);
+    
+    QObject::connect(valueBox, &QLineEdit::textChanged, this, &StrVarItem::updateValue);
+}
+
+void StrVarItem::updateValue() {
     emit valueChanged(this);
 }

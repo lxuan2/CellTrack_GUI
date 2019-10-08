@@ -141,7 +141,6 @@ void UserData::write(QJsonObject &json) {
 
 
 void UserData::setHiddenVariable(QString filename, QString param, double value) {
-    QJsonObject obj;
     for(int i = 0; i < hVarList.size(); i++) {
         auto it = hVarList.at(i);
         if (it.fileName == filename){
@@ -163,9 +162,43 @@ void UserData::setHiddenVariable(QString filename, QString param, double value) 
                 hVarList[i].param7 = value;
         }
     }
-    
+}
+
+void UserData::setHiddenVariableStr(QString filename, QString param, QString value) {
+    for(int i = 0; i < hVarList.size(); i++) {
+        auto it = hVarList.at(i);
+        if (it.fileName == filename){
+            if(param == "File Name:")
+                hVarList[i].fileName = value;
+        }
+    }
 }
 
 void UserData::setAutoLoad(bool i) {
     pref.autoLoadParameter = i;
+}
+
+void UserData::addHiddenVariable(QString filename) {
+    HVarSet set;
+    set.fileName = filename;
+    set.param0 = 0.0;
+    set.param1 = 0.0;
+    set.param2 = 0.0;
+    set.param3 = 0.0;
+    set.param4 = 0.0;
+    set.param5 = 0.0;
+    set.param6 = 0.0;
+    set.param7 = 0.0;
+    hVarList.append(set);
+}
+
+bool UserData::removeHiddenVariable(QString filename) {
+    for(int i = 0; i < hVarList.size(); i++) {
+        auto it = hVarList.at(i);
+        if (it.fileName == filename){
+            hVarList.removeAt(i);
+            return true;
+        }
+    }
+    return false;
 }

@@ -11,6 +11,7 @@
 #include <QListWidget>
 #include <QGroupBox>
 #include <QCheckBox>
+#include <QMessageBox>
 
 #include "log_view.hpp"
 #include "var_item.hpp"
@@ -29,11 +30,17 @@ private slots:
     
     void parameterChanged(VarItem *param);
     
+    void strParameterChanged(StrVarItem *param);
+    
     void updateParameter(const QString &currentText);
     
     void addButtonClicked();
     
     void removeButtonClicked();
+    
+    void showInFolderClicked();
+    
+    void discardAllBTClicked();
     
     void autoLoadClicked(int state);
     
@@ -41,9 +48,10 @@ private:
     
     QListWidget * list;
     
-    QPushButton * saveButton;
     QPushButton * addButton;
     QPushButton * removeButton;
+    QPushButton * showInFolderBT;
+    QPushButton * discardAllBT;
     
     QCheckBox * autoLoadCheckBox;
     
@@ -51,6 +59,7 @@ private:
     
     QGroupBox *group;
     
+    StrVarItem *filename;
     VarItem *param0;
     VarItem *param1;
     VarItem *param2;

@@ -31,19 +31,28 @@ public:
     
     UserData();
     
+    // Load and Write operations
     bool loadJson();
     
     bool saveJson();
     
+    // Get information
     HVarSet hiddenVariable(QString name);
     
     QVector<HVarSet> hiddenVarList();
     
     UPref userPreference();
     
+    // Update content
     void clear();
     
+    void addHiddenVariable(QString filename);
+    
+    bool removeHiddenVariable(QString filename);
+    
     void setHiddenVariable(QString filename, QString param, double value);
+    
+    void setHiddenVariableStr(QString filename, QString param, QString value);
     
     void setAutoLoad(bool i);
     

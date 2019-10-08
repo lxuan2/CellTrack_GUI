@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QDoubleSpinBox>
 #include <QString>
+#include <QLineEdit>
 
 class VarItem: public QObject{
     Q_OBJECT
@@ -18,6 +19,25 @@ public:
 signals:
     
     void valueChanged(VarItem *param);
+    
+public slots:
+    
+    void updateValue();
+};
+
+class StrVarItem: public QObject{
+    Q_OBJECT
+public:
+    
+    StrVarItem(QString name = QString("untitled"), QString value = "untitled");
+    
+    QLabel *nameLabel;
+    
+    QLineEdit *valueBox;
+    
+signals:
+    
+    void valueChanged(StrVarItem *param);
     
 public slots:
     

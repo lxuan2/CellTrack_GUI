@@ -2,7 +2,6 @@
 #define CONTROL_PANNEL_HPP
 
 #include <QLabel>
-#include <QDialog>
 #include <QSlider>
 #include <QLayout>
 #include <QSpinBox>
