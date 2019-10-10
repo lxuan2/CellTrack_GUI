@@ -1,16 +1,14 @@
 #include "var_item.hpp"
 
-VarItem::VarItem(QString name, double value) {
+DoubleVarItem::DoubleVarItem(QString name, double value) {
     nameLabel = new QLabel(name + ":");
-    valueBox = new QDoubleSpinBox();
-    valueBox->setRange(-999999999, 999999999);
-    valueBox->setDecimals(5);
-    valueBox->setValue(value);
+    valueBox = new QLineEdit();
+    valueBox->setValidator(dynamic_cast<QValidator*>(new QDoubleValidator()));
     
-    QObject::connect(valueBox, &QDoubleSpinBox::editingFinished, this, &VarItem::updateValue);
+    QObject::connect(valueBox, &QLineEdit::textChanged, this, &DoubleVarItem::updateValue);
 }
 
-void VarItem::updateValue() {
+void DoubleVarItem::updateValue() {
     emit valueChanged(this);
 }
 

@@ -54,10 +54,13 @@ UPref UserData::userPreference() {
 
 void UserData::clear() {
     hVarList.clear();
-    pref.autoLoadParameter = true;
-    pref.rmWithoutAsk = false;
 }
 
+/*
+**************************************
+MARK: - Once changing parameters, update this function
+**************************************
+*/
  bool UserData::read(const QJsonObject &json) {
      bool pass = true;
      if (json.contains("userPreference") && json["userPreference"].isObject()) {
@@ -120,6 +123,11 @@ void UserData::clear() {
      return pass;
 }
 
+/*
+**************************************
+MARK: - Once changing parameters, update this function
+**************************************
+*/
 void UserData::write(QJsonObject &json) {
     QJsonArray array;
     for(HVarSet &i : hVarList) {
@@ -143,26 +151,30 @@ void UserData::write(QJsonObject &json) {
     json["userPreference"] = prefObject;
 }
 
-
+/*
+**************************************
+MARK: - Once changing parameters, update this function
+**************************************
+*/
 void UserData::setHiddenVariable(QString filename, QString param, double value) {
     for(int i = 0; i < hVarList.size(); i++) {
         auto it = hVarList.at(i);
         if (it.fileName == filename){
-            if(param == "Parameter 0:")
+            if(param == "parameter0:")
                 hVarList[i].param0 = value;
-            else if(param == "Parameter 1:")
+            else if(param == "parameter1:")
                 hVarList[i].param1 = value;
-            else if(param == "Parameter 2:")
+            else if(param == "parameter2:")
                 hVarList[i].param2 = value;
-            else if(param == "Parameter 3:")
+            else if(param == "parameter3:")
                 hVarList[i].param3 = value;
-            else if(param == "Parameter 4:")
+            else if(param == "parameter4:")
                 hVarList[i].param4 = value;
-            else if(param == "Parameter 5:")
+            else if(param == "parameter5:")
                 hVarList[i].param5 = value;
-            else if(param == "Parameter 6:")
+            else if(param == "parameter6:")
                 hVarList[i].param6 = value;
-            else if(param == "Parameter 7:")
+            else if(param == "parameter7:")
                 hVarList[i].param7 = value;
         }
     }
@@ -172,7 +184,7 @@ void UserData::setHiddenVariableStr(QString filename, QString param, QString val
     for(int i = 0; i < hVarList.size(); i++) {
         auto it = hVarList.at(i);
         if (it.fileName == filename){
-            if(param == "File Name:")
+            if(param == "fileName:")
                 hVarList[i].fileName = value;
         }
     }
@@ -186,6 +198,11 @@ void UserData::setRmWithoutAsk(bool i) {
     pref.rmWithoutAsk = i;
 }
 
+/*
+**************************************
+MARK: - Once changing parameters, update this function
+**************************************
+*/
 void UserData::addHiddenVariable(QString filename) {
     HVarSet set;
     set.fileName = filename;

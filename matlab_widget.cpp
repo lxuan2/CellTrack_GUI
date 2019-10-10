@@ -28,7 +28,6 @@ void MatlabWidget::setExeLoc(QString exeLoc) {
 }
 
 void MatlabWidget::closeEvent(QCloseEvent *event) {
-    hiddenVar->saveHiddenVar();
     if(!data.saveJson())
         log->write("Error: Fail to save data into the json file.");
     QWidget::closeEvent(event);

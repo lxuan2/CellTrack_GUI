@@ -24,15 +24,13 @@ public:
     // Default constructor
     HiddenVarView(UserData *d, LogView * l);
     
-    void saveHiddenVar();
-    
 private slots:
     
-    void parameterChanged(VarItem *param);
+    void updateParameter(const QString &currentText);
+    
+    void parameterChanged(DoubleVarItem *param);
     
     void strParameterChanged(StrVarItem *param);
-    
-    void updateParameter(const QString &currentText);
     
     void addButtonClicked();
     
@@ -48,32 +46,40 @@ private slots:
     
 private:
     
+    LogView * log;
+    StrVarItem *filename;
+    
+    /*
+    **************************************
+    MARK: - Once changing parameters, update these variables
+    **************************************
+    */
+    DoubleVarItem *param0;
+    DoubleVarItem *param1;
+    DoubleVarItem *param2;
+    DoubleVarItem *param3;
+    DoubleVarItem *param4;
+    DoubleVarItem *param5;
+    DoubleVarItem *param6;
+    DoubleVarItem *param7;
+    
+    // Backgroud UserData Manager
+    UserData *data;
+    
+    // Item list
     QListWidget * list;
     
+    // Buttons
     QPushButton * addButton;
     QPushButton * removeButton;
     QPushButton * showInFolderBT;
     QPushButton * discardAllBT;
     
+    // Checkboxes
     QCheckBox * autoLoadCheckBox;
     QCheckBox * rmWithoutAskCheckBox;
     
-    LogView * log;
-    
-    QGroupBox *group;
-    
-    StrVarItem *filename;
-    VarItem *param0;
-    VarItem *param1;
-    VarItem *param2;
-    VarItem *param3;
-    VarItem *param4;
-    VarItem *param5;
-    VarItem *param6;
-    VarItem *param7;
-    
-    UserData *data;
-    
+    // Helper Function
     void addItem(QString name);
     
     void loadParameters();

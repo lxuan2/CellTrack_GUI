@@ -2,23 +2,23 @@
 #define hidden_variable_hpp
 
 #include <QLabel>
-#include <QDoubleSpinBox>
 #include <QString>
 #include <QLineEdit>
+#include <QDoubleValidator>
 
-class VarItem: public QObject{
+class DoubleVarItem: public QObject{
     Q_OBJECT
 public:
     
-    VarItem(QString name = QString("untitled"), double value = 0.0);
+    DoubleVarItem(QString name = QString("untitled"), double value = 0.0);
     
     QLabel *nameLabel;
     
-    QDoubleSpinBox *valueBox;
+    QLineEdit *valueBox;
     
 signals:
     
-    void valueChanged(VarItem *param);
+    void valueChanged(DoubleVarItem *param);
     
 public slots:
     

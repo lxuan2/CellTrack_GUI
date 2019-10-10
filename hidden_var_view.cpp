@@ -1,5 +1,10 @@
 #include "hidden_var_view.hpp"
 
+/*
+**************************************
+MARK: - Once changing parameters, update this function
+**************************************
+*/
 HiddenVarView::HiddenVarView(UserData *d, LogView * l){
     data = d;
     log = l;
@@ -15,25 +20,25 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l){
     discardAllBT = new QPushButton("Discard All Changes");
     QObject::connect(discardAllBT, &QPushButton::clicked, this, &HiddenVarView::discardAllBTClicked);
     
-    filename = new StrVarItem("File Name", "");
-    param0 = new VarItem("Parameter 0", 0.0);
-    param1 = new VarItem("Parameter 1", 0.0);
-    param2 = new VarItem("Parameter 2", 0.0);
-    param3 = new VarItem("Parameter 3", 0.0);
-    param4 = new VarItem("Parameter 4", 0.0);
-    param5 = new VarItem("Parameter 5", 0.0);
-    param6 = new VarItem("Parameter 6", 0.0);
-    param7 = new VarItem("Parameter 7", 0.0);
+    filename = new StrVarItem("fileName", "");
+    param0 = new DoubleVarItem("parameter0", 0.0);
+    param1 = new DoubleVarItem("parameter1", 0.0);
+    param2 = new DoubleVarItem("parameter2", 0.0);
+    param3 = new DoubleVarItem("parameter3", 0.0);
+    param4 = new DoubleVarItem("parameter4", 0.0);
+    param5 = new DoubleVarItem("parameter5", 0.0);
+    param6 = new DoubleVarItem("parameter6", 0.0);
+    param7 = new DoubleVarItem("parameter7", 0.0);
     
     QObject::connect(filename, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
-    QObject::connect(param0, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param1, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param2, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param3, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param4, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param5, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param6, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
-    QObject::connect(param7, &VarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param0, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param1, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param2, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param3, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param4, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param5, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param6, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
+    QObject::connect(param7, &DoubleVarItem::valueChanged, this, &HiddenVarView::parameterChanged);
     
     QGridLayout *lay = new QGridLayout();
     lay->addWidget(filename->nameLabel, 0, 0, Qt::AlignRight);
@@ -55,7 +60,7 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l){
     lay->addWidget(param5->valueBox, 6, 1, 1, 2, Qt::AlignLeft);
     lay->addWidget(param6->valueBox, 7, 1, 1, 2, Qt::AlignLeft);
     lay->addWidget(param7->valueBox, 8, 1, 1, 2, Qt::AlignLeft);
-    group = new QGroupBox();
+    QGroupBox *group = new QGroupBox();
     group->setTitle("Hidden Parameters");
     group->setLayout(lay);
     
@@ -82,74 +87,45 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l){
     layout->addWidget(autoLoadCheckBox, 20, 4, 1, 4);
     setLayout(layout);
     
-    // Load presetting from the json file
+    // Load presetting parameters to the screen
     loadParameters();
-    autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
-    rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
 }
 
-void HiddenVarView::addItem(QString name) {
-    QListWidgetItem *newItem = new QListWidgetItem();
-    newItem->setText(name);
-    newItem->setSizeHint(QSize(23, 23));
-    newItem->setTextAlignment(Qt::AlignCenter);
-    
-    // Set font size
-    auto it = newItem->font();
-    it.setPointSize(14);
-    newItem->setFont(it);
-    
-    // Add to the list
-    list->addItem(newItem);
+/*
+**************************************
+MARK: - Once changing parameters, update this function
+**************************************
+*/
+void HiddenVarView::updateParameter(const QString &currentText) {
+    HVarSet i = data->hiddenVariable(currentText);
+    filename->valueBox->setText(i.fileName);
+    param0->valueBox->setText(QString::number(i.param0, 'g', 15));
+    param1->valueBox->setText(QString::number(i.param1, 'g', 15));
+    param2->valueBox->setText(QString::number(i.param2, 'g', 15));
+    param3->valueBox->setText(QString::number(i.param3, 'g', 15));
+    param4->valueBox->setText(QString::number(i.param4, 'g', 15));
+    param5->valueBox->setText(QString::number(i.param5, 'g', 15));
+    param6->valueBox->setText(QString::number(i.param6, 'g', 15));
+    param7->valueBox->setText(QString::number(i.param7, 'g', 15));
 }
 
-void HiddenVarView::loadParameters() {
-    if (data->hiddenVarList().length() == 0)
-        return;
-    for (HVarSet i : data->hiddenVarList()){
-        addItem(i.fileName);
-    }
-    list->setCurrentRow(0);
-}
-
-void HiddenVarView::parameterChanged(VarItem *param) {
+void HiddenVarView::parameterChanged(DoubleVarItem *param) {
     if (list->currentItem() == nullptr)
         return;
-    data->setHiddenVariable(list->currentItem()->text(), param->nameLabel->text(), param->valueBox->value());
+    data->setHiddenVariable(list->currentItem()->text(), param->nameLabel->text(), param->valueBox->text().toDouble());
 }
 
 void HiddenVarView::strParameterChanged(StrVarItem *param) {
     if (list->currentItem() == nullptr)
         return;
     data->setHiddenVariableStr(list->currentItem()->text(), param->nameLabel->text(), param->valueBox->text());
-    if (param->nameLabel->text() == QString::fromStdString("File Name:"))
+    if (param->nameLabel->text() == QString::fromStdString("fileName:"))
         list->currentItem()->setText(param->valueBox->text());
 }
 
-void HiddenVarView::saveHiddenVar() {
-    strParameterChanged(filename);
-    parameterChanged(param0);
-    parameterChanged(param1);
-    parameterChanged(param2);
-    parameterChanged(param3);
-    parameterChanged(param4);
-    parameterChanged(param5);
-    parameterChanged(param6);
-    parameterChanged(param7);
-}
-
-void HiddenVarView::updateParameter(const QString &currentText) {
-    auto i = data->hiddenVariable(currentText);
-    filename->valueBox->setText(i.fileName);
-    param0->valueBox->setValue(i.param0);
-    param1->valueBox->setValue(i.param1);
-    param2->valueBox->setValue(i.param2);
-    param3->valueBox->setValue(i.param3);
-    param4->valueBox->setValue(i.param4);
-    param5->valueBox->setValue(i.param5);
-    param6->valueBox->setValue(i.param6);
-    param7->valueBox->setValue(i.param7);
-}
+/*###########################################
+#           Event Handle Functions          #
+###########################################*/
 
 void HiddenVarView::addButtonClicked() {
     QString newFileName = "untitled" + QString::number(list->count());
@@ -195,11 +171,8 @@ void HiddenVarView::showInFolderClicked() {
 void HiddenVarView::discardAllBTClicked() {
     data->clear();
     list->clear();
-    
     data->loadJson();
     loadParameters();
-    autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
-    rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
 }
 
 void HiddenVarView::autoLoadClicked(int state) {
@@ -208,4 +181,34 @@ void HiddenVarView::autoLoadClicked(int state) {
 
 void HiddenVarView::rmWithoutAskClicked(int state) {
     data->setRmWithoutAsk(rmWithoutAskCheckBox->isChecked());
+}
+
+/*###########################################
+#           Helper Functions                #
+###########################################*/
+
+void HiddenVarView::addItem(QString name) {
+    QListWidgetItem *newItem = new QListWidgetItem();
+    newItem->setText(name);
+    newItem->setSizeHint(QSize(23, 23));
+    newItem->setTextAlignment(Qt::AlignCenter);
+    
+    // Set font size
+    auto it = newItem->font();
+    it.setPointSize(14);
+    newItem->setFont(it);
+    
+    // Add to the list
+    list->addItem(newItem);
+}
+
+void HiddenVarView::loadParameters() {
+    if (data->hiddenVarList().length() == 0)
+        return;
+    for (HVarSet i : data->hiddenVarList()){
+        addItem(i.fileName);
+    }
+    list->setCurrentRow(0);
+    autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
+    rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
 }

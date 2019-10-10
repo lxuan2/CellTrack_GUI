@@ -9,6 +9,7 @@
 #include <QJsonArray>
 #include <QCoreApplication>
 
+// Hidden Variable Data Model
 struct HVarSet {
     QString fileName;
     double param0;
@@ -21,20 +22,24 @@ struct HVarSet {
     double param7;
 };
 
+// User Preference Data Model
 struct UPref {
     bool autoLoadParameter;
     bool rmWithoutAsk;
 };
 
+// User Data Model
 class UserData {
     
 public:
     
+    // Default Constructor
     UserData();
     
-    // Load and Write operations
+    // Load user data from Json file
     bool loadJson();
     
+    // Save user data to Json file
     bool saveJson();
     
     // Get information

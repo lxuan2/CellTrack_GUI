@@ -90,14 +90,14 @@ void VideoGroupBox::playClicked() {
 
 void VideoGroupBox::setPosition(qint64 progress) {
     if (!trackSlider->isSliderDown())
-        trackSlider->setValue(progress / 1000);
+        trackSlider->setValue(int(progress / 1000));
     
     updateDurationInfo(progress / 1000);
 }
 
 void VideoGroupBox::setDuration(qint64 duration) {
     this->duration = duration / 1000;
-    trackSlider->setMaximum(this->duration);
+    trackSlider->setMaximum(int(this->duration));
     trackSlider->setEnabled(true);
 }
 
