@@ -7,12 +7,12 @@
 #include "general_view.hpp"
 #include "hidden_var_view.hpp"
 
-class MatlabWidget: public QWidget{
+class MatlabWidget: public QDialog{
     Q_OBJECT
 public:
     
     // Default constructor
-    MatlabWidget();
+    MatlabWidget(QWidget *parent = nullptr);
     
     // Set C# Application location
     void setExeLoc(QString exeLoc);

@@ -23,7 +23,7 @@ private:
     MatlabWidget *conView;
     
     // Setting view for locating C# application
-    IntroWidget *preView;
+    IntroWidget *introView;
 };
 
 #endif

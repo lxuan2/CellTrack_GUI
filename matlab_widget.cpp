@@ -1,6 +1,6 @@
 #include "matlab_widget.hpp"
 
-MatlabWidget::MatlabWidget():data(){
+MatlabWidget::MatlabWidget(QWidget *parent):QDialog(parent), data(){
     
     // Initialize tab views
     log = new LogView();

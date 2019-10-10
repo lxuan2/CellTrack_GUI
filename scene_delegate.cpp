@@ -2,10 +2,13 @@
 
 SceneDelegate::SceneDelegate() {
     
-    conView = new MatlabWidget();
+    introView = new IntroWidget();
+    
+    // Authorization to create a view
+    QObject::connect(introView, &IntroWidget::createView, this, &SceneDelegate::createView);
     
     // First scene shows up
-    conView->show();
+    introView->show();
 }
 
 void SceneDelegate::createView(int id) {
@@ -23,15 +26,15 @@ void SceneDelegate::createView(int id) {
             break;
             
         case 1:
-            if (preView != nullptr) {
-                preView->show();
-                preView->activateWindow();
-                preView->raise();
+            if (introView != nullptr) {
+                introView->show();
+                introView->activateWindow();
+                introView->raise();
                 break;
             }
-            preView = new IntroWidget();
-            QObject::connect(preView, &IntroWidget::setExeLoc, conView, &MatlabWidget::setExeLoc);
-            preView->show();
+            introView = new IntroWidget();
+            QObject::connect(introView, &IntroWidget::setExeLoc, conView, &MatlabWidget::setExeLoc);
+            introView->show();
             break;
             
         default:
