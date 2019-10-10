@@ -1,5 +1,5 @@
-#ifndef MATLAB_WIDGET_HPP
-#define MATLAB_WIDGET_HPP
+#ifndef python_widget_hpp
+#define python_widget_hpp
 
 #include <QTabWidget>
 #include <QCloseEvent>
@@ -7,12 +7,12 @@
 #include "general_view.hpp"
 #include "hidden_var_view.hpp"
 
-class MatlabWidget: public QDialog{
+class PythonWidget: public QDialog{
     Q_OBJECT
 public:
     
     // Default constructor
-    MatlabWidget(QWidget *parent = nullptr);
+    PythonWidget(QWidget *parent = nullptr);
     
 signals:
     
@@ -22,9 +22,14 @@ private:
     
     GeneralView *general;
     
+    HiddenVarView *hiddenVar;
+    
     LogView *log;
+    
+    UserData data;
     
     void closeEvent(QCloseEvent *event);
 };
+
 
 #endif

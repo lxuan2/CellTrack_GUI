@@ -1,8 +1,9 @@
 #ifndef SCENE_DELEGATE_HPP
 #define SCENE_DELEGATE_HPP
 
-#include "matlab_widget.hpp"
 #include "intro_widget.hpp"
+#include "matlab_widget.hpp"
+#include "python_widget.hpp"
 
 class SceneDelegate: public QObject {
     Q_OBJECT
@@ -15,15 +16,17 @@ public slots:
     
     void createView(int id);
     
-    void pushFromPViewToCView(QString str);
-    
 private:
-    
-    // Main content view
-    MatlabWidget *conView;
     
     // Setting view for locating C# application
     IntroWidget *introView;
+    
+    // Main Matlab content view
+    MatlabWidget *M_ContentView;
+    
+    // Main Python content view
+    PythonWidget *P_ContentView;
+    
 };
 
 #endif

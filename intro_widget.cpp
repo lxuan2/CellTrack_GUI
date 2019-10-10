@@ -46,13 +46,14 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     layout->addWidget(checkboxes, 3, 5, 2, 4);
     layout->addWidget(OK, 5, 8);
     setLayout(layout);
+    setFixedSize(sizeHint());
 }
 
 void IntroWidget::closeWindow() {
     if (matlab->isChecked())
-        createView(0);
+        createView(1);
     else if (python->isChecked())
-        createView(0);
+        createView(2);
     else
         return;
     close();
