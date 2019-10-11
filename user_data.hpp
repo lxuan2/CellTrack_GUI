@@ -7,7 +7,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QCoreApplication>
 
 // Hidden Variable Data Model
 struct HVarSet {

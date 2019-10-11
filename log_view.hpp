@@ -7,7 +7,6 @@
 #include <QFileInfo>
 #include <QDateTime>
 #include <QPlainTextEdit>
-#include <QCoreApplication>
 #include <QLayout>
 #include <QPushButton>
 

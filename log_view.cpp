@@ -1,6 +1,6 @@
 #include "log_view.hpp"
 
-LogView::LogView():file((QCoreApplication::applicationDirPath() + "/Log.txt")), stream(&file) {
+LogView::LogView():file("./Log.txt"), stream(&file) {
     
     // Initialize text View and file
     textView = new QPlainTextEdit();

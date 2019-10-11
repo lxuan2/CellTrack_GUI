@@ -10,9 +10,9 @@
 #include <QGraphicsView>
 #include <QCheckBox>
 #include <QPushButton>
-#include <QCoreApplication>
 
 #include "file_finder.hpp"
+#include "global_constant.hpp"
 
 class IntroWidget: public QDialog{
     Q_OBJECT
