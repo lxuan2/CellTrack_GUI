@@ -56,6 +56,7 @@ void Core::runMatlab() {
 }
 
 void Core::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
+    emit showProcessView(false);
     process = nullptr;
     if (exitStatus == QProcess::CrashExit) {
         log->write("Error: the analysis process crashes for unknown reasons.\n\n-- Finish Analysis --\n");
@@ -84,7 +85,6 @@ void Core::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
     QFileInfo video(general->getVideoPath());
     general->setResultVideo(video.path() + QString::fromStdString("/" + tmp[8]));
     log->write("-- Finish Analysis --\n");
-    emit showProcessView(false);
 }
 
 
