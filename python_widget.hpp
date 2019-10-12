@@ -7,7 +7,7 @@
 #include "general_view.hpp"
 #include "hidden_var_view.hpp"
 
-class PythonWidget: public QDialog{
+class PythonWidget: public QWidget{
     Q_OBJECT
 public:
     

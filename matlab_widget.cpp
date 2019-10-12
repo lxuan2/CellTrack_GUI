@@ -1,6 +1,6 @@
 #include "matlab_widget.hpp"
 
-MatlabWidget::MatlabWidget(QWidget *parent):QDialog(parent){
+MatlabWidget::MatlabWidget(QWidget *parent):QWidget(parent){
     
     // Initialize tab views
     proView = nullptr;

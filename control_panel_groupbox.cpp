@@ -7,6 +7,8 @@ ControlPannel::ControlPannel(LogView *l) {
     minCellSize = new QSpinBox();
     maxCellSize->setMaximum(99999);
     minCellSize->setMaximum(99999);
+	maxCellSize->setMinimumWidth(1);
+	minCellSize->setMinimumWidth(1);
     
     areaCheckbox = new QCheckBox("Area");
     eccentricityChecbox = new QCheckBox("Eccentricity");

@@ -190,13 +190,13 @@ void HiddenVarView::rmWithoutAskClicked(int state) {
 void HiddenVarView::addItem(QString name) {
     QListWidgetItem *newItem = new QListWidgetItem();
     newItem->setText(name);
-    newItem->setSizeHint(QSize(23, 23));
-    newItem->setTextAlignment(Qt::AlignCenter);
     
-    // Set font size
-    auto it = newItem->font();
-    it.setPointSize(14);
-    newItem->setFont(it);
+    newItem->setTextAlignment(Qt::AlignCenter);
+
+//    // Set font size
+//    auto it = newItem->font();
+//    it.setPointSize(11);
+//    newItem->setFont(it);
     
     // Add to the list
     list->addItem(newItem);

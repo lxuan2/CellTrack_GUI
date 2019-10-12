@@ -120,12 +120,9 @@ void VideoGroupBox::loadResult() {
 }
 
 void VideoGroupBox::positionChanged(){
-    QMediaPlayer::State state = player->state();
     play(false);
     int position = trackSlider->value();
     player->setPosition(position * 1000);
-    if (state == QMediaPlayer::PlayingState)
-        play(true);
 }
 
 void VideoGroupBox::volumeChanged(int volume) {

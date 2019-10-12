@@ -1,6 +1,6 @@
 #include "process_view.hpp"
 
-ProcessView::ProcessView(QDialog *parent): QDialog(parent) {
+ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
     setWindowModality(Qt::WindowModal);
     QPixmap radarMap(QCoreApplication::applicationDirPath() + "/RadarBackground.png");
     radarMap.setDevicePixelRatio(4);

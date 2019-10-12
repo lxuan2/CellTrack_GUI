@@ -1,6 +1,6 @@
 #include "python_widget.hpp"
 
-PythonWidget::PythonWidget(QWidget *parent):QDialog(parent), data(){
+PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     
     // Initialize tab views
     log = new LogView();

@@ -7,7 +7,7 @@
 #include "core.hpp"
 #include "process_view.hpp"
 
-class MatlabWidget: public QDialog{
+class MatlabWidget: public QWidget{
     Q_OBJECT
 public:
     

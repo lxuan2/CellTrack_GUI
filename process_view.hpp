@@ -16,7 +16,7 @@ class ProcessView: public QDialog{
 public:
     
     // Default constructor
-    ProcessView(QDialog *parent = nullptr);
+    ProcessView(QWidget *parent = nullptr);
     
 signals:
     
