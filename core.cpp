@@ -9,7 +9,7 @@ Core::Core(GeneralView *gv, HiddenVarView *hv, LogView *lv){
 
 void Core::runMatlab() {
     log->write("\n-- Start Analysis --\n");
-    
+    emit showProcessView(true);
     // Check whether video file exists
     QFileInfo file(general->getVideoPath());
     if (!file.exists())

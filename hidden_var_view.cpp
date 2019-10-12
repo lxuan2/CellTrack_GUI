@@ -194,9 +194,13 @@ void HiddenVarView::addItem(QString name) {
     newItem->setTextAlignment(Qt::AlignCenter);
 
 //    // Set font size
-//    auto it = newItem->font();
-//    it.setPointSize(11);
-//    newItem->setFont(it);
+    auto it = newItem->font();
+    #if defined(_WIN32) || defined(_WIN64)    //Code for Windows
+        it.setPointSize(10);
+    #elif defined(__APPLE__)                  //Code for Mac
+        it.setPointSize(14);
+    #endif
+    newItem->setFont(it);
     
     // Add to the list
     list->addItem(newItem);
