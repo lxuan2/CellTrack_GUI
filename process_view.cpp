@@ -2,13 +2,13 @@
 
 ProcessView::ProcessView(QDialog *parent): QDialog(parent) {
     setWindowModality(Qt::WindowModal);
-    QPixmap radarMap("./RadarBackground.png");
+    QPixmap radarMap(QCoreApplication::applicationDirPath() + "/RadarBackground.png");
     radarMap.setDevicePixelRatio(4);
     radarLabel= new QLabel();
     radarLabel->setPixmap(radarMap);
     radarLabel->setAlignment(Qt::AlignCenter);
     
-    sweepMap = new QPixmap("./RadarSweep.png");
+    sweepMap = new QPixmap(QCoreApplication::applicationDirPath() + "/RadarSweep.png");
     sweepMap->setDevicePixelRatio(4);
     sweepLabel= new QLabel();
     sweepLabel->setPixmap(*sweepMap);

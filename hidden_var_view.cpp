@@ -165,7 +165,7 @@ void HiddenVarView::removeButtonClicked() {
 }
 
 void HiddenVarView::showInFolderClicked() {
-    showFileInFolder("./userData.json");
+    showFileInFolder(QCoreApplication::applicationDirPath() + "/userData.json");
 }
 
 void HiddenVarView::discardAllBTClicked() {

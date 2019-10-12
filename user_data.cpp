@@ -3,7 +3,7 @@
 UserData::UserData() {}
 
 bool UserData::loadJson() {
-    QFile loadFile("./userData.json");
+    QFile loadFile(QCoreApplication::applicationDirPath() + "/userData.json");
     if (!loadFile.exists())
         return false;
     
@@ -24,7 +24,7 @@ bool UserData::loadJson() {
 }
 
 bool UserData::saveJson() {
-    QFile saveFile("./userData.json");
+    QFile saveFile(QCoreApplication::applicationDirPath() + "/userData.json");
 
     if (!saveFile.open(QIODevice::WriteOnly))
         return false;

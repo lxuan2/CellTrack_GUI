@@ -2,7 +2,7 @@
 
 IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     // Title Label
-    QPixmap map("./Radar.png");
+    QPixmap map(QCoreApplication::applicationDirPath() + "/Radar.png");
     map.setDevicePixelRatio(4);
     QLabel *icon = new QLabel();
     icon->setPixmap(map);

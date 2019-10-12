@@ -9,6 +9,7 @@
 #include <QSpacerItem>
 #include <QSizePolicy>
 #include <QMessageBox>
+#include <QCoreApplication>
 
 class ProcessView: public QDialog{
     Q_OBJECT

@@ -10,6 +10,7 @@
 #include <QGraphicsView>
 #include <QCheckBox>
 #include <QPushButton>
+#include <QCoreApplication>
 
 #include "file_finder.hpp"
 
