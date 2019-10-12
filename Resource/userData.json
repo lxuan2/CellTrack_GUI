@@ -1,0 +1,52 @@
+{
+    "hiddenVariable": [
+        {
+            "fileName": "Village.avi",
+            "parameter0": 100,
+            "parameter1": 100.1,
+            "parameter2": 100.2,
+            "parameter3": 100.3,
+            "parameter4": 100.4,
+            "parameter5": 100.5,
+            "parameter6": 100.6,
+            "parameter7": 100.7
+        },
+        {
+            "fileName": "overwatch.avi",
+            "parameter0": 100,
+            "parameter1": 100.11,
+            "parameter2": 100.22,
+            "parameter3": 100.33,
+            "parameter4": 100.44,
+            "parameter5": 100.55,
+            "parameter6": 100.66,
+            "parameter7": 100.77
+        },
+        {
+            "fileName": "epic.avi",
+            "parameter0": 100,
+            "parameter1": 100.111,
+            "parameter2": 100.222,
+            "parameter3": 100.333,
+            "parameter4": 100.444,
+            "parameter5": 100.555,
+            "parameter6": 100.666,
+            "parameter7": 100.777
+        },
+        {
+            "fileName": "freedom.avi",
+            "parameter0": 100,
+            "parameter1": 100.1111,
+            "parameter2": 100.2222,
+            "parameter3": 100.3333,
+            "parameter4": 100.4444,
+            "parameter5": 100.5555,
+            "parameter6": 100.6666,
+            "parameter7": 100.7777
+        }
+    ],
+    "userPreference": {
+        "autoLoadParameter": true,
+        "rmWithoutAsk": false
+    }
+}
