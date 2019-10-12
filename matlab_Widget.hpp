@@ -4,8 +4,8 @@
 #include <QTabWidget>
 #include <QCloseEvent>
 
-#include "general_view.hpp"
-#include "hidden_var_view.hpp"
+#include "core.hpp"
+#include "process_view.hpp"
 
 class MatlabWidget: public QDialog{
     Q_OBJECT
@@ -24,7 +24,13 @@ private:
     
     LogView *log;
     
+    Core *core;
+    
+    ProcessView *proView;
+    
     void closeEvent(QCloseEvent *event);
+    
+    void showProcessView(bool value);
 };
 
 #endif

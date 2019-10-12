@@ -1,7 +1,6 @@
 #ifndef general_view_hpp
 #define general_view_hpp
 
-#include "core.hpp"
 #include "log_view.hpp"
 #include "video_view.hpp"
 #include "video_groupbox.hpp"
@@ -14,8 +13,29 @@ public:
     // Default constructor
     GeneralView(LogView *log);
     
-    // Set C# Application location
-    void setExeLoc(QString exeLoc);
+    QString getVideoPath();
+    
+    int getMaxSize();
+    
+    int getMinSize();
+    
+    bool isAreaChecked();
+    
+    bool isEccentricityChecked();
+    
+    bool isOrientationChecked();
+    
+    QString getAppPath();
+    
+    void setResultVideo(QString path);
+    
+signals:
+    
+    void run();
+    
+private slots:
+    
+    void runDetected();
     
 private:
     
@@ -26,9 +46,6 @@ private:
     VideoGroupBox *videoBox;
     ControlPannel *controlBox;
     RunGroupBox   *runBox;
-    
-    // Computation Core
-    Core *core;
 };
 
 #endif

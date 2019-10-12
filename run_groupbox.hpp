@@ -15,11 +15,13 @@ public:
     
     // Default constructor
     RunGroupBox(LogView *l);
+    
+    QString getAppPath();
 
 signals:
     
     // Call C# app and generate video
-    void compute(bool ans);
+    void run();
     
 public slots:
     

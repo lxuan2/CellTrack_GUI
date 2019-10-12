@@ -9,13 +9,7 @@ GeneralView::GeneralView(LogView *log){
     videoBox   = new VideoGroupBox(videoView, runBox, log);
     controlBox = new ControlPannel(log);
     
-    // Compuation Core initialize
-    core = new Core(videoBox, controlBox, log);
-    
-    QObject::connect(runBox, &RunGroupBox::compute, core, &Core::compute);
-    QObject::connect(runBox, &RunGroupBox::compute, videoBox, &VideoGroupBox::play);
-    QObject::connect(core, &Core::loadResualt, videoBox, &VideoGroupBox::setResultPath);
-    QObject::connect(core, &Core::loadResualt, runBox, &RunGroupBox::updateRes);
+    QObject::connect(runBox, &RunGroupBox::run, this, &GeneralView::runDetected);
     
     // Widget layout initialize
     auto layout = new QGridLayout();
@@ -26,6 +20,40 @@ GeneralView::GeneralView(LogView *log){
     setLayout(layout);
 }
 
-void GeneralView::setExeLoc(QString exeLoc) {
-    core->setExe(exeLoc);
+void GeneralView::runDetected() {
+    videoBox->play(false);
+    emit run();
+}
+
+QString GeneralView::getVideoPath() {
+    return videoBox->finderFilePath();
+}
+
+int GeneralView::getMaxSize() {
+    return controlBox->maxSize();
+}
+
+int GeneralView::getMinSize() {
+    return controlBox->minSize();
+}
+
+bool GeneralView::isAreaChecked() {
+    return controlBox->isAreaChecked();
+}
+
+bool GeneralView::isEccentricityChecked() {
+    return controlBox->isEccentricityChecked();
+}
+
+bool GeneralView::isOrientationChecked() {
+    return controlBox->isOrientationChecked();
+}
+
+QString GeneralView::getAppPath() {
+    return runBox->getAppPath();
+}
+
+void GeneralView::setResultVideo(QString path) {
+    runBox->updateRes(path);
+    videoBox->setResultPath(path);
 }

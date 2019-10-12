@@ -74,7 +74,7 @@ void RunGroupBox::loadCsharp() {
 }
 
 void RunGroupBox::analyzeButtonClicked() {
-    emit compute(false);
+    emit run();
 }
 
 void RunGroupBox::revealOrgClicked() {
@@ -116,4 +116,8 @@ void RunGroupBox::updateRes(QString fp) {
     resPath = fp;
     resultName->setText(file.fileName());
     revealResButton->setDisabled(false);
+}
+
+QString RunGroupBox::getAppPath() {
+    return finder->currentText();
 }

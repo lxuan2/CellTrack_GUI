@@ -24,6 +24,8 @@ add_executable(CellTrack main.cpp
 	var_item.hpp       var_item.cpp
 	user_data.hpp      user_data.cpp
 	python_widget.hpp  python_widget.cpp
+    message_queue.hpp
+    process_view.hpp   process_view.cpp
 )
 # require a C++11 compiler for all targets
 set(CMAKE_CXX_STANDARD 11)
