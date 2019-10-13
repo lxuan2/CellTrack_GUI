@@ -35,7 +35,9 @@ ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
     setAutoFillBackground(true);
     setPalette(pal);
     
+    degree = 0.0;
     timer.start(17, this);
+    setMinimumSize(50, 50);
 }
 
 void ProcessView::cancelClicked() {
@@ -55,9 +57,14 @@ void ProcessView::timerEvent(QTimerEvent *e)
     if (degree >= 360)
         degree = 0.0;
     else {
-        degree+=1;
+        degree+=1.0;
         QMatrix m;
         m.rotate(degree);
-        sweepLabel->setPixmap(sweepMap->transformed(m));
+        auto newMap = sweepMap->transformed(m);
+        auto newSize = newMap.size();
+        auto size = sweepMap->size();
+        int h = (newSize.height() - size.height()) / 2;
+        int w = (newSize.width() - size.width()) / 2;
+        sweepLabel->setPixmap(newMap.copy(w, h, size.width(), size.height()));
     }
 }
