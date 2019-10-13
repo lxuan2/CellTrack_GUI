@@ -34,8 +34,6 @@ void MatlabWidget::showProcessView(bool value) {
         return;
     }
     if (value) {
-        if (proView != nullptr)
-            return;
         proView = new ProcessView(this);
         QObject::connect(proView, &ProcessView::stopProcess, core, &Core::stopProcess);
         proView->exec();
