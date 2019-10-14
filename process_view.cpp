@@ -24,6 +24,7 @@ ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
     setAutoFillBackground(true);
     setPalette(pal);
     
+    closeAskFlag = true;
     radar->start();
     setMinimumSize(50, 50);
 }
@@ -32,7 +33,16 @@ void ProcessView::cancelClicked() {
     close();
 }
 
+void ProcessView::setCloseAskFlag(bool flag) {
+    closeAskFlag = flag;
+}
+
 void ProcessView::closeEvent(QCloseEvent *event) {
+    if (!closeAskFlag){
+        event->accept();
+        return;
+    }
+        
     QMessageBox msgBox;
     msgBox.setText("Are you sure to cancel this process?");
     msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);

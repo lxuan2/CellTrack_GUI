@@ -18,6 +18,8 @@ public:
     // Default constructor
     ProcessView(QWidget *parent = nullptr);
     
+    void setCloseAskFlag(bool flag);
+    
 signals:
     
     void stopProcess();
@@ -31,6 +33,8 @@ private:
     Radar *radar;
     
     QPushButton *cancel;
+    
+    bool closeAskFlag;
     
     void closeEvent(QCloseEvent *event);
 };

@@ -29,6 +29,7 @@ void MatlabWidget::closeEvent(QCloseEvent *event) {
 
 void MatlabWidget::showProcessView(bool value) {
     if (!value && proView != nullptr) {
+        proView->setCloseAskFlag(false);
         proView->close();
         proView = nullptr;
         return;
