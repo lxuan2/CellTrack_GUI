@@ -2,10 +2,7 @@
 
 IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     // Title Label
-    QPixmap map(QCoreApplication::applicationDirPath() + "/Radar.png");
-    map.setDevicePixelRatio(4);
-    QLabel *icon = new QLabel();
-    icon->setPixmap(map);
+    radar = new Radar();
     QLabel *title = new QLabel("Welcome to CellTrack_GUI app.");
     
     // Description Label
@@ -37,7 +34,7 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     // Widget layout initialize
     auto layout = new QGridLayout();
     layout->addItem(new QSpacerItem(10, 10), 0, 0);
-    layout->addWidget(icon, 0, 1, 5, 3);
+    layout->addWidget(radar, 0, 1, 5, 3);
     layout->addItem(new QSpacerItem(15, 15), 0, 4);
     layout->addWidget(title, 0, 5, 1, 4, Qt::AlignBottom);
     layout->addWidget(version, 1, 5, 1, 4, Qt::AlignTop);
@@ -46,6 +43,8 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     layout->addWidget(OK, 5, 8);
     setLayout(layout);
     setFixedSize(sizeHint());
+    
+    radar->start();
 }
 
 void IntroWidget::closeWindow() {
@@ -55,6 +54,7 @@ void IntroWidget::closeWindow() {
         createView(2);
     else
         return;
+    radar->stop();
     close();
 }
 

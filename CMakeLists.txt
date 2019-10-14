@@ -25,6 +25,7 @@ add_executable(CellTrack main.cpp
 	user_data.hpp      user_data.cpp
 	python_widget.hpp  python_widget.cpp
 	process_view.hpp   process_view.cpp
+	radar.hpp	   radar.cpp
 )
 # require a C++11 compiler for all targets
 set(CMAKE_CXX_STANDARD 11)

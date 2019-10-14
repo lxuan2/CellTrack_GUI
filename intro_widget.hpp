@@ -13,6 +13,7 @@
 #include <QCoreApplication>
 
 #include "file_finder.hpp"
+#include "radar.hpp"
 
 class IntroWidget: public QDialog{
     Q_OBJECT
@@ -38,6 +39,8 @@ private:
     QCheckBox *python;
     
     QPushButton *OK;
+    
+    Radar *radar;
     
     void matlabClicked();
     void pythonClicked();
