@@ -23,7 +23,10 @@ HEADERS = \
     hidden_var_view.hpp \
     run_groupbox.hpp \
     var_item.hpp \
-    user_data.hpp
+    user_data.hpp \
+    python_widget.hpp \
+    process_view.hpp \
+    radar.hpp
 
 SOURCES = main.cpp \
     scene_delegate.cpp \
@@ -41,7 +44,10 @@ SOURCES = main.cpp \
     hidden_var_view.cpp \
     run_groupbox.cpp \
     var_item.cpp \
-    user_data.cpp
+    user_data.cpp \
+    python_widget.cpp \
+    process_view.cpp \
+    radar.cpp
 
 target.path = /Users/xuanli/Developer/CellTrack_GUI/src
 INSTALLS += target
