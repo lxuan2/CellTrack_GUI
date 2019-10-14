@@ -9,11 +9,15 @@ Core::Core(GeneralView *gv, HiddenVarView *hv, LogView *lv){
 
 void Core::runMatlab() {
     log->write("\n-- Start Analysis --\n");
-    emit showProcessView(true);
+    
     // Check whether video file exists
     QFileInfo file(general->getVideoPath());
     if (!file.exists())
-        return log->write("Error: file does not exist and cannot be analyzed\n\n-- Finish Analysis --\n");
+        return log->write("Error: video file does not exist and cannot be analyzed\n\n-- Finish Analysis --\n");
+    
+    QFileInfo appfile(general->getAppPath());
+    if (!appfile.exists())
+        return log->write("Error: app does not exist\n\n-- Finish Analysis --\n");
     
     // Get parameters from General Tab
     std::string videoPath = file.path().toStdString();
@@ -36,7 +40,7 @@ void Core::runMatlab() {
     log->write(QString::fromStdString("   Orientation:  " + orientationString));
     
     // Pass parameters into exchange file
-    std::ofstream out(((new QFileInfo(general->getAppPath()))->path() + "/tempPort.txt").toStdString());
+    std::ofstream out((appfile.path() + "/tempPort.txt").toStdString());
     out << videoPath << "\n" << videoName << "\n" << maxSize << "\n" << minSize << "\n" << areaBool << "\n" << eccentricityBool << "\n" << orientationBool;
     out.close();
     
@@ -89,11 +93,57 @@ void Core::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
 
 
 void Core::runPython() {
+    log->write("\n-- Start Analysis --\n");
     
+    // Check whether video file exists
+    QFileInfo file(general->getVideoPath());
+    if (!file.exists())
+        return log->write("Error: video file does not exist and cannot be analyzed\n\n-- Finish Analysis --\n");
+    
+    QFileInfo appfile(general->getAppPath());
+    if (!appfile.exists())
+        return log->write("Error: python script does not exist\n\n-- Finish Analysis --\n");
+    
+    // Get parameters from General Tab
+    std::string videoPath = file.path().toStdString();
+    std::string videoName = file.fileName().toStdString();
+    
+    // Write parameters to Log
+    log->write(QString::fromStdString("   File path: " + videoPath));
+    log->write(QString::fromStdString("   File name: " + videoName));
+    
+    // Pass parameters by arguments
+    QStringList arguments;
+    arguments << general->getAppPath() << QString::fromStdString(videoPath) << QString::fromStdString(videoName);
+    
+    // Run Python code
+    //input: videoPath, videoName
+    
+    log->write("\n  Running Python Code...\n");
+    process = new QProcess();
+    QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
+    QObject::connect(process, &QProcess::errorOccurred, this, &Core::errorOccurred);
+    process->start("python", arguments);
+    
+    /* Output:
+    */
+    emit showProcessView(true);
 }
 
 void Core::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
+    emit showProcessView(false);
+    if (exitStatus == QProcess::CrashExit) {
+        log->write("Error: the analysis process crashes for unknown reasons.\n\n-- Finish Analysis --\n");
+        return;
+    }
     
+    if (!process->canReadLine()) {
+        log->write("Error: cannot read result from python script.\n\n-- Finish Analysis --\n");
+    }
+    QByteArray result = process->readAll();
+    log->write(result);
+    process = nullptr;
+    log->write("-- Finish Analysis --\n");
 }
 
 void Core::errorOccurred(QProcess::ProcessError error) {

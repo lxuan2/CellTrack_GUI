@@ -27,9 +27,6 @@ RunGroupBox::RunGroupBox(LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N
     sourceName = new QLabel(srcPath);
     appName = new QLabel(appPath);
     resultName = new QLabel(resPath);
-    sourceName->setMaximumSize(120, 100);
-    appName->setMaximumSize(120, 100);
-    resultName->setMaximumSize(120, 100);
     
     revealOrgButton = new QToolButton();
     revealOrgButton->setIcon(style()->standardIcon(QStyle::SP_DirIcon));

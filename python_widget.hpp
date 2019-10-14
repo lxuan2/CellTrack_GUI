@@ -4,6 +4,8 @@
 #include <QTabWidget>
 #include <QCloseEvent>
 
+#include "core.hpp"
+#include "process_view.hpp"
 #include "general_view.hpp"
 #include "hidden_var_view.hpp"
 
@@ -28,7 +30,13 @@ private:
     
     UserData data;
     
+    Core *core;
+    
+    ProcessView *proView;
+    
     void closeEvent(QCloseEvent *event);
+    
+    void showProcessView(bool value);
 };
 
 

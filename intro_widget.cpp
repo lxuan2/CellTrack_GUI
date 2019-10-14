@@ -11,7 +11,7 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     version->setStyleSheet("color: gray; font-size: 10pt");
     
     // Action Label
-    QLabel *action = new QLabel("The generated C# application location is needed.    ");
+    QLabel *action = new QLabel("The generated C# application location is needed.   ");
     action->setStyleSheet("font-size: 12pt");
     
     // Check Boxes
@@ -33,14 +33,12 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     
     // Widget layout initialize
     auto layout = new QGridLayout();
-    layout->addItem(new QSpacerItem(10, 10), 0, 0);
-    layout->addWidget(radar, 0, 1, 5, 3);
-    layout->addItem(new QSpacerItem(15, 15), 0, 4);
-    layout->addWidget(title, 0, 5, 1, 4, Qt::AlignBottom);
-    layout->addWidget(version, 1, 5, 1, 4, Qt::AlignTop);
-    layout->addWidget(action, 2, 5, 1, 4, Qt::AlignTop);
-    layout->addWidget(checkboxes, 3, 5, 2, 4);
-    layout->addWidget(OK, 5, 8);
+    layout->addWidget(radar, 0, 0, 4, 1, Qt::AlignCenter);
+    layout->addWidget(title, 0, 1, Qt::AlignBottom);
+    layout->addWidget(version, 1, 1, Qt::AlignTop);
+    layout->addWidget(action, 2, 1, Qt::AlignTop);
+    layout->addWidget(checkboxes, 3, 1);
+    layout->addWidget(OK, 4, 1, Qt::AlignRight);
     setLayout(layout);
     setFixedSize(sizeHint());
     
