@@ -6,9 +6,7 @@ MARK: - Once changing parameters, update this function
 **************************************
 */
 
-HiddenVarView::HiddenVarView(UserData *d, LogView * l){
-    strList = new QList<StrVarItem>();
-    doubleList = new QList<DoubleVarItem>();
+HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     data = d;
     log = l;
     list = new QListWidget();
@@ -27,35 +25,33 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l){
     int xCoordinate = 0;
     HidVarModel model;
     QGridLayout *lay = new QGridLayout();
-    auto filename = new StrVarItem("fileName", "");
-    QObject::connect(filename, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
-    lay->addWidget(filename->nameLabel, 0, 0, Qt::AlignRight);
-    
-//    StrVarItem *itt;
-//    for(auto i : model.model){
-//        switch (i.second) {
-//            case DataType::StringType:
-//                itt = new StrVarItem(i.first, "");
-//                //strList.push_back(createT(i.first, ""));
-//                QObject::connect(itt, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
-//                lay->addWidget(itt->nameLabel, xCoordinate, 0, Qt::AlignRight);
-//                lay->addWidget(itt->valueBox, xCoordinate, 1, 1, 2, Qt::AlignLeft);
-//                xCoordinate++;
-//                break;
-//
-//            case DataType::DoubleType:
-//                //doubleList.push_back(DoubleVarItem(i.first, 0.0));
-//                QObject::connect(&doubleList->last(), &DoubleVarItem::valueChanged, this, &HiddenVarView::doubleParameterChanged);
-//                lay->addWidget(doubleList->last().nameLabel, xCoordinate, 0, Qt::AlignRight);
-//                lay->addWidget(doubleList->last().valueBox, xCoordinate, 1, 1, 2, Qt::AlignLeft);
-//                xCoordinate++;
-//                break;
-//
-//            default:
-//                log->write("Error: DataType does not exist.");
-//                break;
-//        }
-//    }
+    StrVarItem *itt;
+    DoubleVarItem *ittt;
+    for(auto i : model.model){
+        switch (i.second) {
+            case DataType::StringType:
+                itt = new StrVarItem(i.first, "");
+                strList.push_back(itt);
+                QObject::connect(itt, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
+                lay->addWidget(itt->nameLabel, xCoordinate, 0, Qt::AlignRight);
+                lay->addWidget(itt->valueBox, xCoordinate, 1, 1, 2, Qt::AlignLeft);
+                xCoordinate++;
+                break;
+
+            case DataType::DoubleType:
+                ittt = new DoubleVarItem(i.first, 0.0);
+                doubleList.push_back(ittt);
+                QObject::connect(doubleList.last(), &DoubleVarItem::valueChanged, this, &HiddenVarView::doubleParameterChanged);
+                lay->addWidget(doubleList.last()->nameLabel, xCoordinate, 0, Qt::AlignRight);
+                lay->addWidget(doubleList.last()->valueBox, xCoordinate, 1, 1, 2, Qt::AlignLeft);
+                xCoordinate++;
+                break;
+
+            default:
+                log->write("Error: DataType does not exist.");
+                break;
+        }
+    }
     
     QGroupBox *group = new QGroupBox();
     group->setTitle("Hidden Parameters");
@@ -96,28 +92,28 @@ MARK: - Once changing parameters, update this function
 void HiddenVarView::updateParameter(int currentRow) {
     HVarSet set = data->hiddenVariable(currentRow);
 
-    for (int i = 0; i < strList->size(); i++) {
-        strList->at(i).valueBox->setText(set.strList.at(i));
+    for (int i = 0; i < strList.size(); i++) {
+        strList.at(i)->valueBox->setText(set.strList.at(i));
     }
     
-    for (int i = 0; i < doubleList->size(); i++) {
-        doubleList->at(i).valueBox->setText(QString::number(set.doubleList.at(i), 'g', 15));
+    for (int i = 0; i < doubleList.size(); i++) {
+        doubleList.at(i)->valueBox->setText(QString::number(set.doubleList.at(i), 'g', 15));
     }
 }
 
 void HiddenVarView::doubleParameterChanged(DoubleVarItem *param) {
     if (list->currentItem() == nullptr)
         return;
-    data->setHiddenVariable(list->currentRow(), doubleList->indexOf(*param), param->valueBox->text().toDouble());
+    data->setHiddenVariable(list->currentRow(), doubleList.indexOf(param), param->valueBox->text().toDouble());
 }
 
 void HiddenVarView::strParameterChanged(StrVarItem *param) {
     if (list->currentItem() == nullptr)
         return;
-    data->setHiddenVariableStr(list->currentRow(), strList->indexOf(*param), param->valueBox->text());
+    data->setHiddenVariableStr(list->currentRow(), strList.indexOf(param), param->valueBox->text());
     
     // If file name is changed, update name in the list
-    if (strList->indexOf(*param) == 0)
+    if (strList.indexOf(param) == 0)
         list->currentItem()->setText(param->valueBox->text());
 }
 
@@ -191,7 +187,7 @@ void HiddenVarView::addItem(QString name) {
     
     newItem->setTextAlignment(Qt::AlignCenter);
 
-//    // Set font size
+    // Set font size
     auto it = newItem->font();
     #if defined(_WIN32) || defined(_WIN64)    //Code for Windows
         it.setPointSize(10);

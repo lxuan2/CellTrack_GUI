@@ -9,6 +9,7 @@
 #define parameter_model_hpp
 
 #include <QString>
+#include <QList>
 
 enum DataType { StringType, DoubleType };
 

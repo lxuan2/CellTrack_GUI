@@ -6,6 +6,10 @@ DoubleVarItem::DoubleVarItem(QString name, double value) {
     valueBox->setValidator(dynamic_cast<QValidator*>(new QDoubleValidator()));
     
     QObject::connect(valueBox, &QLineEdit::textChanged, this, &DoubleVarItem::updateValue);
+    
+    QHBoxLayout *layout = new QHBoxLayout();
+    layout->addWidget(nameLabel);
+    layout->addWidget(valueBox);
 }
 
 void DoubleVarItem::updateValue() {
@@ -18,6 +22,10 @@ StrVarItem::StrVarItem(QString name, QString value) {
     valueBox->setText(value);
     
     QObject::connect(valueBox, &QLineEdit::textChanged, this, &StrVarItem::updateValue);
+    
+    QHBoxLayout *layout = new QHBoxLayout();
+    layout->addWidget(nameLabel);
+    layout->addWidget(valueBox);
 }
 
 void StrVarItem::updateValue() {

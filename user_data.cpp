@@ -147,13 +147,15 @@ MARK: - Once changing parameters, update this function
 **************************************
 */
 void UserData::setHiddenVariable(int currentRow, int index, double value) {
-    auto list = hVarList.at(currentRow).doubleList;
-    list.replace(index, value);
+    auto set = hVarList.at(currentRow);
+    set.doubleList.replace(index, value);
+    hVarList.replace(currentRow, set);
 }
 
 void UserData::setHiddenVariableStr(int currentRow, int index, QString value) {
-    auto list = hVarList.at(currentRow).strList;
-    list.replace(index, value);
+    auto set = hVarList.at(currentRow);
+    set.strList.replace(index, value);
+    hVarList.replace(currentRow, set);
 }
 
 void UserData::setAutoLoad(bool i) {

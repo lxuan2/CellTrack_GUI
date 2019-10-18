@@ -54,8 +54,8 @@ private:
     MARK: - Once changing parameters, update these variables
     **************************************
     */
-    QList<StrVarItem> *strList;
-    QList<DoubleVarItem> *doubleList;
+    QList<StrVarItem*> strList;
+    QList<DoubleVarItem*> doubleList;
     
     UserData *data;
     // Item list

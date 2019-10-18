@@ -1,6 +1,6 @@
 #include "parameter_model.hpp"
 
-HidVarModel::HidVarModel() {
+HidVarModel::HidVarModel(): model() {
     addModel("filename", StringType);
     addModel("parameter0", DoubleType);
     addModel("parameter1", DoubleType);

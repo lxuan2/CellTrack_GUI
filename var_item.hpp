@@ -5,8 +5,9 @@
 #include <QString>
 #include <QLineEdit>
 #include <QDoubleValidator>
+#include <QLayout>
 
-class DoubleVarItem: public QObject{
+class DoubleVarItem: public QWidget{
     Q_OBJECT
 public:
     
