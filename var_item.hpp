@@ -25,7 +25,7 @@ public slots:
     void updateValue();
 };
 
-class StrVarItem: public QObject{
+class StrVarItem: public QWidget{
     Q_OBJECT
 public:
     

@@ -16,6 +16,7 @@
 #include "log_view.hpp"
 #include "var_item.hpp"
 #include "user_data.hpp"
+#include "parameter_model.hpp"
 
 class HiddenVarView: public QWidget{
     Q_OBJECT
@@ -26,9 +27,9 @@ public:
     
 private slots:
     
-    void updateParameter(const QString &currentText);
+    void updateParameter(int currentRow);
     
-    void parameterChanged(DoubleVarItem *param);
+    void doubleParameterChanged(DoubleVarItem *param);
     
     void strParameterChanged(StrVarItem *param);
     
@@ -47,25 +48,16 @@ private slots:
 private:
     
     LogView * log;
-    StrVarItem *filename;
     
     /*
     **************************************
     MARK: - Once changing parameters, update these variables
     **************************************
     */
-    DoubleVarItem *param0;
-    DoubleVarItem *param1;
-    DoubleVarItem *param2;
-    DoubleVarItem *param3;
-    DoubleVarItem *param4;
-    DoubleVarItem *param5;
-    DoubleVarItem *param6;
-    DoubleVarItem *param7;
+    QList<StrVarItem> *strList;
+    QList<DoubleVarItem> *doubleList;
     
-    // Backgroud UserData Manager
     UserData *data;
-    
     // Item list
     QListWidget * list;
     

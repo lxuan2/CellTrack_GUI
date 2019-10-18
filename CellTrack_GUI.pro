@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = CellTrack
+TARGET = CellTrack_GUI
 
 QT += network \
       xml \

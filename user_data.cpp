@@ -36,15 +36,11 @@ bool UserData::saveJson() {
     return true;
 }
 
-HVarSet UserData::hiddenVariable(QString name) {
-    for (auto i : hVarList) {
-        if (name == i.fileName)
-            return i;
-    }
-    return HVarSet();
+HVarSet UserData::hiddenVariable(int currentRow) {
+    return hVarList.at(currentRow);
 }
 
-QVector<HVarSet> UserData::hiddenVarList() {
+QList<HVarSet> UserData::hiddenVarList() {
     return hVarList;
 }
 
@@ -82,41 +78,25 @@ MARK: - Once changing parameters, update this function
          for (int varIndex = 0; varIndex < varArray.size(); ++varIndex) {
              QJsonObject varObject = varArray[varIndex].toObject();
              HVarSet set;
-             if (varObject.contains("fileName") && varObject["fileName"].isString())
-                 set.fileName = varObject["fileName"].toString();
-             else pass = false;
-            
-             if (varObject.contains("parameter0") && varObject["parameter0"].isDouble())
-                 set.param0 = varObject["parameter0"].toDouble();
-             else pass = false;
-            
-             if (varObject.contains("parameter1") && varObject["parameter1"].isDouble())
-                 set.param1 = varObject["parameter1"].toDouble();
-             else pass = false;
-            
-             if (varObject.contains("parameter2") && varObject["parameter2"].isDouble())
-                 set.param2 = varObject["parameter2"].toDouble();
-             else pass = false;
-            
-             if (varObject.contains("parameter3") && varObject["parameter3"].isDouble())
-                 set.param3 = varObject["parameter3"].toDouble();
-             else pass = false;
-            
-             if (varObject.contains("parameter4") && varObject["parameter4"].isDouble())
-                 set.param4 = varObject["parameter4"].toDouble();
-             else pass = false;
-            
-             if (varObject.contains("parameter5") && varObject["parameter5"].isDouble())
-                 set.param5 = varObject["parameter5"].toDouble();
-             else pass = false;
-            
-             if (varObject.contains("parameter6") && varObject["parameter6"].isDouble())
-                 set.param6 = varObject["parameter6"].toDouble();
-             else pass = false;
-            
-             if (varObject.contains("parameter7") && varObject["parameter7"].isDouble())
-                 set.param7 = varObject["parameter7"].toDouble();
-             else pass = false;
+             for(auto i : model.model){
+                 switch (i.second) {
+                     case DataType::StringType:
+                         if (varObject.contains(i.first) && varObject[i.first].isString())
+                             set.strList.push_back(varObject[i.first].toString());
+                         else return false;
+                         break;
+                         
+                     case DataType::DoubleType:
+                         if (varObject.contains(i.first) && varObject[i.first].isDouble())
+                             set.doubleList.push_back(varObject[i.first].toDouble());
+                         else return false;
+                         break;
+                         
+                     default:
+                         qDebug() << "\nXuan: data type does not exist.\n";
+                         break;
+                 }
+             }
              hVarList.append(set);
          }
      } else pass = false;
@@ -130,17 +110,27 @@ MARK: - Once changing parameters, update this function
 */
 void UserData::write(QJsonObject &json) {
     QJsonArray array;
-    for(HVarSet &i : hVarList) {
+    for(HVarSet i : hVarList) {
         QJsonObject obj;
-        obj["fileName"] = i.fileName;
-        obj["parameter0"] = i.param0;
-        obj["parameter1"] = i.param1;
-        obj["parameter2"] = i.param2;
-        obj["parameter3"] = i.param3;
-        obj["parameter4"] = i.param4;
-        obj["parameter5"] = i.param5;
-        obj["parameter6"] = i.param6;
-        obj["parameter7"] = i.param7;
+        int strIndex = 0;
+        int doubleIndex = 0;
+        for(auto it : model.model){
+            switch (it.second) {
+                case DataType::StringType:
+                    obj[it.first] = i.strList.at(strIndex);
+                    strIndex++;
+                    break;
+                    
+                case DataType::DoubleType:
+                    obj[it.first] = i.doubleList.at(doubleIndex);
+                    doubleIndex++;
+                    break;
+                    
+                default:
+                    qDebug() << "\nXuan: data type does not exist-.\n";
+                    break;
+            }
+        }
         array.append(obj);
     }
     json["hiddenVariable"] = array;
@@ -156,38 +146,14 @@ void UserData::write(QJsonObject &json) {
 MARK: - Once changing parameters, update this function
 **************************************
 */
-void UserData::setHiddenVariable(QString filename, QString param, double value) {
-    for(int i = 0; i < hVarList.size(); i++) {
-        auto it = hVarList.at(i);
-        if (it.fileName == filename){
-            if(param == "parameter0:")
-                hVarList[i].param0 = value;
-            else if(param == "parameter1:")
-                hVarList[i].param1 = value;
-            else if(param == "parameter2:")
-                hVarList[i].param2 = value;
-            else if(param == "parameter3:")
-                hVarList[i].param3 = value;
-            else if(param == "parameter4:")
-                hVarList[i].param4 = value;
-            else if(param == "parameter5:")
-                hVarList[i].param5 = value;
-            else if(param == "parameter6:")
-                hVarList[i].param6 = value;
-            else if(param == "parameter7:")
-                hVarList[i].param7 = value;
-        }
-    }
+void UserData::setHiddenVariable(int currentRow, int index, double value) {
+    auto list = hVarList.at(currentRow).doubleList;
+    list.replace(index, value);
 }
 
-void UserData::setHiddenVariableStr(QString filename, QString param, QString value) {
-    for(int i = 0; i < hVarList.size(); i++) {
-        auto it = hVarList.at(i);
-        if (it.fileName == filename){
-            if(param == "fileName:")
-                hVarList[i].fileName = value;
-        }
-    }
+void UserData::setHiddenVariableStr(int currentRow, int index, QString value) {
+    auto list = hVarList.at(currentRow).strList;
+    list.replace(index, value);
 }
 
 void UserData::setAutoLoad(bool i) {
@@ -205,25 +171,28 @@ MARK: - Once changing parameters, update this function
 */
 void UserData::addHiddenVariable(QString filename) {
     HVarSet set;
-    set.fileName = filename;
-    set.param0 = 0.0;
-    set.param1 = 0.0;
-    set.param2 = 0.0;
-    set.param3 = 0.0;
-    set.param4 = 0.0;
-    set.param5 = 0.0;
-    set.param6 = 0.0;
-    set.param7 = 0.0;
+    for(auto i : model.model){
+        switch (i.second) {
+            case DataType::StringType:
+                set.strList.push_back("");
+                break;
+                
+            case DataType::DoubleType:
+                set.doubleList.push_back(0.0);
+                break;
+                
+            default:
+                qDebug() << "\nXuan: data type does not exist--.\n";
+                break;
+        }
+    }
+    set.strList.replace(0, filename);
     hVarList.append(set);
 }
 
-bool UserData::removeHiddenVariable(QString filename) {
-    for(int i = 0; i < hVarList.size(); i++) {
-        auto it = hVarList.at(i);
-        if (it.fileName == filename){
-            hVarList.removeAt(i);
-            return true;
-        }
-    }
-    return false;
+bool UserData::removeHiddenVariable(int currentRow) {
+    if (currentRow >= hVarList.size())
+        return false;
+    hVarList.removeAt(currentRow);
+    return true;
 }

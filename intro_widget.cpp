@@ -6,7 +6,7 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     QLabel *title = new QLabel("Welcome to CellTrack_GUI app.");
     
     // Description Label
-    title->setStyleSheet("font-weight: bold; color: black; font-size: 13pt");
+    title->setStyleSheet("font-weight: bold; font-size: 13pt");
     QLabel *version = new QLabel(" Version 1.0");
     version->setStyleSheet("color: gray; font-size: 10pt");
     

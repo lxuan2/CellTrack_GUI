@@ -8,18 +8,14 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QCoreApplication>
+#include <QDebug>
+
+#include "parameter_model.hpp"
 
 // Hidden Variable Data Model
 struct HVarSet {
-    QString fileName;
-    double param0;
-    double param1;
-    double param2;
-    double param3;
-    double param4;
-    double param5;
-    double param6;
-    double param7;
+    QList<QString> strList;
+    QList<double> doubleList;
 };
 
 // User Preference Data Model
@@ -43,9 +39,9 @@ public:
     bool saveJson();
     
     // Get information
-    HVarSet hiddenVariable(QString name);
+    HVarSet hiddenVariable(int currentRow);
     
-    QVector<HVarSet> hiddenVarList();
+    QList<HVarSet> hiddenVarList();
     
     UPref userPreference();
     
@@ -54,11 +50,11 @@ public:
     
     void addHiddenVariable(QString filename);
     
-    bool removeHiddenVariable(QString filename);
+    bool removeHiddenVariable(int currentRow);
     
-    void setHiddenVariable(QString filename, QString param, double value);
+    void setHiddenVariable(int currentRow, int index, double value);
     
-    void setHiddenVariableStr(QString filename, QString param, QString value);
+    void setHiddenVariableStr(int currentRow, int index, QString value);
     
     void setAutoLoad(bool i);
     
@@ -66,7 +62,9 @@ public:
     
 private:
     
-    QVector<HVarSet> hVarList;
+    HidVarModel model;
+    
+    QList<HVarSet> hVarList;
     
     UPref pref;
     
