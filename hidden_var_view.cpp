@@ -23,7 +23,7 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     
     // add hidden variable to widget
     int xCoordinate = 0;
-    HidVarModel model;
+    HidVarModel model = data->hidenVarModel();
     QGridLayout *lay = new QGridLayout();
     StrVarItem *itt;
     DoubleVarItem *ittt;

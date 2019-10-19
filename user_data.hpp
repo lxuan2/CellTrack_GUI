@@ -45,6 +45,8 @@ public:
     
     UPref userPreference();
     
+    HidVarModel hidenVarModel() const;
+    
     // Update content
     void clear();
     
@@ -67,6 +69,8 @@ private:
     QList<HVarSet> hVarList;
     
     UPref pref;
+    
+    QString jsonFilePath;
     
     bool read(const QJsonObject &json);
     

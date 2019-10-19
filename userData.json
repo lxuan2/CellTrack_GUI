@@ -1,4 +1,21 @@
 {
+    "CommentThatCanbeDelete": {
+        "0_Overview": "The Json file needs contain three things: Template, HiddenVariable and UserPreference.",
+        "1_Template": "Template is the template for hidden variables. You need specify what is included in each HiddenVariable object. Note that 'filename' must be included.",
+        "2_HiddenVariable": "HiddenVariable is a JSON array. Each object in the array contains all necessary hidden variables, which are passed to python script as arguments. Note that 'filename' is the identifier for matching videos.",
+        "3_UserPreference": "UserPreference contains all user preference settings. For example, if you check 'Always apply hidden parameters if the name matches' in hidden variable tab, it is recorded for next time use."
+    },
+    "Template": {
+        "filename": "",
+        "parameter0": 0,
+        "parameter1": 0,
+        "parameter2": 0,
+        "parameter3": 0,
+        "parameter4": 0,
+        "parameter5": 0,
+        "parameter6": 0,
+        "parameter7": 0
+    },
     "HiddenVariable": [
         {
             "filename": "Village.avi",

@@ -1,9 +1,11 @@
 #include "user_data.hpp"
 
-UserData::UserData() {}
+UserData::UserData() {
+    jsonFilePath = QCoreApplication::applicationDirPath() + "/userData.json";
+}
 
 bool UserData::loadJson() {
-    QFile loadFile(QCoreApplication::applicationDirPath() + "/userData.json");
+    QFile loadFile(jsonFilePath);
     if (!loadFile.exists())
         return false;
     
@@ -24,7 +26,7 @@ bool UserData::loadJson() {
 }
 
 bool UserData::saveJson() {
-    QFile saveFile(QCoreApplication::applicationDirPath() + "/userData.json");
+    QFile saveFile(jsonFilePath);
 
     if (!saveFile.open(QIODevice::WriteOnly))
         return false;
@@ -49,6 +51,8 @@ UPref UserData::userPreference() {
 }
 
 void UserData::clear() {
+    pref.autoLoadParameter = true;
+    pref.rmWithoutAsk = false;
     hVarList.clear();
 }
 
@@ -59,6 +63,8 @@ MARK: - Once changing parameters, update this function
 */
  bool UserData::read(const QJsonObject &json) {
      bool pass = true;
+     
+     // Read User Preference
      if (json.contains("UserPreference") && json["UserPreference"].isObject()) {
          QJsonObject obj = json["UserPreference"].toObject();
          if (obj.contains("autoLoadParameter") && obj["autoLoadParameter"].isBool())
@@ -67,10 +73,24 @@ MARK: - Once changing parameters, update this function
          if (obj.contains("rmWithoutAsk") && obj["rmWithoutAsk"].isBool())
              pref.rmWithoutAsk = obj["rmWithoutAsk"].toBool();
          else pass = false;
-     }
-     else
-         pass = false;
+     }else pass = false;
      
+     // Read Hidden Variable Template
+     if (json.contains("Template") && json["Template"].isObject()) {
+         QJsonObject obj = json["Template"].toObject();
+         if (!obj.contains("filename"))
+             return false;
+         QStringList keyList = obj.keys();
+         for (int i = 0; i < keyList.size(); i++) {
+             if(obj[keyList[i]].isString())
+                 model.addModel(keyList[i], StringType);
+             else if (obj[keyList[i]].isDouble()){
+                 model.addModel(keyList[i], DoubleType);
+             } else return false;
+         }
+     } else return false;
+     
+     // Read Hidden Variables
      if (json.contains("HiddenVariable") && json["HiddenVariable"].isArray()) {
          QJsonArray varArray = json["HiddenVariable"].toArray();
          hVarList.clear();
@@ -109,6 +129,31 @@ MARK: - Once changing parameters, update this function
 **************************************
 */
 void UserData::write(QJsonObject &json) {
+    QJsonObject commentObject;
+    commentObject["0_Overview"] = "The Json file needs contain three things: Template, HiddenVariable and UserPreference.";
+    commentObject["1_Template"] = "Template is the template for hidden variables. You need specify what is included in each HiddenVariable object. Note that 'filename' must be included.";
+    commentObject["2_HiddenVariable"] = "HiddenVariable is a JSON array. Each object in the array contains all necessary hidden variables, which are passed to python script as arguments. Note that 'filename' is the identifier for matching videos.";
+    commentObject["3_UserPreference"] = "UserPreference contains all user preference settings. For example, if you check 'Always apply hidden parameters if the name matches' in hidden variable tab, it is recorded for next time use.";
+    json["CommentThatCanbeDelete"] = commentObject;
+    
+    QJsonObject templateObject;
+    for (auto i : model.model) {
+        switch (i.second) {
+            case DataType::StringType:
+                templateObject[i.first] = "";
+                break;
+                
+            case DataType::DoubleType:
+                templateObject[i.first] = 0.0;
+                break;
+                
+            default:
+                qDebug() << "\nXuan: data type does not exist.\n";
+                break;
+        }
+    }
+    json["Template"] = templateObject;
+    
     QJsonArray array;
     for(HVarSet i : hVarList) {
         QJsonObject obj;
@@ -197,4 +242,8 @@ bool UserData::removeHiddenVariable(int currentRow) {
         return false;
     hVarList.removeAt(currentRow);
     return true;
+}
+
+HidVarModel UserData::hidenVarModel() const{
+    return model;
 }
