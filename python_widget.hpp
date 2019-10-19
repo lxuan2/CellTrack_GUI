@@ -42,7 +42,7 @@ private:
     
     void closeEvent(QCloseEvent *event);
     
-    void showProcessView(bool value);
+    void showProcessView(bool value, QLabel *timeStr);
 };
 
 

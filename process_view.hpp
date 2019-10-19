@@ -8,6 +8,8 @@
 #include <QSizePolicy>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QTime>
+#include <Qtimer>
 
 #include "radar.hpp"
 
@@ -16,7 +18,7 @@ class ProcessView: public QDialog{
 public:
     
     // Default constructor
-    ProcessView(QWidget *parent = nullptr);
+    ProcessView(QWidget *parent = nullptr, QLabel *timeStr = new QLabel(""));
     
     void setCloseAskFlag(bool flag);
     
@@ -28,11 +30,21 @@ public slots:
     
     void cancelClicked();
     
+private slots:
+    
+    void updateTime();
+    
 private:
     
     Radar *radar;
     
     QPushButton *cancel;
+    
+    QTime time;
+    
+    QTimer *timer;
+    
+    QLabel *timeLabel;
     
     bool closeAskFlag;
     

@@ -32,13 +32,20 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
 }
 
 void PythonWidget::closeEvent(QCloseEvent *event) {
-    if(!data.saveJson())
+    QMessageBox msgBox;
+    msgBox.setText("Do you want save changes to the user.json?");
+    msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
+    msgBox.setDefaultButton(QMessageBox::NoButton);
+    msgBox.setIcon(QMessageBox::Warning);
+    if (msgBox.exec() == QMessageBox::Yes){
+        if(!data.saveJson())
         log->write("Error: Fail to save data into the json file.");
+    }
     core->stopProcess();
     QWidget::closeEvent(event);
 }
 
-void PythonWidget::showProcessView(bool value) {
+void PythonWidget::showProcessView(bool value, QLabel *timeStr) {
     if (!value && proView != nullptr) {
         proView->setCloseAskFlag(false);
         proView->close();
@@ -46,13 +53,13 @@ void PythonWidget::showProcessView(bool value) {
         return;
     }
     if (value) {
-        proView = new ProcessView(this);
+        proView = new ProcessView(this, timeStr);
         QObject::connect(proView, &ProcessView::stopProcess, core, &Core::stopProcess);
         proView->exec();
     }
 }
 
 void PythonWidget::closeWindow() {
-    createView(1);
     close();
+    createView(1);
 }

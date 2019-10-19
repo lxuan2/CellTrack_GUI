@@ -20,7 +20,7 @@ public:
     
 signals:
     
-    void showProcessView(bool value);
+    void showProcessView(bool value, QLabel *timeStr);
 
 public slots:
     
@@ -40,6 +40,8 @@ private:
     
     // Log
     LogView *log;
+    
+    QLabel *time;
     
     QProcess *process;
     

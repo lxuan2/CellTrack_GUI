@@ -31,7 +31,7 @@ void MatlabWidget::closeEvent(QCloseEvent *event) {
     QWidget::closeEvent(event);
 }
 
-void MatlabWidget::showProcessView(bool value) {
+void MatlabWidget::showProcessView(bool value, QLabel *timeStr) {
     if (!value && proView != nullptr) {
         proView->setCloseAskFlag(false);
         proView->close();
@@ -39,7 +39,7 @@ void MatlabWidget::showProcessView(bool value) {
         return;
     }
     if (value) {
-        proView = new ProcessView(this);
+        proView = new ProcessView(this, timeStr);
         QObject::connect(proView, &ProcessView::stopProcess, core, &Core::stopProcess);
         proView->exec();
     }

@@ -1,6 +1,6 @@
 #include "process_view.hpp"
 
-ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
+ProcessView::ProcessView(QWidget *parent, QLabel *timeStr): QDialog(parent) {
     setWindowModality(Qt::WindowModal);
     radar = new Radar();
     
@@ -10,12 +10,18 @@ ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
     QLabel *description = new QLabel("Program is running, please wait ......");
     description->setAlignment(Qt::AlignCenter);
     
-    QGridLayout *layout = new QGridLayout();
-    layout->addItem(new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 0);
-    layout->addWidget(radar, 1, 0);
-    layout->addItem(new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding), 2, 0);
-    layout->addWidget(description, 3, 0);
-    layout->addWidget(cancel, 4, 0);
+    time.setHMS(0,0,0);
+    timeLabel = timeStr;
+    timeLabel->setText(time.toString());
+    timeLabel->setAlignment(Qt::AlignCenter);
+    timer = new QTimer();
+    connect(timer, &QTimer::timeout, this, &ProcessView::updateTime);
+    
+    QVBoxLayout *layout = new QVBoxLayout();
+    layout->addWidget(radar);
+    layout->addWidget(description);
+    layout->addWidget(timeLabel);
+    layout->addWidget(cancel);
     setLayout(layout);
     
     // set black background
@@ -26,6 +32,7 @@ ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
     
     closeAskFlag = true;
     radar->start();
+    timer->start(1000);
     setMinimumSize(50, 50);
 }
 
@@ -51,8 +58,14 @@ void ProcessView::closeEvent(QCloseEvent *event) {
     if (msgBox.exec() == QMessageBox::Yes){
         emit stopProcess();
         radar->stop();
+        timer->stop();
         event->accept();
     }
     else
         event->ignore();
+}
+
+void ProcessView::updateTime() {
+    time = time.addSecs(1);
+    timeLabel->setText(time.toString());
 }
