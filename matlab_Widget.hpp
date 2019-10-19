@@ -18,6 +18,10 @@ signals:
     
     void createView(int id);
     
+private slots:
+    
+    void closeWindow();
+    
 private:
     
     GeneralView *general;
@@ -27,6 +31,8 @@ private:
     Core *core;
     
     ProcessView *proView;
+    
+    QPushButton *switchButton;
     
     void closeEvent(QCloseEvent *event);
     

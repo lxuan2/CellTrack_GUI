@@ -15,13 +15,17 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     QObject::connect(general, &GeneralView::run, core, &Core::runPython);
     QObject::connect(core, &Core::showProcessView, this, &PythonWidget::showProcessView);
     
+    switchButton = new QPushButton("Switch to Matlab Version");
+    QObject::connect(switchButton, &QPushButton::clicked, this, &PythonWidget::closeWindow);
+    
     QTabWidget *tabView = new QTabWidget();
     tabView->addTab(general, "General");
     tabView->addTab(hiddenVar, "Hidden Parameters");
     tabView->addTab(log, "Log History");
     
-    QVBoxLayout *layout = new QVBoxLayout();
-    layout->addWidget(tabView);
+    QGridLayout *layout = new QGridLayout();
+    layout->addWidget(tabView, 0, 0, 5, 5);
+    layout->addWidget(switchButton, 5, 4, Qt::AlignRight);
     setLayout(layout);
     setWindowTitle("CellTrack_GUI -- Python");
     resize(800, 600);
@@ -46,4 +50,9 @@ void PythonWidget::showProcessView(bool value) {
         QObject::connect(proView, &ProcessView::stopProcess, core, &Core::stopProcess);
         proView->exec();
     }
+}
+
+void PythonWidget::closeWindow() {
+    createView(1);
+    close();
 }
