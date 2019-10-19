@@ -57,6 +57,8 @@ private:
     QList<StrVarItem*> strList;
     QList<DoubleVarItem*> doubleList;
     
+    QGroupBox *group;
+    
     UserData *data;
     // Item list
     QListWidget * list;

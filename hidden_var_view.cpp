@@ -53,7 +53,7 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
         }
     }
     
-    QGroupBox *group = new QGroupBox();
+    group = new QGroupBox();
     group->setTitle("Hidden Parameters");
     group->setLayout(lay);
     
@@ -90,6 +90,7 @@ MARK: - Once changing parameters, update this function
 **************************************
 */
 void HiddenVarView::updateParameter(int currentRow) {
+    group->setDisabled(false);
     HVarSet set = data->hiddenVariable(currentRow);
 
     for (int i = 0; i < strList.size(); i++) {
@@ -149,12 +150,28 @@ void HiddenVarView::removeButtonClicked() {
             msg.exec();
             return;
         }
+        QObject::disconnect(list, &QListWidget::currentRowChanged, this, &HiddenVarView::updateParameter);
         int row = list->currentRow();
         list->takeItem(row);
-        if (list->count() == 0) return;
+        if (list->count() == 0) {
+            group->setDisabled(true);
+            for (auto i : strList) {
+                QObject::disconnect(i, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
+                i->valueBox->setText("");
+                QObject::connect(i, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
+            }
+            for (auto i : doubleList) {
+                QObject::disconnect(i, &DoubleVarItem::valueChanged, this, &HiddenVarView::doubleParameterChanged);
+                i->valueBox->setText("");
+                QObject::connect(i, &DoubleVarItem::valueChanged, this, &HiddenVarView::doubleParameterChanged);
+            }
+            QObject::connect(list, &QListWidget::currentRowChanged, this, &HiddenVarView::updateParameter);
+            return;
+        }
         if (row == list->count())
-            return list->setCurrentRow(row - 1);
-        list->setCurrentRow(row);
+            list->setCurrentRow(row - 1);
+        updateParameter(list->currentRow());
+        QObject::connect(list, &QListWidget::currentRowChanged, this, &HiddenVarView::updateParameter);
     }
 }
 
@@ -164,9 +181,27 @@ void HiddenVarView::showInFolderClicked() {
 
 void HiddenVarView::discardAllBTClicked() {
     data->clear();
+    QObject::disconnect(list, &QListWidget::currentRowChanged, this, &HiddenVarView::updateParameter);
     list->clear();
     data->loadJson();
     loadParameters();
+    if (list->count() == 0) {
+        group->setDisabled(true);
+        for (auto i : strList) {
+            QObject::disconnect(i, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
+            i->valueBox->setText("");
+            QObject::connect(i, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
+        }
+        for (auto i : doubleList) {
+            QObject::disconnect(i, &DoubleVarItem::valueChanged, this, &HiddenVarView::doubleParameterChanged);
+            i->valueBox->setText("");
+            QObject::connect(i, &DoubleVarItem::valueChanged, this, &HiddenVarView::doubleParameterChanged);
+        }
+        QObject::connect(list, &QListWidget::currentRowChanged, this, &HiddenVarView::updateParameter);
+    }
+    QObject::connect(list, &QListWidget::currentRowChanged, this, &HiddenVarView::updateParameter);
+    if (list->count() != 0)
+        updateParameter(0);
 }
 
 void HiddenVarView::autoLoadClicked(int state) {
@@ -201,12 +236,12 @@ void HiddenVarView::addItem(QString name) {
 }
 
 void HiddenVarView::loadParameters() {
+    autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
+    rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
     if (data->hiddenVarList().size() == 0)
-        return;
+        return group->setDisabled(true);
     for (HVarSet i : data->hiddenVarList()){
         addItem(i.strList.at(0));
     }
     list->setCurrentRow(0);
-    autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
-    rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
 }

@@ -59,8 +59,8 @@ MARK: - Once changing parameters, update this function
 */
  bool UserData::read(const QJsonObject &json) {
      bool pass = true;
-     if (json.contains("userPreference") && json["userPreference"].isObject()) {
-         QJsonObject obj = json["userPreference"].toObject();
+     if (json.contains("UserPreference") && json["UserPreference"].isObject()) {
+         QJsonObject obj = json["UserPreference"].toObject();
          if (obj.contains("autoLoadParameter") && obj["autoLoadParameter"].isBool())
              pref.autoLoadParameter = obj["autoLoadParameter"].toBool();
          else pass = false;
@@ -71,8 +71,8 @@ MARK: - Once changing parameters, update this function
      else
          pass = false;
      
-     if (json.contains("hiddenVariable") && json["hiddenVariable"].isArray()) {
-         QJsonArray varArray = json["hiddenVariable"].toArray();
+     if (json.contains("HiddenVariable") && json["HiddenVariable"].isArray()) {
+         QJsonArray varArray = json["HiddenVariable"].toArray();
          hVarList.clear();
          hVarList.reserve(varArray.size());
          for (int varIndex = 0; varIndex < varArray.size(); ++varIndex) {
@@ -133,12 +133,12 @@ void UserData::write(QJsonObject &json) {
         }
         array.append(obj);
     }
-    json["hiddenVariable"] = array;
+    json["HiddenVariable"] = array;
     
     QJsonObject prefObject;
     prefObject["autoLoadParameter"] = pref.autoLoadParameter;
     prefObject["rmWithoutAsk"] = pref.rmWithoutAsk;
-    json["userPreference"] = prefObject;
+    json["UserPreference"] = prefObject;
 }
 
 /*
