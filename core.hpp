@@ -2,10 +2,13 @@
 #define CORE_HPP
 
 #include <thread>
+#include <sstream>
 #include <fstream>
 #include <iostream>
 #include <QProcess>
 #include <QFileInfo>
+#include <QTimer>
+#include <QTime>
 
 #include "log_view.hpp"
 #include "general_view.hpp"
@@ -20,7 +23,7 @@ public:
     
 signals:
     
-    void showProcessView(bool value, QLabel *timeStr);
+    void showProcessView(bool value);
 
 public slots:
     
@@ -29,6 +32,11 @@ public slots:
     void runPython();
     
     void stopProcess();
+    
+    
+private slots:
+    
+    void updateTime();
     
 private:
     
@@ -41,7 +49,9 @@ private:
     // Log
     LogView *log;
     
-    QLabel *time;
+    QTime time;
+    
+    QTimer *timer;
     
     QProcess *process;
     

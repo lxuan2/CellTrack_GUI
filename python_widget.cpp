@@ -4,6 +4,7 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     
     // Initialize tab views
     log = new LogView();
+    proView = nullptr;
     
     if (!data.loadJson())
         log->write("Error: fail to load user data from json file.");
@@ -41,19 +42,18 @@ void PythonWidget::closeEvent(QCloseEvent *event) {
         if(!data.saveJson())
         log->write("Error: Fail to save data into the json file.");
     }
-    core->stopProcess();
     QWidget::closeEvent(event);
 }
 
-void PythonWidget::showProcessView(bool value, QLabel *timeStr) {
-    if (!value && proView != nullptr) {
+void PythonWidget::showProcessView(bool value) {
+    if (!value) {
         proView->setCloseAskFlag(false);
-        proView->close();
-        proView = nullptr;
+        proView->done(0);
+        proView->deleteLater();
         return;
     }
     if (value) {
-        proView = new ProcessView(this, timeStr);
+        proView = new ProcessView(this);
         QObject::connect(proView, &ProcessView::stopProcess, core, &Core::stopProcess);
         proView->exec();
     }

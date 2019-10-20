@@ -3,6 +3,8 @@
 SceneDelegate::SceneDelegate() {
     
     introView = new IntroWidget();
+    M_ContentView = nullptr;
+    P_ContentView = nullptr;
     
     // Authorization to create a view
     QObject::connect(introView, &IntroWidget::createView, this, &SceneDelegate::createView);
@@ -19,14 +21,18 @@ void SceneDelegate::createView(int id) {
             break;
             
         case 1:
-            M_ContentView = new MatlabWidget();
-            QObject::connect(M_ContentView, &MatlabWidget::createView, this, &SceneDelegate::createView);
+            if (M_ContentView == nullptr) {
+                M_ContentView = new MatlabWidget();
+                QObject::connect(M_ContentView, &MatlabWidget::createView, this, &SceneDelegate::createView);
+            }
             M_ContentView->show();
             break;
         
         case 2:
-            P_ContentView = new PythonWidget();
-            QObject::connect(P_ContentView, &PythonWidget::createView, this, &SceneDelegate::createView);
+            if (P_ContentView == nullptr) {
+                P_ContentView = new PythonWidget();
+                QObject::connect(P_ContentView, &PythonWidget::createView, this, &SceneDelegate::createView);
+            }
             P_ContentView->show();
             break;
             

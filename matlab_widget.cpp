@@ -27,19 +27,18 @@ MatlabWidget::MatlabWidget(QWidget *parent):QWidget(parent){
 }
 
 void MatlabWidget::closeEvent(QCloseEvent *event) {
-    core->stopProcess();
     QWidget::closeEvent(event);
 }
 
-void MatlabWidget::showProcessView(bool value, QLabel *timeStr) {
-    if (!value && proView != nullptr) {
+void MatlabWidget::showProcessView(bool value) {
+    if (!value) {
         proView->setCloseAskFlag(false);
-        proView->close();
-        proView = nullptr;
+        proView->done(0);
+        proView->deleteLater();
         return;
     }
     if (value) {
-        proView = new ProcessView(this, timeStr);
+        proView = new ProcessView(this);
         QObject::connect(proView, &ProcessView::stopProcess, core, &Core::stopProcess);
         proView->exec();
     }
