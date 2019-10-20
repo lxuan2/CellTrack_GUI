@@ -23,7 +23,7 @@ MatlabWidget::MatlabWidget(QWidget *parent):QWidget(parent){
     layout->addWidget(switchButton, 5, 4, Qt::AlignRight);
     setLayout(layout);
     setWindowTitle("CellTrack_GUI -- Matlab");
-    resize(800, 600);
+    resize(800, 650);
 }
 
 void MatlabWidget::closeEvent(QCloseEvent *event) {
