@@ -26,7 +26,8 @@ HEADERS = \
     user_data.hpp \
     python_widget.hpp \
     process_view.hpp \
-    radar.hpp
+    radar.hpp \
+    parameter_model.hpp
 
 SOURCES = main.cpp \
     scene_delegate.cpp \
@@ -47,7 +48,8 @@ SOURCES = main.cpp \
     user_data.cpp \
     python_widget.cpp \
     process_view.cpp \
-    radar.cpp
+    radar.cpp \
+    parameter_model.cpp
 
 target.path = /Users/xuanli/Developer/CellTrack_GUI/src
 INSTALLS += target
