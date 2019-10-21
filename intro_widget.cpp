@@ -7,7 +7,7 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     
     // Description Label
     title->setStyleSheet("font-weight: bold; font-size: 13pt");
-    QLabel *version = new QLabel(" Version 1.0");
+    QLabel *version = new QLabel(" Version 1.0.0");
     version->setStyleSheet("color: gray; font-size: 10pt");
     
     // Action Label

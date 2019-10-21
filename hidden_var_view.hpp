@@ -25,6 +25,10 @@ public:
     // Default constructor
     HiddenVarView(UserData *d, LogView * l);
     
+    QStringList getArguments(QString &filename);
+    
+    QStringList getPrintArguments(QString &filename);
+    
 private slots:
     
     void updateParameter(int currentRow);

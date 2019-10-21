@@ -111,19 +111,32 @@ void Core::runPython() {
         return log->write("Error: python script does not exist\n\n-- Finish Analysis --\n");
     
     // Get parameters from General Tab
-    std::string videoPath = file.path().toStdString();
-    std::string videoName = file.fileName().toStdString();
+    QString videoPath = file.path();
+    QString videoName = file.fileName();
+    QString maxSize   = QString::number(general->getMaxSize());
+    QString minSize   = QString::number(general->getMinSize());
+    QString areaString          = general->isAreaChecked()? "Yes": "No";
+    QString eccentricityString  = general->isEccentricityChecked()? "Yes": "No";
+    QString orientationString   = general->isOrientationChecked()? "Yes": "No";
     
     // Write parameters to Log
-    log->write(QString::fromStdString("   File path: " + videoPath));
-    log->write(QString::fromStdString("   File name: " + videoName));
+    log->write("   File path: " + videoPath);
+    log->write("   File name: " + videoName);
+    log->write("   Cell size: max: " + maxSize + ", min: " + minSize);
+    log->write("   Area:         " + areaString);
+    log->write("   Eccentricity: " + eccentricityString);
+    log->write("   Orientation:  " + orientationString);
+    auto hvPrintArgument = hiddenVar->getPrintArguments(videoName);
+    for (int i = 0; i < hvPrintArgument.size(); i++) {
+        log->write(hvPrintArgument[i]);
+    }
     
     // Pass parameters by arguments
     QStringList arguments;
-    arguments << general->getAppPath() << QString::fromStdString(videoPath) << QString::fromStdString(videoName);
+    arguments << general->getAppPath() << videoPath << videoName << maxSize << minSize << areaString << eccentricityString << orientationString << hiddenVar->getArguments(videoName);
     
     // Run Python code
-    //input: videoPath, videoName
+    //input: videoPath, videoName, maxSize, minSize, areaString, areaString, eccentricityString, orientationString, etc
     
     log->write("\n   Running Python Code...\n");
     process = new QProcess();
@@ -149,12 +162,27 @@ void Core::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
     if (!process->canReadLine()) {
         log->write("Error: cannot read result from python script.");
     }
+    log->write("   Printing out results from python console...");
     QByteArray result = process->readAll();
-    std::string line;
+    std::string line = "";
     std::stringstream stream(result.toStdString());
+    
+    // Read output result
+    std::string resVideo = "";
+    std::getline(stream, resVideo);
+    log->write("   " + QString::fromStdString(resVideo));
+    
     while (std::getline(stream, line)) {
         log->write("   " + QString::fromStdString(line));
     }
+    
+    // Send result video to player
+    QFileInfo video(QString::fromStdString(resVideo));
+    if (video.exists())
+        general->setResultVideo(QString::fromStdString(resVideo));
+    else
+        log->write("Error: The first return result is not video full path.");
+    
     process->deleteLater();
     log->write("   Using time: " + time.toString());
     log->write("-- Finish Analysis --\n");

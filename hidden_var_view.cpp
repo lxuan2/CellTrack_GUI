@@ -84,6 +84,66 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     loadParameters();
 }
 
+QStringList HiddenVarView::getArguments(QString &filename) {
+    QStringList arguments;
+    int row = -1;
+    for (int i = 0; i < list->count(); i++) {
+        if (list->item(i)->text() == filename)
+            row = i;
+    }
+    
+    if (row == -1) {
+        for (int i = 1; i < strList.size(); i++) {
+            arguments << "";
+        }
+        
+        for (int i = 0; i < doubleList.size(); i++) {
+            arguments << "0";
+        }
+        return arguments;
+    }
+    HVarSet set = data->hiddenVariable(row);
+    
+    for (int i = 1; i < strList.size(); i++) {
+        arguments << set.strList.at(i);
+    }
+    
+    for (int i = 0; i < doubleList.size(); i++) {
+        arguments << QString::number(set.doubleList.at(i), 'g', 15);
+    }
+    return arguments;
+}
+
+QStringList HiddenVarView::getPrintArguments(QString &filename) {
+    QStringList arguments;
+    int row = -1;
+    for (int i = 0; i < list->count(); i++) {
+        if (list->item(i)->text() == filename)
+            row = i;
+    }
+    
+    if (row == -1) {
+        for (int i = 1; i < strList.size(); i++) {
+            arguments << "   " + strList.at(i)->nameLabel->text();
+        }
+        
+        for (int i = 0; i < doubleList.size(); i++) {
+            arguments << "   " + doubleList.at(i)->nameLabel->text() + " 0";
+        }
+        return arguments;
+    }
+    HVarSet set = data->hiddenVariable(row);
+    
+    for (int i = 1; i < strList.size(); i++) {
+        arguments << "   " + strList.at(i)->nameLabel->text() + " " + set.strList.at(i);
+    }
+    
+    for (int i = 0; i < doubleList.size(); i++) {
+        arguments << "   " + doubleList.at(i)->nameLabel->text() + " " + QString::number(set.doubleList.at(i), 'g', 15);
+    }
+    return arguments;
+}
+
 /*
 **************************************
 MARK: - Once changing parameters, update this function

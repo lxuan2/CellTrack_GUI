@@ -12,7 +12,7 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     general = new GeneralView(log);
     hiddenVar = new HiddenVarView(&data, log);
     
-    core = new Core(general, nullptr, log);
+    core = new Core(general, hiddenVar, log);
     QObject::connect(general, &GeneralView::run, core, &Core::runPython);
     QObject::connect(core, &Core::showProcessView, this, &PythonWidget::showProcessView);
     
