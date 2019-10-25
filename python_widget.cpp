@@ -49,6 +49,6 @@ void PythonWidget::closeWindow() {
 }
 
 void PythonWidget::infoClicked() {
-    HelperWidget_General_Py dialog;
+    HelperWidget dialog;
     dialog.exec();
 }

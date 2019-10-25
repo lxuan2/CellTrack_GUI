@@ -13,6 +13,7 @@
 #include <QCoreApplication>
 #include <QToolButton>
 #include <QMessageBox>
+#include <QGroupBox>
 
 #include "file_finder.hpp"
 #include "radar.hpp"

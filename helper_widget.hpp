@@ -12,36 +12,12 @@
 #include <QLayout>
 #include <QApplication>
 
-class HelperWidget_Intro: public QDialog {
+class HelperWidget: public QDialog {
     Q_OBJECT
 public:
     
     // Default Constructor
-    HelperWidget_Intro();
-};
-
-class HelperWidget_Log: public QDialog {
-    Q_OBJECT
-public:
-    
-    // Default Constructor
-    HelperWidget_Log();
-};
-
-class HelperWidget_Hidden: public QDialog {
-    Q_OBJECT
-public:
-    
-    // Default Constructor
-    HelperWidget_Hidden();
-};
-
-class HelperWidget_General_Py: public QDialog {
-    Q_OBJECT
-public:
-    
-    // Default Constructor
-    HelperWidget_General_Py();
+    HelperWidget();
 };
 
 #endif /* helper_widget_intro_hpp */

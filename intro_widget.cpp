@@ -1,7 +1,6 @@
 #include "intro_widget.hpp"
 #include "process_view.hpp"
 #include <QDebug>
-
 IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
     // Title Label
     radar = new Radar();
@@ -9,11 +8,11 @@ IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
     
     // Description Label
     title->setStyleSheet("font-weight: bold; font-size: 13pt");
-    QLabel *version = new QLabel("Version 1.0.0");
+    QLabel *version = new QLabel("Version 1.0.1");
     version->setStyleSheet("color: gray; font-size: 10pt");
     
     // Action Label
-    QLabel *action = new QLabel("The generated C# application location is needed.   ");
+    QLabel *action = new QLabel("Choose the language that your analysis program uses:   ");
     action->setStyleSheet("font-size: 12pt");
     
     // Check Boxes
@@ -29,7 +28,7 @@ IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
     checkboxes->setLayout(l);
     
     // Button
-    OK = new QPushButton("Start");
+    OK = new QPushButton(" Start ");
     QObject::connect(OK, &QPushButton::clicked, this, &IntroWidget::closeWindow);
     OK->setDisabled(true);
     
@@ -38,15 +37,25 @@ IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
     info->setStyleSheet("border-radius: 13px");
     QObject::connect(info, &QPushButton::clicked, this, &IntroWidget::infoClicked);
     
+    QGroupBox *group = new QGroupBox();
+    QGridLayout *lay = new QGridLayout();
+    lay->addWidget(title, 0, 0, Qt::AlignLeft);
+    lay->addWidget(info, 0, 0, Qt::AlignRight);
+    lay->addWidget(version, 1, 0, Qt::AlignLeft);
+    lay->addWidget(action, 2, 0, Qt::AlignLeft);
+    lay->addWidget(checkboxes, 3, 0);
+    lay->addWidget(OK, 4, 0, Qt::AlignRight);
+    group->setLayout(lay);
+    //group->setStyleSheet("padding-top:15px; margin-top:-15px");
+    
     // Widget layout initialize
     auto layout = new QGridLayout();
-    layout->addWidget(radar, 0, 0, 4, 1);
-    layout->addWidget(title, 0, 1, Qt::AlignLeft);
-    layout->addWidget(info, 0, 1, Qt::AlignRight);
-    layout->addWidget(version, 1, 1, Qt::AlignLeft);
-    layout->addWidget(action, 2, 1, Qt::AlignLeft);
-    layout->addWidget(checkboxes, 3, 1);
-    layout->addWidget(OK, 4, 1, Qt::AlignRight);
+    layout->addWidget(radar, 0, 0, Qt::AlignCenter);
+    layout->addWidget(group, 0, 1, Qt::AlignCenter);
+    #ifndef __APPLE__
+    layout->addWidget(new QLabel(), 1, 1, Qt::AlignCenter);
+    layout->addWidget(new QLabel("    "), 0, 2, Qt::AlignCenter);
+    #endif
     setLayout(layout);
     setFixedSize(sizeHint());
     
@@ -87,6 +96,6 @@ void IntroWidget::pythonClicked() {
 }
 
 void IntroWidget::infoClicked() {
-    HelperWidget_Intro dialog;
+    HelperWidget dialog;
     dialog.exec();
 }
