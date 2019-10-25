@@ -1,6 +1,6 @@
 #include "process_view.hpp"
 #include <QApplication>
-ProcessView::ProcessView(QWidget *parent, QLabel *timeStr): QDialog(QApplication::activeWindow()) {
+ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
     setWindowModality(Qt::WindowModal);
     radar = new Radar();
     
@@ -10,9 +10,7 @@ ProcessView::ProcessView(QWidget *parent, QLabel *timeStr): QDialog(QApplication
     QLabel *description = new QLabel("Program is running, please wait ......");
     description->setAlignment(Qt::AlignCenter);
     
-    time.setHMS(0,0,0);
-    timeLabel = timeStr;
-    timeLabel->setText(time.toString());
+    timeLabel = new QLabel();
     timeLabel->setAlignment(Qt::AlignCenter);
     timer = new QTimer();
     connect(timer, &QTimer::timeout, this, &ProcessView::updateTime);
@@ -30,18 +28,42 @@ ProcessView::ProcessView(QWidget *parent, QLabel *timeStr): QDialog(QApplication
     setAutoFillBackground(true);
     setPalette(pal);
     
+    setMinimumSize(50, 50);
+}
+
+void ProcessView::start() {
+    // Enable ask flag
     closeAskFlag = true;
+    
+    // Reset the timer
+    time.setHMS(0,0,0);
+    timeLabel->setText(time.toString());
+    
+    // Start timers
     radar->start();
     timer->start(1000);
-    setMinimumSize(50, 50);
+    
+    // Show this view
+    show();
+}
+
+void ProcessView::stop() {
+    
+    // Stop timers
+    radar->stop();
+    timer->stop();
+    
+    // Close this view
+    closeAskFlag = false;
+    close();
+}
+
+QString ProcessView::timeCost() {
+    return timeLabel->text();
 }
 
 void ProcessView::cancelClicked() {
     close();
-}
-
-void ProcessView::setCloseAskFlag(bool flag) {
-    closeAskFlag = flag;
 }
 
 void ProcessView::closeEvent(QCloseEvent *event) {

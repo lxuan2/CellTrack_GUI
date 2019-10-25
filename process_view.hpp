@@ -18,21 +18,22 @@ class ProcessView: public QDialog{
 public:
     
     // Default constructor
-    ProcessView(QWidget *parent = nullptr, QLabel *timeStr = new QLabel(""));
+    ProcessView(QWidget *parent);
     
-    void setCloseAskFlag(bool flag);
+    void start();
+    
+    void stop();
+    
+    QString timeCost();
     
 signals:
     
     void stopProcess();
     
-public slots:
-    
-    void cancelClicked();
-    
 private slots:
     
     void updateTime();
+    void cancelClicked();
     
 private:
     

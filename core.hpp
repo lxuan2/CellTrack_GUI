@@ -1,29 +1,23 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <thread>
 #include <sstream>
 #include <fstream>
 #include <iostream>
 #include <QProcess>
 #include <QFileInfo>
-#include <QTimer>
-#include <QTime>
 
 #include "log_view.hpp"
 #include "general_view.hpp"
 #include "hidden_var_view.hpp"
+#include "process_view.hpp"
 
 class Core: public QObject {
     Q_OBJECT
 public:
     
     // Parameterized Constructor
-    Core(GeneralView *gv, HiddenVarView *hv, LogView *lv);
-    
-signals:
-    
-    void showProcessView(bool value);
+    Core(QWidget *parent, GeneralView *gv, HiddenVarView *hv, LogView *lv);
 
 public slots:
     
@@ -32,11 +26,6 @@ public slots:
     void runPython();
     
     void stopProcess();
-    
-    
-private slots:
-    
-    void updateTime();
     
 private:
     
@@ -49,11 +38,9 @@ private:
     // Log
     LogView *log;
     
-    QTime time;
-    
-    QTimer *timer;
-    
     QProcess *process;
+    
+    ProcessView *proView;
     
     void finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus);
     

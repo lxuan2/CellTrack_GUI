@@ -77,10 +77,8 @@ void VideoGroupBox::playClicked() {
     QMediaPlayer::State state = player->state();
     if (state == QMediaPlayer::PlayingState){
         play(false);
-        log->write("- Stop -");
     } else {
-        if (play(true))
-            log->write("- Start -");
+        play(true);
     }
 }
 

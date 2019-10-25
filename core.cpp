@@ -1,12 +1,12 @@
 #include "core.hpp"
 
-Core::Core(GeneralView *gv, HiddenVarView *hv, LogView *lv){
+Core::Core(QWidget *parent, GeneralView *gv, HiddenVarView *hv, LogView *lv){
     general   = gv;
     hiddenVar = hv;
     log       = lv;
-    process   = nullptr;
-    timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, &Core::updateTime);
+    proView   = new ProcessView(parent);
+    process   = new QProcess();
+    QObject::connect(process, &QProcess::errorOccurred, this, &Core::errorOccurred);
 }
 
 void Core::runMatlab() {
@@ -49,23 +49,21 @@ void Core::runMatlab() {
     //input: videoPath, videoName, maxSize, minSize, areaBool, eccentricityBool, orientationBool
     
     log->write("\n   Running MATLAB Code...\n");
-    process = new QProcess();
     QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
-    QObject::connect(process, &QProcess::errorOccurred, this, &Core::errorOccurred);
-    time.setHMS(0,0,0);
-    timer->start(1000);
+    
     process->start(general->getAppPath());
     
     /* Output: totalcells_GT, totalcells, stoppedcells_GT, stoppedcells, stoppedpercent_GT,
     stopped_percent,tracking_accuracy, stoppedcell_accuracy, output_filename
     */
-    emit showProcessView(true);
+    proView->start();
 }
 
 void Core::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
-    timer->stop();
-    emit showProcessView(false);
-    process->deleteLater();
+    // clear up everthing
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
+    proView->stop();
+    
     if (exitStatus == QProcess::CrashExit) {
         log->write("Error: the analysis process crashes for unknown reasons.\n\n-- Finish Analysis --\n");
         return;
@@ -90,7 +88,7 @@ void Core::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
                 "\n   Accuracy in tracking stopped cells:\n\t" + tmp[7] +
                 "\n   Output file name:\n\t" + tmp[8] + "\n"));
     
-    log->write("   Using time: " + time.toString());
+    log->write("   Using time: " + proView->timeCost());
     
     QFileInfo video(general->getVideoPath());
     general->setResultVideo(video.path() + QString::fromStdString("/" + tmp[8]));
@@ -139,21 +137,19 @@ void Core::runPython() {
     //input: videoPath, videoName, maxSize, minSize, areaString, areaString, eccentricityString, orientationString, etc
     
     log->write("\n   Running Python Code...\n");
-    process = new QProcess();
     QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
-    QObject::connect(process, &QProcess::errorOccurred, this, &Core::errorOccurred);
-    time.setHMS(0,0,0);
-    timer->start(1000);
-    process->start("python", arguments);
+    process->start("python3", arguments);
     
     /* Output:
     */
-    emit showProcessView(true);
+    proView->start();
 }
 
 void Core::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
-    timer->stop();
-    emit showProcessView(false);
+    // clear up everthing
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
+    proView->stop();
+    
     if (exitStatus == QProcess::CrashExit) {
         log->write("Error: the analysis process crashes for unknown reasons.");
         return;
@@ -182,26 +178,20 @@ void Core::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
         general->setResultVideo(QString::fromStdString(resVideo));
     else
         log->write("Error: The first return result is not video full path.");
-    
-    process->deleteLater();
-    log->write("   Using time: " + time.toString());
+    log->write("   Using time: " + proView->timeCost());
     log->write("-- Finish Analysis --\n");
 }
 
 void Core::errorOccurred(QProcess::ProcessError error) {
-    timer->stop();
-    process->deleteLater();
-    log->write("Error: the analysis process crashes for unknown reasons.\n\n-- Finish Analysis --\n");
-    emit showProcessView(false);
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
+    log->write("  Error: the analysis process crashes for unknown reasons.\n\n-- Finish Analysis --\n");
+    proView->stop();
 }
 
 void Core::stopProcess() {
-    timer->stop();
     process->kill();
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
     log->write("Error: process canceled by user.\n\n-- Finish Analysis --\n");
-    process->deleteLater();
-}
-
-void Core::updateTime() {
-    time = time.addSecs(1);
 }

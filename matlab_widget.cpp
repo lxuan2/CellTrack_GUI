@@ -7,9 +7,8 @@ MatlabWidget::MatlabWidget(QWidget *parent):QWidget(parent){
     log = new LogView();
     general = new GeneralView(log);
     
-    core = new Core(general, nullptr, log);
+    core = new Core(this, general, nullptr, log);
     QObject::connect(general, &GeneralView::run, core, &Core::runMatlab);
-    QObject::connect(core, &Core::showProcessView, this, &MatlabWidget::showProcessView);
     
     QTabWidget *tabView = new QTabWidget();
     tabView->addTab(general, "General");
@@ -28,20 +27,6 @@ MatlabWidget::MatlabWidget(QWidget *parent):QWidget(parent){
 
 void MatlabWidget::closeEvent(QCloseEvent *event) {
     QWidget::closeEvent(event);
-}
-
-void MatlabWidget::showProcessView(bool value) {
-    if (!value) {
-        proView->setCloseAskFlag(false);
-        proView->done(0);
-        proView->deleteLater();
-        return;
-    }
-    if (value) {
-        proView = new ProcessView(this);
-        QObject::connect(proView, &ProcessView::stopProcess, core, &Core::stopProcess);
-        proView->exec();
-    }
 }
 
 void MatlabWidget::closeWindow() {

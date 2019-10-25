@@ -35,8 +35,6 @@ private:
     QPushButton *switchButton;
     
     void closeEvent(QCloseEvent *event);
-    
-    void showProcessView(bool value);
 };
 
 #endif
