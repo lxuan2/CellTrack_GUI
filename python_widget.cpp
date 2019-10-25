@@ -18,6 +18,11 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     switchButton = new QPushButton("Switch to Matlab Version");
     QObject::connect(switchButton, &QPushButton::clicked, this, &PythonWidget::closeWindow);
     
+    infoButton = new QToolButton();
+    infoButton->setIcon(style()->standardIcon(QStyle::SP_FileDialogInfoView));
+    infoButton->setStyleSheet("border-radius: 13px");
+    QObject::connect(infoButton, &QPushButton::clicked, this, &PythonWidget::infoClicked);
+    
     QTabWidget *tabView = new QTabWidget();
     tabView->addTab(general, "General");
     tabView->addTab(hiddenVar, "Hidden Parameters");
@@ -25,6 +30,7 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(tabView, 0, 0, 5, 5);
+    layout->addWidget(infoButton, 5, 3, Qt::AlignRight);
     layout->addWidget(switchButton, 5, 4, Qt::AlignRight);
     setLayout(layout);
     setWindowTitle("CellTrack_GUI -- Python");
@@ -40,4 +46,9 @@ void PythonWidget::closeEvent(QCloseEvent *event) {
 void PythonWidget::closeWindow() {
     close();
     createView(1);
+}
+
+void PythonWidget::infoClicked() {
+    HelperWidget_General_Py dialog;
+    dialog.exec();
 }

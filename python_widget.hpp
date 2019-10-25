@@ -8,6 +8,7 @@
 #include "process_view.hpp"
 #include "general_view.hpp"
 #include "hidden_var_view.hpp"
+#include "helper_widget.hpp"
 
 class PythonWidget: public QWidget{
     Q_OBJECT
@@ -24,6 +25,8 @@ private slots:
     
     void closeWindow();
     
+    void infoClicked();
+    
 private:
     
     GeneralView *general;
@@ -39,6 +42,7 @@ private:
     ProcessView *proView;
     
     QPushButton *switchButton;
+    QToolButton *infoButton;
     
     void closeEvent(QCloseEvent *event);
 };

@@ -16,9 +16,9 @@
 
 #include "file_finder.hpp"
 #include "radar.hpp"
-#include "helper_widget_intro.hpp"
+#include "helper_widget.hpp"
 
-class IntroWidget: public QDialog{
+class IntroWidget: public QWidget{
     Q_OBJECT
 public:
     

@@ -2,7 +2,7 @@
 #include "process_view.hpp"
 #include <QDebug>
 
-IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
+IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
     // Title Label
     radar = new Radar();
     QLabel *title = new QLabel("Welcome to CellTrack_GUI app.");
