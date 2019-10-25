@@ -7,6 +7,11 @@ int main(int argc, char *argv[])
     // Application creation
 	QApplication app(argc, argv);
     
+    // Set application style
+    #ifndef __APPLE__
+    QApplication::setStyle("Fusion");
+    #endif
+    
     // Use high resolution pixmaps
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     

@@ -1,4 +1,6 @@
 #include "intro_widget.hpp"
+#include "process_view.hpp"
+#include <QDebug>
 
 IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     // Title Label
@@ -7,7 +9,7 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     
     // Description Label
     title->setStyleSheet("font-weight: bold; font-size: 13pt");
-    QLabel *version = new QLabel(" Version 1.0.0");
+    QLabel *version = new QLabel("Version 1.0.0");
     version->setStyleSheet("color: gray; font-size: 10pt");
     
     // Action Label
@@ -31,12 +33,18 @@ IntroWidget::IntroWidget(QWidget *parent): QDialog(parent) {
     QObject::connect(OK, &QPushButton::clicked, this, &IntroWidget::closeWindow);
     OK->setDisabled(true);
     
+    info = new QToolButton();
+    info->setIcon(style()->standardIcon(QStyle::SP_FileDialogInfoView));
+    info->setStyleSheet("border-radius: 13px");
+    QObject::connect(info, &QPushButton::clicked, this, &IntroWidget::infoClicked);
+    
     // Widget layout initialize
     auto layout = new QGridLayout();
-    layout->addWidget(radar, 0, 0, 4, 1, Qt::AlignCenter);
-    layout->addWidget(title, 0, 1, Qt::AlignBottom);
-    layout->addWidget(version, 1, 1, Qt::AlignTop);
-    layout->addWidget(action, 2, 1, Qt::AlignTop);
+    layout->addWidget(radar, 0, 0, 4, 1);
+    layout->addWidget(title, 0, 1, Qt::AlignLeft);
+    layout->addWidget(info, 0, 1, Qt::AlignRight);
+    layout->addWidget(version, 1, 1, Qt::AlignLeft);
+    layout->addWidget(action, 2, 1, Qt::AlignLeft);
     layout->addWidget(checkboxes, 3, 1);
     layout->addWidget(OK, 4, 1, Qt::AlignRight);
     setLayout(layout);
@@ -76,4 +84,9 @@ void IntroWidget::pythonClicked() {
     if (!matlab->isChecked()) {
         OK->setDisabled(true);
     }
+}
+
+void IntroWidget::infoClicked() {
+    HelperWidget_Intro dialog;
+    dialog.exec();
 }

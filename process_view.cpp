@@ -1,6 +1,6 @@
 #include "process_view.hpp"
-
-ProcessView::ProcessView(QWidget *parent, QLabel *timeStr): QDialog(parent) {
+#include <QApplication>
+ProcessView::ProcessView(QWidget *parent, QLabel *timeStr): QDialog(QApplication::activeWindow()) {
     setWindowModality(Qt::WindowModal);
     radar = new Radar();
     

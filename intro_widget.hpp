@@ -11,9 +11,12 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QCoreApplication>
+#include <QToolButton>
+#include <QMessageBox>
 
 #include "file_finder.hpp"
 #include "radar.hpp"
+#include "helper_widget_intro.hpp"
 
 class IntroWidget: public QDialog{
     Q_OBJECT
@@ -39,11 +42,13 @@ private:
     QCheckBox *python;
     
     QPushButton *OK;
+    QToolButton *info;
     
     Radar *radar;
     
     void matlabClicked();
     void pythonClicked();
+    void infoClicked();
 };
 
 #endif
