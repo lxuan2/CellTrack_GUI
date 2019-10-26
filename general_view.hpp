@@ -5,14 +5,14 @@
 #include "video_view.hpp"
 #include "video_groupbox.hpp"
 #include "user_data.hpp"
-#include "control_panel_groupbox.hpp"
+#include "parameter_groupbox.hpp"
 
-class GeneralView: public QWidget{
+class GeneralViewMA: public QWidget{
     Q_OBJECT
 public:
     
     // Default constructor
-    GeneralView(QString app, UserData *data, LogView *log);
+    GeneralViewMA(LogView *log);
     
     QString getVideoPath();
     
@@ -45,7 +45,39 @@ private:
 
     // Group boxes
     VideoGroupBox *videoBox;
-    ControlPannel *controlBox;
+    ParameterMABox *controlBox;
+    RunGroupBox   *runBox;
+};
+
+class GeneralViewPy: public QWidget{
+    Q_OBJECT
+public:
+    
+    // Default constructor
+    GeneralViewPy(QString app, UserData *data, LogView *log);
+    
+    QString getVideoPath();
+    
+    QString getAppPath();
+    
+    void setResultVideo(QString path);
+    
+signals:
+    
+    void run();
+    
+private slots:
+    
+    void runDetected();
+    
+private:
+    
+    // Video widget
+    VideoView *videoView;
+
+    // Group boxes
+    VideoGroupBox *videoBox;
+    ParameterPyBox *controlBox;
     RunGroupBox   *runBox;
 };
 

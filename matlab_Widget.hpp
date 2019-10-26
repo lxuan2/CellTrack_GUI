@@ -27,13 +27,13 @@ private slots:
     
 private:
     
-    GeneralView *general;
+    GeneralViewMA *general;
     
     LogView *log;
     
     QTabWidget *tabView;
     
-    Core *core;
+    CoreMA *core;
     
     ProcessView *proView;
     

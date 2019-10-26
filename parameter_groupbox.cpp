@@ -1,6 +1,6 @@
-#include "control_panel_groupbox.hpp"
+#include "parameter_groupbox.hpp"
 
-ControlPannel::ControlPannel(LogView *l) {
+ParameterMABox::ParameterMABox(LogView *l) {
     log = l;
     setTitle("Parameters");
     maxCellSize = new QSpinBox();
@@ -54,22 +54,56 @@ ControlPannel::ControlPannel(LogView *l) {
     setLayout(layout);
 }
 
-int ControlPannel::maxSize() {
+int ParameterMABox::maxSize() {
     return maxCellSize->value();
 }
 
-int ControlPannel::minSize() {
+int ParameterMABox::minSize() {
     return minCellSize->value();
 }
 
-bool ControlPannel::isAreaChecked() {
+bool ParameterMABox::isAreaChecked() {
     return areaCheckbox->isChecked();
 }
 
-bool ControlPannel::isEccentricityChecked() {
+bool ParameterMABox::isEccentricityChecked() {
     return eccentricityChecbox->isChecked();
 }
 
-bool ControlPannel::isOrientationChecked() {
+bool ParameterMABox::isOrientationChecked() {
     return orientationCheckbox->isChecked();
+}
+
+ParameterPyBox::ParameterPyBox(UserData *data, LogView *l) {
+    log = l;
+    setTitle("Parameters");
+    widget = new QStackedWidget();
+    widget->setContentsMargins(0, 0, 0, 0);
+    
+    QLabel *description = new QLabel("The matched hidden parameters show here,\nwhen the source video is loaded. ");
+    description->setAlignment(Qt::AlignCenter);
+    
+    QLabel *error = new QLabel("There are no matched parameters with given video name.");
+    error->setAlignment(Qt::AlignCenter);
+    
+    list = new QList<QLabel*>();
+    QGridLayout * lay = new QGridLayout();
+    QLabel *parameter;
+    for (int i = 0; i < data->hidenVarModel().model.count(); i++) {
+        parameter = new QLabel(QString::number(i));
+        parameter->setAlignment(Qt::AlignCenter);
+        lay->addWidget(parameter, i % 10, i / 10, Qt::AlignCenter);
+        list->append(parameter);
+    }
+    QWidget *view = new QWidget();
+    view->setLayout(lay);
+    
+    widget->addWidget(description);
+    widget->addWidget(error);
+    widget->addWidget(view);
+    widget->setCurrentIndex(2);
+    auto *layout = new QVBoxLayout();
+    layout->addWidget(widget);
+    setLayout(layout);
+    setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
 }

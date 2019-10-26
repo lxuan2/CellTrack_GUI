@@ -1,15 +1,14 @@
 #include "core.hpp"
 
-Core::Core(QWidget *parent, GeneralView *gv, HiddenVarView *hv, LogView *lv){
+CoreMA::CoreMA(QWidget *parent, GeneralViewMA *gv, LogView *lv){
     general   = gv;
-    hiddenVar = hv;
     log       = lv;
     proView   = new ProcessView(parent);
     process   = new QProcess();
-    QObject::connect(process, &QProcess::errorOccurred, this, &Core::errorOccurred);
+    QObject::connect(process, &QProcess::errorOccurred, this, &CoreMA::errorOccurred);
 }
 
-void Core::runMatlab() {
+void CoreMA::runMatlab() {
     log->write("\n-- Start Analysis --\n");
     
     QFileInfo file(general->getVideoPath());
@@ -49,7 +48,7 @@ void Core::runMatlab() {
     //input: videoPath, videoName, maxSize, minSize, areaBool, eccentricityBool, orientationBool
     
     log->write("\n   Running MATLAB Code...\n");
-    QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
+    QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CoreMA::finishedMatlab);
     
     process->start(general->getAppPath());
     
@@ -59,9 +58,9 @@ void Core::runMatlab() {
     proView->start();
 }
 
-void Core::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
+void CoreMA::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
     // clear up everthing
-    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CoreMA::finishedMatlab);
     proView->stop();
     
     if (exitStatus == QProcess::CrashExit) {
@@ -95,8 +94,28 @@ void Core::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
     log->write("-- Finish Analysis --\n");
 }
 
+void CoreMA::errorOccurred(QProcess::ProcessError error) {
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CoreMA::finishedMatlab);
+    log->write("  Error: the analysis process crashes for unknown reasons.\n\n-- Finish Analysis --\n");
+    proView->stop();
+}
 
-void Core::runPython() {
+void CoreMA::stopProcess() {
+    process->kill();
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CoreMA::finishedMatlab);
+    log->write("Error: process canceled by user.\n\n-- Finish Analysis --\n");
+}
+
+CorePy::CorePy(QWidget *parent, GeneralViewPy *gv, HiddenVarView *hv, LogView *lv){
+    general   = gv;
+    hiddenVar = hv;
+    log       = lv;
+    proView   = new ProcessView(parent);
+    process   = new QProcess();
+    QObject::connect(process, &QProcess::errorOccurred, this, &CorePy::errorOccurred);
+}
+
+void CorePy::runPython() {
     log->write("\n-- Start Analysis --\n");
     
     // Check whether video file exists
@@ -111,19 +130,10 @@ void Core::runPython() {
     // Get parameters from General Tab
     QString videoPath = file.path();
     QString videoName = file.fileName();
-    QString maxSize   = QString::number(general->getMaxSize());
-    QString minSize   = QString::number(general->getMinSize());
-    QString areaString          = general->isAreaChecked()? "Yes": "No";
-    QString eccentricityString  = general->isEccentricityChecked()? "Yes": "No";
-    QString orientationString   = general->isOrientationChecked()? "Yes": "No";
     
     // Write parameters to Log
     log->write("   File path: " + videoPath);
     log->write("   File name: " + videoName);
-    log->write("   Cell size: max: " + maxSize + ", min: " + minSize);
-    log->write("   Area:         " + areaString);
-    log->write("   Eccentricity: " + eccentricityString);
-    log->write("   Orientation:  " + orientationString);
     auto hvPrintArgument = hiddenVar->getPrintArguments(videoName);
     for (int i = 0; i < hvPrintArgument.size(); i++) {
         log->write(hvPrintArgument[i]);
@@ -131,13 +141,13 @@ void Core::runPython() {
     
     // Pass parameters by arguments
     QStringList arguments;
-    arguments << general->getAppPath() << videoPath << videoName << maxSize << minSize << areaString << eccentricityString << orientationString << hiddenVar->getArguments(videoName);
+    arguments << general->getAppPath() << videoPath << videoName << hiddenVar->getArguments(videoName);
     
     // Run Python code
-    //input: videoPath, videoName, maxSize, minSize, areaString, areaString, eccentricityString, orientationString, etc
+    //input: videoPath, videoName, vars from template
     
     log->write("\n   Running Python Code...\n");
-    QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
+    QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CorePy::finishedPython);
     process->start("python3", arguments);
     
     /* Output:
@@ -145,9 +155,9 @@ void Core::runPython() {
     proView->start();
 }
 
-void Core::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
+void CorePy::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
     // clear up everthing
-    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CorePy::finishedPython);
     proView->stop();
     
     if (exitStatus == QProcess::CrashExit) {
@@ -182,16 +192,14 @@ void Core::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
     log->write("-- Finish Analysis --\n");
 }
 
-void Core::errorOccurred(QProcess::ProcessError error) {
-    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
-    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
+void CorePy::errorOccurred(QProcess::ProcessError error) {
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CorePy::finishedPython);
     log->write("  Error: the analysis process crashes for unknown reasons.\n\n-- Finish Analysis --\n");
     proView->stop();
 }
 
-void Core::stopProcess() {
+void CorePy::stopProcess() {
     process->kill();
-    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedMatlab);
-    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &Core::finishedPython);
+    QObject::disconnect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CorePy::finishedPython);
     log->write("Error: process canceled by user.\n\n-- Finish Analysis --\n");
 }

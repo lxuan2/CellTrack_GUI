@@ -29,7 +29,7 @@ private slots:
     
 private:
     
-    GeneralView *general;
+    GeneralViewPy *general;
     
     HiddenVarView *hiddenVar;
     
@@ -39,7 +39,7 @@ private:
     
     UserData data;
     
-    Core *core;
+    CorePy *core;
     
     ProcessView *proView;
     

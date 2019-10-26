@@ -9,11 +9,11 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     if (!data.loadJson())
         log->write("Error: fail to load user data from json file.");
     
-    general = new GeneralView("python", &data, log);
+    general = new GeneralViewPy("python", &data, log);
     hiddenVar = new HiddenVarView(&data, log);
     
-    core = new Core(this, general, hiddenVar, log);
-    QObject::connect(general, &GeneralView::run, core, &Core::runPython);
+    core = new CorePy(this, general, hiddenVar, log);
+    QObject::connect(general, &GeneralViewPy::run, core, &CorePy::runPython);
     
     switchButton = new QPushButton("Switch to Matlab Version");
     QObject::connect(switchButton, &QPushButton::clicked, this, &PythonWidget::closeWindow);

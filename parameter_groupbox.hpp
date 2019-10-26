@@ -9,17 +9,18 @@
 #include <QGroupBox>
 #include <QPushButton>
 #include <QMediaPlayer>
+#include <QStackedWidget>
 
 #include "log_view.hpp"
 #include "run_groupbox.hpp"
 
-class ControlPannel: public QGroupBox
+class ParameterMABox: public QGroupBox
 {
     Q_OBJECT
 public:
     
     // Default constructor
-    ControlPannel(LogView *l);
+    ParameterMABox(LogView *l);
     
     // Max cell size in the spinbox
     int maxSize();
@@ -46,6 +47,24 @@ private:
     QCheckBox *areaCheckbox;
     QCheckBox *eccentricityChecbox;
     QCheckBox *orientationCheckbox;
+    
+    // Log widget
+    LogView *log;
+};
+
+class ParameterPyBox: public QGroupBox
+{
+    Q_OBJECT
+public:
+    
+    // Default constructor
+    ParameterPyBox(UserData *data, LogView *l);
+    
+private:
+    
+    QStackedWidget *widget;
+    
+    QList<QLabel*> *list;
     
     // Log widget
     LogView *log;

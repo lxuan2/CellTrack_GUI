@@ -1,15 +1,15 @@
 #include "general_view.hpp"
-GeneralView::GeneralView(QString app, UserData *data, LogView *log){
+GeneralViewMA::GeneralViewMA(LogView *log){
     
     // Widget initialize
     videoView = new VideoView();
     
     // Groupbox initialize
-    runBox     = new RunGroupBox(app, data, log);
-    videoBox   = new VideoGroupBox(videoView, runBox, log, app, data);
-    controlBox = new ControlPannel(log);
+    runBox     = new RunGroupBox("matlab", nullptr, log);
+    videoBox   = new VideoGroupBox(videoView, runBox, log, "matlab", nullptr);
+    controlBox = new ParameterMABox(log);
     
-    QObject::connect(runBox, &RunGroupBox::run, this, &GeneralView::runDetected);
+    QObject::connect(runBox, &RunGroupBox::run, this, &GeneralViewMA::runDetected);
     
     // Widget layout initialize
     auto layout = new QGridLayout();
@@ -20,40 +20,79 @@ GeneralView::GeneralView(QString app, UserData *data, LogView *log){
     setLayout(layout);
 }
 
-void GeneralView::runDetected() {
+void GeneralViewMA::runDetected() {
     videoBox->play(false);
     emit run();
 }
 
-QString GeneralView::getVideoPath() {
+QString GeneralViewMA::getVideoPath() {
     return videoBox->finderFilePath();
 }
 
-int GeneralView::getMaxSize() {
+int GeneralViewMA::getMaxSize() {
     return controlBox->maxSize();
 }
 
-int GeneralView::getMinSize() {
+int GeneralViewMA::getMinSize() {
     return controlBox->minSize();
 }
 
-bool GeneralView::isAreaChecked() {
+bool GeneralViewMA::isAreaChecked() {
     return controlBox->isAreaChecked();
 }
 
-bool GeneralView::isEccentricityChecked() {
+bool GeneralViewMA::isEccentricityChecked() {
     return controlBox->isEccentricityChecked();
 }
 
-bool GeneralView::isOrientationChecked() {
+bool GeneralViewMA::isOrientationChecked() {
     return controlBox->isOrientationChecked();
 }
 
-QString GeneralView::getAppPath() {
+QString GeneralViewMA::getAppPath() {
     return runBox->getAppPath();
 }
 
-void GeneralView::setResultVideo(QString path) {
+void GeneralViewMA::setResultVideo(QString path) {
+    runBox->updateRes(path);
+    videoBox->setResultPath(path);
+}
+
+GeneralViewPy::GeneralViewPy(QString app, UserData *data, LogView *log){
+    
+    // Widget initialize
+    videoView = new VideoView();
+    
+    // Groupbox initialize
+    runBox     = new RunGroupBox("python", data, log);
+    videoBox   = new VideoGroupBox(videoView, runBox, log, "python", data);
+    controlBox = new ParameterPyBox(data, log);
+    
+    QObject::connect(runBox, &RunGroupBox::run, this, &GeneralViewPy::runDetected);
+    
+    // Widget layout initialize
+    auto layout = new QGridLayout();
+    layout->addWidget(videoView, 0, 0);
+    layout->addWidget(videoBox, 1, 0);
+    layout->addWidget(controlBox, 0, 1);
+    layout->addWidget(runBox, 1, 1);
+    setLayout(layout);
+}
+
+void GeneralViewPy::runDetected() {
+    videoBox->play(false);
+    emit run();
+}
+
+QString GeneralViewPy::getVideoPath() {
+    return videoBox->finderFilePath();
+}
+
+QString GeneralViewPy::getAppPath() {
+    return runBox->getAppPath();
+}
+
+void GeneralViewPy::setResultVideo(QString path) {
     runBox->updateRes(path);
     videoBox->setResultPath(path);
 }

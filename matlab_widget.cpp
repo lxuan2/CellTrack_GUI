@@ -5,10 +5,10 @@ MatlabWidget::MatlabWidget(QWidget *parent):QWidget(parent){
     // Initialize tab views
     proView = nullptr;
     log = new LogView();
-    general = new GeneralView("matlab", nullptr, log);
+    general = new GeneralViewMA(log);
     
-    core = new Core(this, general, nullptr, log);
-    QObject::connect(general, &GeneralView::run, core, &Core::runMatlab);
+    core = new CoreMA(this, general, log);
+    QObject::connect(general, &GeneralViewMA::run, core, &CoreMA::runMatlab);
     
     tabView = new QTabWidget();
     tabView->addTab(general, "General");

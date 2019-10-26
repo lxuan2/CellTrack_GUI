@@ -11,7 +11,7 @@ add_executable(CellTrack main.cpp
 	matlab_widget.hpp  matlab_widget.cpp
 	video_view.hpp     video_view.cpp
 	video_groupbox.hpp video_groupbox.cpp
-	control_panel_groupbox.hpp control_panel_groupbox.cpp
+	parameter_groupbox.hpp parameter_groupbox.cpp
 	file_combobox.hpp  file_combobox.cpp
 	log_view.hpp       log_view.cpp
 	core.hpp           core.cpp

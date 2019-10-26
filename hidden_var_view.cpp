@@ -21,30 +21,34 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     QGridLayout *lay = new QGridLayout();
     StrVarItem *itt;
     DoubleVarItem *ittt;
+    int count = 0;
     for(auto i : model.model){
         switch (i.second) {
             case DataType::StringType:
                 itt = new StrVarItem(i.first, "");
                 strList.push_back(itt);
                 QObject::connect(itt, &StrVarItem::valueChanged, this, &HiddenVarView::strParameterChanged);
-                lay->addWidget(itt->nameLabel, xCoordinate, 0, Qt::AlignRight);
-                lay->addWidget(itt->valueBox, xCoordinate, 1, 1, 2, Qt::AlignLeft);
+                lay->addWidget(itt->nameLabel, xCoordinate, (count / 10) * 3, Qt::AlignRight);
+                lay->addWidget(itt->valueBox, xCoordinate, (count / 10) * 3 + 1, 1, 2, Qt::AlignLeft);
                 xCoordinate++;
+                xCoordinate %= 10;
                 break;
 
             case DataType::DoubleType:
                 ittt = new DoubleVarItem(i.first, 0.0);
                 doubleList.push_back(ittt);
                 QObject::connect(doubleList.last(), &DoubleVarItem::valueChanged, this, &HiddenVarView::doubleParameterChanged);
-                lay->addWidget(doubleList.last()->nameLabel, xCoordinate, 0, Qt::AlignRight);
-                lay->addWidget(doubleList.last()->valueBox, xCoordinate, 1, 1, 2, Qt::AlignLeft);
+                lay->addWidget(doubleList.last()->nameLabel, xCoordinate, (count / 10) * 3, Qt::AlignRight);
+                lay->addWidget(doubleList.last()->valueBox, xCoordinate, (count / 10) * 3 + 1, 1, 2, Qt::AlignLeft);
                 xCoordinate++;
+                xCoordinate %= 10;
                 break;
 
             default:
                 log->write("Error: DataType does not exist.");
                 break;
         }
+        count++;
     }
     
     group = new QGroupBox();

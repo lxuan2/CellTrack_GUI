@@ -1,5 +1,5 @@
 #include "run_groupbox.hpp"
-#include <iostream>
+
 RunGroupBox::RunGroupBox(QString app, UserData *data, LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N/A"){
     log = l;
     setTitle("Run");

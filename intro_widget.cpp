@@ -2,6 +2,9 @@
 #include "process_view.hpp"
 #include <QDebug>
 IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
+    #ifndef __APPLE__
+    setContentsMargins(9, 0, 15, 13);
+    #endif
     // Title Label
     radar = new Radar();
     QLabel *title = new QLabel("Welcome to CellTrack_GUI app.");
@@ -51,13 +54,9 @@ IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
     auto layout = new QGridLayout();
     layout->addWidget(radar, 0, 0, Qt::AlignCenter);
     layout->addWidget(group, 0, 1, Qt::AlignCenter);
-    #ifndef __APPLE__
-    layout->addWidget(new QLabel(), 1, 1, Qt::AlignCenter);
-    layout->addWidget(new QLabel("    "), 0, 2, Qt::AlignCenter);
-    #endif
+    layout->setHorizontalSpacing(14);
     setLayout(layout);
     setFixedSize(sizeHint());
-    
     radar->start();
 }
 
