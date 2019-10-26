@@ -9,7 +9,7 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     if (!data.loadJson())
         log->write("Error: fail to load user data from json file.");
     
-    general = new GeneralView(log);
+    general = new GeneralView("python", log);
     hiddenVar = new HiddenVarView(&data, log);
     
     core = new Core(this, general, hiddenVar, log);

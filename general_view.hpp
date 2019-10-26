@@ -11,7 +11,7 @@ class GeneralView: public QWidget{
 public:
     
     // Default constructor
-    GeneralView(LogView *log);
+    GeneralView(QString app, LogView *log);
     
     QString getVideoPath();
     

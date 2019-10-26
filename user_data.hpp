@@ -20,7 +20,6 @@ struct HVarSet {
 
 // User Preference Data Model
 struct UPref {
-    bool autoLoadParameter;
     bool rmWithoutAsk;
 };
 
@@ -57,8 +56,6 @@ public:
     void setHiddenVariable(int currentRow, int index, double value);
     
     void setHiddenVariableStr(int currentRow, int index, QString value);
-    
-    void setAutoLoad(bool i);
     
     void setRmWithoutAsk(bool i);
     

@@ -1,11 +1,11 @@
 #include "general_view.hpp"
-GeneralView::GeneralView(LogView *log){
+GeneralView::GeneralView(QString app, LogView *log){
     
     // Widget initialize
     videoView = new VideoView();
     
     // Groupbox initialize
-    runBox     = new RunGroupBox(log);
+    runBox     = new RunGroupBox(app, log);
     videoBox   = new VideoGroupBox(videoView, runBox, log);
     controlBox = new ControlPannel(log);
     

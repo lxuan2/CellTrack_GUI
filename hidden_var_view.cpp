@@ -1,11 +1,5 @@
 #include "hidden_var_view.hpp"
 
-/*
-**************************************
-MARK: - Once changing parameters, update this function
-**************************************
-*/
-
 HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     data = d;
     log = l;
@@ -62,9 +56,6 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     it.setPointSize(11);
     title->setFont(it);
     
-    autoLoadCheckBox = new QCheckBox("Always apply hidden parameters if the name matches");
-    QObject::connect(autoLoadCheckBox, &QCheckBox::stateChanged, this, &HiddenVarView::autoLoadClicked);
-    
     rmWithoutAskCheckBox = new QCheckBox("Do not ask verification for remove operation");
     QObject::connect(rmWithoutAskCheckBox, &QCheckBox::stateChanged, this, &HiddenVarView::rmWithoutAskClicked);
     
@@ -74,10 +65,9 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     layout->addWidget(list, 1, 0, 18, 2);
     layout->addWidget(addButton, 19, 0);
     layout->addWidget(removeButton, 19, 1);
-    layout->addWidget(rmWithoutAskCheckBox, 19, 4, 1, 4);
     layout->addWidget(discardAllBT, 20, 0, 1, 2);
     layout->addWidget(showInFolderBT, 20, 8);
-    layout->addWidget(autoLoadCheckBox, 20, 4, 1, 4);
+    layout->addWidget(rmWithoutAskCheckBox, 20, 4, 1, 4);
     setLayout(layout);
     
     // Load presetting parameters to the screen
@@ -144,11 +134,6 @@ QStringList HiddenVarView::getPrintArguments(QString &filename) {
     return arguments;
 }
 
-/*
-**************************************
-MARK: - Once changing parameters, update this function
-**************************************
-*/
 void HiddenVarView::updateParameter(int currentRow) {
     group->setDisabled(false);
     HVarSet set = data->hiddenVariable(currentRow);
@@ -264,10 +249,6 @@ void HiddenVarView::discardAllBTClicked() {
         updateParameter(0);
 }
 
-void HiddenVarView::autoLoadClicked(int state) {
-    data->setAutoLoad(autoLoadCheckBox->isChecked());
-}
-
 void HiddenVarView::rmWithoutAskClicked(int state) {
     data->setRmWithoutAsk(rmWithoutAskCheckBox->isChecked());
 }
@@ -296,7 +277,6 @@ void HiddenVarView::addItem(QString name) {
 }
 
 void HiddenVarView::loadParameters() {
-    autoLoadCheckBox->setChecked(data->userPreference().autoLoadParameter);
     rmWithoutAskCheckBox->setChecked(data->userPreference().rmWithoutAsk);
     if (data->hiddenVarList().size() == 0)
         return group->setDisabled(true);

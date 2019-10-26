@@ -1,10 +1,13 @@
 #include "run_groupbox.hpp"
 #include <iostream>
-RunGroupBox::RunGroupBox(LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N/A"){
+RunGroupBox::RunGroupBox(QString app, LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N/A"){
     log = l;
     setTitle("Run");
     
-    finder = new FileFinder("C#");
+    if (app == "matlab")
+        finder = new FileFinder("C#");
+    else
+        finder = new FileFinder("Script");
     QObject::connect(finder, &FileFinder::contentChanged, this, &RunGroupBox::loadCsharp);
     
     analyzeButton = new QPushButton("Start Analysis");
@@ -21,7 +24,11 @@ RunGroupBox::RunGroupBox(LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N
     appApply->setPixmap(cancelPixmap);
     
     QLabel *videoLabel = new QLabel("Source File:");
-    QLabel *cSharpLabel = new QLabel("C# Application:");
+    QLabel *cSharpLabel;
+    if (app == "matlab")
+        cSharpLabel = new QLabel("C# Application:");
+    else
+        cSharpLabel = new QLabel("Python Script:");
     QLabel *resultLabel = new QLabel("Result:");
     
     sourceName = new QLabel(srcPath);

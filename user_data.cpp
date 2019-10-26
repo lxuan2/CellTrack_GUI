@@ -51,25 +51,16 @@ UPref UserData::userPreference() {
 }
 
 void UserData::clear() {
-    pref.autoLoadParameter = true;
     pref.rmWithoutAsk = false;
     hVarList.clear();
 }
 
-/*
-**************************************
-MARK: - Once changing parameters, update this function
-**************************************
-*/
  bool UserData::read(const QJsonObject &json) {
      bool pass = true;
      
      // Read User Preference
      if (json.contains("UserPreference") && json["UserPreference"].isObject()) {
          QJsonObject obj = json["UserPreference"].toObject();
-         if (obj.contains("autoLoadParameter") && obj["autoLoadParameter"].isBool())
-             pref.autoLoadParameter = obj["autoLoadParameter"].toBool();
-         else pass = false;
          if (obj.contains("rmWithoutAsk") && obj["rmWithoutAsk"].isBool())
              pref.rmWithoutAsk = obj["rmWithoutAsk"].toBool();
          else pass = false;
@@ -123,11 +114,6 @@ MARK: - Once changing parameters, update this function
      return pass;
 }
 
-/*
-**************************************
-MARK: - Once changing parameters, update this function
-**************************************
-*/
 void UserData::write(QJsonObject &json) {
     QJsonObject commentObject;
     commentObject["0_Overview"] = "The Json file needs contain three things: Template, HiddenVariable and UserPreference.";
@@ -181,16 +167,10 @@ void UserData::write(QJsonObject &json) {
     json["HiddenVariable"] = array;
     
     QJsonObject prefObject;
-    prefObject["autoLoadParameter"] = pref.autoLoadParameter;
     prefObject["rmWithoutAsk"] = pref.rmWithoutAsk;
     json["UserPreference"] = prefObject;
 }
 
-/*
-**************************************
-MARK: - Once changing parameters, update this function
-**************************************
-*/
 void UserData::setHiddenVariable(int currentRow, int index, double value) {
     auto set = hVarList.at(currentRow);
     set.doubleList.replace(index, value);
@@ -203,19 +183,10 @@ void UserData::setHiddenVariableStr(int currentRow, int index, QString value) {
     hVarList.replace(currentRow, set);
 }
 
-void UserData::setAutoLoad(bool i) {
-    pref.autoLoadParameter = i;
-}
-
 void UserData::setRmWithoutAsk(bool i) {
     pref.rmWithoutAsk = i;
 }
 
-/*
-**************************************
-MARK: - Once changing parameters, update this function
-**************************************
-*/
 void UserData::addHiddenVariable(QString filename) {
     HVarSet set;
     for(auto i : model.model){

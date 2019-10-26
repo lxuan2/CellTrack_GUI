@@ -14,7 +14,7 @@ class RunGroupBox: public QGroupBox
 public:
     
     // Default constructor
-    RunGroupBox(LogView *l);
+    RunGroupBox(QString app, LogView *l);
     
     QString getAppPath();
 

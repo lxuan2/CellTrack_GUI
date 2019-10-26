@@ -45,19 +45,12 @@ private slots:
     
     void discardAllBTClicked();
     
-    void autoLoadClicked(int state);
-    
     void rmWithoutAskClicked(int state);
     
 private:
     
     LogView * log;
     
-    /*
-    **************************************
-    MARK: - Once changing parameters, update these variables
-    **************************************
-    */
     QList<StrVarItem*> strList;
     QList<DoubleVarItem*> doubleList;
     
@@ -74,7 +67,6 @@ private:
     QPushButton * discardAllBT;
     
     // Checkboxes
-    QCheckBox * autoLoadCheckBox;
     QCheckBox * rmWithoutAskCheckBox;
     
     // Helper Function
