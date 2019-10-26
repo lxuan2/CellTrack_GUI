@@ -21,6 +21,8 @@ public:
     // Read Content
     QString currentText();
     
+    void setText(QString text);
+    
 private slots:
     
     // Browse button function

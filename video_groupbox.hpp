@@ -23,7 +23,7 @@ class VideoGroupBox: public QGroupBox {
 public:
     
     // Default constructor
-    VideoGroupBox(VideoView *out = nullptr, RunGroupBox *run = nullptr, LogView *l = nullptr);
+    VideoGroupBox(VideoView *out, RunGroupBox *run, LogView *l, QString app, UserData *data);
     
     // Destructor
     ~VideoGroupBox();

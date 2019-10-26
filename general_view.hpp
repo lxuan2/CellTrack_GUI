@@ -4,6 +4,7 @@
 #include "log_view.hpp"
 #include "video_view.hpp"
 #include "video_groupbox.hpp"
+#include "user_data.hpp"
 #include "control_panel_groupbox.hpp"
 
 class GeneralView: public QWidget{
@@ -11,7 +12,7 @@ class GeneralView: public QWidget{
 public:
     
     // Default constructor
-    GeneralView(QString app, LogView *log);
+    GeneralView(QString app, UserData *data, LogView *log);
     
     QString getVideoPath();
     

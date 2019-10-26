@@ -5,7 +5,7 @@ MatlabWidget::MatlabWidget(QWidget *parent):QWidget(parent){
     // Initialize tab views
     proView = nullptr;
     log = new LogView();
-    general = new GeneralView("matlab", log);
+    general = new GeneralView("matlab", nullptr, log);
     
     core = new Core(this, general, nullptr, log);
     QObject::connect(general, &GeneralView::run, core, &Core::runMatlab);

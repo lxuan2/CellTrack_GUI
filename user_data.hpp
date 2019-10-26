@@ -21,6 +21,8 @@ struct HVarSet {
 // User Preference Data Model
 struct UPref {
     bool rmWithoutAsk;
+    QString Pysource;
+    QString Pyprogram;
 };
 
 // User Data Model
@@ -58,6 +60,10 @@ public:
     void setHiddenVariableStr(int currentRow, int index, QString value);
     
     void setRmWithoutAsk(bool i);
+    
+    void setPysource(QString str);
+    
+    void setPyprogram(QString str);
     
 private:
     

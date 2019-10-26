@@ -9,7 +9,7 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     if (!data.loadJson())
         log->write("Error: fail to load user data from json file.");
     
-    general = new GeneralView("python", log);
+    general = new GeneralView("python", &data, log);
     hiddenVar = new HiddenVarView(&data, log);
     
     core = new Core(this, general, hiddenVar, log);
@@ -38,6 +38,8 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
 }
 
 void PythonWidget::closeEvent(QCloseEvent *event) {
+    data.setPysource(general->getVideoPath());
+    data.setPyprogram(general->getAppPath());
     if(!data.saveJson())
         log->write("Error: Fail to save data into the json file.");
     QWidget::closeEvent(event);

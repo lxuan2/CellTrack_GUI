@@ -38,3 +38,7 @@ void FileFinder::checkEmpty() {
         return;
     emit contentChanged();
 }
+
+void FileFinder::setText(QString text) {
+    fileBox->setEditText(text);
+}

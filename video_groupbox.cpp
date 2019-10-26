@@ -1,6 +1,6 @@
 #include "video_groupbox.hpp"
 
-VideoGroupBox::VideoGroupBox(VideoView *out, RunGroupBox *run, LogView *l) {
+VideoGroupBox::VideoGroupBox(VideoView *out, RunGroupBox *run, LogView *l, QString app, UserData *data) {
     log = l;
     setTitle("Video");
     QObject::connect(this, &VideoGroupBox::adaptToView, out, &::VideoView::adaptToView);
@@ -38,6 +38,8 @@ VideoGroupBox::VideoGroupBox(VideoView *out, RunGroupBox *run, LogView *l) {
     
     finder = new FileFinder("Source");
     QObject::connect(finder, &FileFinder::contentChanged, this, &VideoGroupBox::loadOriginal);
+    if (app == "python")
+        finder->setText(data->userPreference().Pysource);
     
     QLabel *playLabel = new QLabel("Start/Stop:");
     QLabel *volumeLabel = new QLabel("Volume:");

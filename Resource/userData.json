@@ -1,7 +1,13 @@
 {
-    "hiddenVariable": [
+    "CommentThatCanbeDelete": {
+        "0_Overview": "The Json file needs contain three things: Template, HiddenVariable and UserPreference.",
+        "1_Template": "Template is the template for hidden variables. You need specify what is included in each HiddenVariable object. Note that 'filename' must be included.",
+        "2_HiddenVariable": "HiddenVariable is a JSON array. Each object in the array contains all necessary hidden variables, which are passed to python script as arguments. Note that 'filename' is the identifier for matching videos.",
+        "3_UserPreference": "UserPreference contains all user preference settings. For example, if you check 'Always apply hidden parameters if the name matches' in hidden variable tab, it is recorded for next time use."
+    },
+    "HiddenVariable": [
         {
-            "fileName": "Village.avi",
+            "filename": "Village.avi",
             "parameter0": 100,
             "parameter1": 100.1,
             "parameter2": 100.2,
@@ -12,7 +18,7 @@
             "parameter7": 100.7
         },
         {
-            "fileName": "overwatch.avi",
+            "filename": "overwatch.avi",
             "parameter0": 100,
             "parameter1": 100.11,
             "parameter2": 100.22,
@@ -23,7 +29,7 @@
             "parameter7": 100.77
         },
         {
-            "fileName": "epic.avi",
+            "filename": "epic.avi",
             "parameter0": 100,
             "parameter1": 100.111,
             "parameter2": 100.222,
@@ -34,7 +40,7 @@
             "parameter7": 100.777
         },
         {
-            "fileName": "freedom.avi",
+            "filename": "freedom.avi",
             "parameter0": 100,
             "parameter1": 100.1111,
             "parameter2": 100.2222,
@@ -43,10 +49,33 @@
             "parameter5": 100.5555,
             "parameter6": 100.6666,
             "parameter7": 100.7777
+        },
+        {
+            "filename": "cyto_data1.mp4",
+            "parameter0": 0,
+            "parameter1": 1,
+            "parameter2": 2,
+            "parameter3": 3,
+            "parameter4": 4,
+            "parameter5": 5,
+            "parameter6": 6,
+            "parameter7": 7
         }
     ],
-    "userPreference": {
-        "autoLoadParameter": true,
+    "Template": {
+        "filename": "",
+        "parameter0": 0,
+        "parameter1": 0,
+        "parameter2": 0,
+        "parameter3": 0,
+        "parameter4": 0,
+        "parameter5": 0,
+        "parameter6": 0,
+        "parameter7": 0
+    },
+    "UserPreference": {
+        "Pyprogram": "/Users/xuanli/Desktop/test.py",
+        "Pysource": "/Users/xuanli/Documents/cyto_data1.mp4",
         "rmWithoutAsk": false
     }
 }

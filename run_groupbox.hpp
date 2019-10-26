@@ -7,6 +7,7 @@
 #include "log_view.hpp"
 #include "log_preview.hpp"
 #include "file_finder.hpp"
+#include "user_data.hpp"
 
 class RunGroupBox: public QGroupBox
 {
@@ -14,7 +15,7 @@ class RunGroupBox: public QGroupBox
 public:
     
     // Default constructor
-    RunGroupBox(QString app, LogView *l);
+    RunGroupBox(QString app, UserData *data, LogView *l);
     
     QString getAppPath();
 

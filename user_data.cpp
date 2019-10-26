@@ -52,6 +52,8 @@ UPref UserData::userPreference() {
 
 void UserData::clear() {
     pref.rmWithoutAsk = false;
+    pref.Pysource = "";
+    pref.Pyprogram = "";
     hVarList.clear();
 }
 
@@ -63,6 +65,12 @@ void UserData::clear() {
          QJsonObject obj = json["UserPreference"].toObject();
          if (obj.contains("rmWithoutAsk") && obj["rmWithoutAsk"].isBool())
              pref.rmWithoutAsk = obj["rmWithoutAsk"].toBool();
+         else pass = false;
+         if (obj.contains("Pysource") && obj["Pysource"].isString())
+             pref.Pysource = obj["Pysource"].toString();
+         else pass = false;
+         if (obj.contains("Pyprogram") && obj["Pyprogram"].isString())
+             pref.Pyprogram = obj["Pyprogram"].toString();
          else pass = false;
      }else pass = false;
      
@@ -168,6 +176,8 @@ void UserData::write(QJsonObject &json) {
     
     QJsonObject prefObject;
     prefObject["rmWithoutAsk"] = pref.rmWithoutAsk;
+    prefObject["Pysource"] = pref.Pysource;
+    prefObject["Pyprogram"] = pref.Pyprogram;
     json["UserPreference"] = prefObject;
 }
 
@@ -185,6 +195,14 @@ void UserData::setHiddenVariableStr(int currentRow, int index, QString value) {
 
 void UserData::setRmWithoutAsk(bool i) {
     pref.rmWithoutAsk = i;
+}
+
+void UserData::setPysource(QString str) {
+    pref.Pysource = str;
+}
+
+void UserData::setPyprogram(QString str) {
+    pref.Pyprogram = str;
 }
 
 void UserData::addHiddenVariable(QString filename) {

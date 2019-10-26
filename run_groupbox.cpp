@@ -1,14 +1,13 @@
 #include "run_groupbox.hpp"
 #include <iostream>
-RunGroupBox::RunGroupBox(QString app, LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N/A"){
+RunGroupBox::RunGroupBox(QString app, UserData *data, LogView *l): srcPath("N/A"), appPath("N/A"), resPath("N/A"){
     log = l;
     setTitle("Run");
     
-    if (app == "matlab")
-        finder = new FileFinder("C#");
-    else
-        finder = new FileFinder("Script");
+    finder = (app == "matlab")? new FileFinder("C#") : new FileFinder("Script");
     QObject::connect(finder, &FileFinder::contentChanged, this, &RunGroupBox::loadCsharp);
+    if (app == "python")
+        finder->setText(data->userPreference().Pyprogram);
     
     analyzeButton = new QPushButton("Start Analysis");
     QObject::connect(analyzeButton, &QPushButton::clicked, this, &RunGroupBox::analyzeButtonClicked);

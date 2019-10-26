@@ -1,12 +1,12 @@
 #include "general_view.hpp"
-GeneralView::GeneralView(QString app, LogView *log){
+GeneralView::GeneralView(QString app, UserData *data, LogView *log){
     
     // Widget initialize
     videoView = new VideoView();
     
     // Groupbox initialize
-    runBox     = new RunGroupBox(app, log);
-    videoBox   = new VideoGroupBox(videoView, runBox, log);
+    runBox     = new RunGroupBox(app, data, log);
+    videoBox   = new VideoGroupBox(videoView, runBox, log, app, data);
     controlBox = new ControlPannel(log);
     
     QObject::connect(runBox, &RunGroupBox::run, this, &GeneralView::runDetected);
