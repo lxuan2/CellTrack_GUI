@@ -22,7 +22,7 @@ ProcessView::ProcessView(QWidget *parent): QDialog(parent) {
     layout->addWidget(cancel);
     setLayout(layout);
     
-    // set black background
+    // set white background
     QPalette pal = palette();
     pal.setColor(QPalette::Background, Qt::white);
     setAutoFillBackground(true);

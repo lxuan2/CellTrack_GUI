@@ -46,7 +46,6 @@ IntroWidget::IntroWidget(QWidget *parent): QWidget(parent) {
     lay->addWidget(checkboxes, 3, 0);
     lay->addWidget(OK, 4, 0, Qt::AlignRight);
     group->setLayout(lay);
-    //group->setStyleSheet("padding-top:15px; margin-top:-15px");
     
     // Widget layout initialize
     auto layout = new QGridLayout();
@@ -96,6 +95,6 @@ void IntroWidget::pythonClicked() {
 }
 
 void IntroWidget::infoClicked() {
-    HelperWidget dialog;
+    HelperWidget dialog("intro");
     dialog.exec();
 }

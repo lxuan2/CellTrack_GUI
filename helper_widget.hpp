@@ -10,6 +10,9 @@
 
 #include <QDialog>
 #include <QLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QGroupBox>
 #include <QApplication>
 
 class HelperWidget: public QDialog {
@@ -17,7 +20,25 @@ class HelperWidget: public QDialog {
 public:
     
     // Default Constructor
-    HelperWidget();
+    HelperWidget(QString name);
+    
+private:
+    
+    QGroupBox *group;
+    
+    QPushButton *done;
+    
+    void createIntro();
+    
+    void createPyGeneral();
+    
+    void createPyHidden();
+    
+    void createMaGeneral();
+    
+    void createLog();
+    
+    void createError();
 };
 
 #endif /* helper_widget_intro_hpp */

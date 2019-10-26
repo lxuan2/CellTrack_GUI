@@ -6,6 +6,7 @@
 
 #include "core.hpp"
 #include "process_view.hpp"
+#include "helper_widget.hpp"
 
 class MatlabWidget: public QWidget{
     Q_OBJECT
@@ -22,17 +23,23 @@ private slots:
     
     void closeWindow();
     
+    void infoClicked();
+    
 private:
     
     GeneralView *general;
     
     LogView *log;
     
+    QTabWidget *tabView;
+    
     Core *core;
     
     ProcessView *proView;
     
     QPushButton *switchButton;
+    
+    QToolButton *infoButton;
     
     void closeEvent(QCloseEvent *event);
 };

@@ -35,6 +35,8 @@ private:
     
     LogView *log;
     
+    QTabWidget *tabView;
+    
     UserData data;
     
     Core *core;

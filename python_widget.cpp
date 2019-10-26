@@ -23,7 +23,7 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     infoButton->setStyleSheet("border-radius: 13px");
     QObject::connect(infoButton, &QPushButton::clicked, this, &PythonWidget::infoClicked);
     
-    QTabWidget *tabView = new QTabWidget();
+    tabView = new QTabWidget();
     tabView->addTab(general, "General");
     tabView->addTab(hiddenVar, "Hidden Parameters");
     tabView->addTab(log, "Log History");
@@ -49,6 +49,20 @@ void PythonWidget::closeWindow() {
 }
 
 void PythonWidget::infoClicked() {
-    HelperWidget dialog;
-    dialog.exec();
+    QDialog *dialog;
+    switch (tabView->currentIndex()) {
+        case 0:
+            dialog = new HelperWidget("py_general");
+            break;
+        case 1:
+            dialog = new HelperWidget("py_hidden");
+            break;
+        case 2:
+            dialog = new HelperWidget("log");
+            break;
+        default:
+            dialog = new HelperWidget("");
+            break;
+    }
+    dialog->exec();
 }
