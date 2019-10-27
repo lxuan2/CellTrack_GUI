@@ -10,7 +10,7 @@ HiddenVarView::HiddenVarView(UserData *d, LogView * l): strList(), doubleList(){
     QObject::connect(addButton, &QPushButton::clicked, this, &HiddenVarView::addButtonClicked);
     removeButton = new QPushButton("Remove");
     QObject::connect(removeButton, &QPushButton::clicked, this, &HiddenVarView::removeButtonClicked);
-    showInFolderBT = new QPushButton("Show in Folder");
+    showInFolderBT = new QPushButton("Show userData.json in Folder");
     QObject::connect(showInFolderBT, &QPushButton::clicked, this, &HiddenVarView::showInFolderClicked);
     discardAllBT = new QPushButton("Discard All Changes");
     QObject::connect(discardAllBT, &QPushButton::clicked, this, &HiddenVarView::discardAllBTClicked);
@@ -163,8 +163,10 @@ void HiddenVarView::strParameterChanged(StrVarItem *param) {
     data->setHiddenVariableStr(list->currentRow(), strList.indexOf(param), param->valueBox->text());
     
     // If file name is changed, update name in the list
-    if (strList.indexOf(param) == 0)
+    if (strList.indexOf(param) == 0) {
         list->currentItem()->setText(param->valueBox->text());
+        emit reloadParam();
+    }
 }
 
 /*###########################################
@@ -176,6 +178,7 @@ void HiddenVarView::addButtonClicked() {
     data->addHiddenVariable(newFileName);
     addItem(newFileName);
     list->setCurrentRow(list->count() - 1);
+    emit reloadParam();
 }
 
 void HiddenVarView::removeButtonClicked() {
@@ -183,8 +186,8 @@ void HiddenVarView::removeButtonClicked() {
     int ret = QMessageBox::Yes;
     if (!rmWithoutAskCheckBox->isChecked()) {
         QMessageBox msgBox;
-        msgBox.setText("Remove operation detected.");
-        msgBox.setInformativeText("Do you want to remove the current item from the list?");
+        msgBox.setText("Remove Operation Detected.");
+        msgBox.setInformativeText("Do you want to remove the current parameter set from the list?");
         msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
         msgBox.setDefaultButton(QMessageBox::NoButton);
         msgBox.setIcon(QMessageBox::Warning);
@@ -221,6 +224,7 @@ void HiddenVarView::removeButtonClicked() {
             list->setCurrentRow(row - 1);
         updateParameter(list->currentRow());
         QObject::connect(list, &QListWidget::currentRowChanged, this, &HiddenVarView::updateParameter);
+        emit reloadParam();
     }
 }
 
@@ -288,4 +292,16 @@ void HiddenVarView::loadParameters() {
         addItem(i.strList.at(0));
     }
     list->setCurrentRow(0);
+}
+
+int HiddenVarView::getParameterNum() {
+    return strList.count() + doubleList.count();
+}
+
+bool HiddenVarView::isMatched(QString name) {
+    for (int i = 0; i < list->count(); i++) {
+        if (list->item(i)->text() == name)
+            return true;
+    }
+    return false;
 }

@@ -48,6 +48,9 @@ public slots:
     // Start or stop the player
     bool play(bool ans);
     
+    // Load Original Video to player
+    void loadOriginal();
+    
 private slots:
     
     // Set playback postion
@@ -55,9 +58,6 @@ private slots:
     
     // Set video duration
     void setDuration(qint64 duration);
-    
-    // Load Original Video to player
-    void loadOriginal();
     
     // Load Result Video to player
     void loadResult();

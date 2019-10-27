@@ -29,6 +29,14 @@ public:
     
     QStringList getPrintArguments(QString &filename);
     
+    int getParameterNum();
+    
+    bool isMatched(QString name);
+    
+signals:
+    
+    void reloadParam();
+    
 private slots:
     
     void updateParameter(int currentRow);

@@ -9,8 +9,8 @@ PythonWidget::PythonWidget(QWidget *parent):QWidget(parent), data(){
     if (!data.loadJson())
         log->write("Error: fail to load user data from json file.");
     
-    general = new GeneralViewPy("python", &data, log);
     hiddenVar = new HiddenVarView(&data, log);
+    general = new GeneralViewPy("python", &data, log, hiddenVar);
     
     core = new CorePy(this, general, hiddenVar, log);
     QObject::connect(general, &GeneralViewPy::run, core, &CorePy::runPython);

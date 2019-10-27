@@ -51,6 +51,7 @@ ParameterMABox::ParameterMABox(LogView *l) {
     layout->addWidget(new QLabel(""), 2, 0);
     layout->addWidget(checkboxWidget, 3, 0, 1, 6);
     layout->addWidget(lineA, 6, 0, 1, 6);
+    layout->addWidget(new QLabel("Note: If max and min is zero, default max and min\nis applied based on video name."), 7, 0, 1, 6);
     setLayout(layout);
 }
 
@@ -74,7 +75,8 @@ bool ParameterMABox::isOrientationChecked() {
     return orientationCheckbox->isChecked();
 }
 
-ParameterPyBox::ParameterPyBox(UserData *data, LogView *l) {
+ParameterPyBox::ParameterPyBox(HiddenVarView *hidden, LogView *l) {
+    this->hidden = hidden;
     log = l;
     setTitle("Parameters");
     widget = new QStackedWidget();
@@ -83,14 +85,17 @@ ParameterPyBox::ParameterPyBox(UserData *data, LogView *l) {
     QLabel *description = new QLabel("The matched hidden parameters show here,\nwhen the source video is loaded. ");
     description->setAlignment(Qt::AlignCenter);
     
-    QLabel *error = new QLabel("There are no matched parameters with given video name.");
-    error->setAlignment(Qt::AlignCenter);
+    QLabel *noMatch = new QLabel("There are no matched parameters with given video name.");
+    noMatch->setAlignment(Qt::AlignCenter);
+    
+    QLabel *fileNoExist = new QLabel("The source video file does not exist in the folder.");
+    fileNoExist->setAlignment(Qt::AlignCenter);
     
     list = new QList<QLabel*>();
     QGridLayout * lay = new QGridLayout();
     QLabel *parameter;
-    for (int i = 0; i < data->hidenVarModel().model.count(); i++) {
-        parameter = new QLabel(QString::number(i));
+    for (int i = 0; i < hidden->getParameterNum(); i++) {
+        parameter = new QLabel("");
         parameter->setAlignment(Qt::AlignCenter);
         lay->addWidget(parameter, i % 10, i / 10, Qt::AlignCenter);
         list->append(parameter);
@@ -99,11 +104,32 @@ ParameterPyBox::ParameterPyBox(UserData *data, LogView *l) {
     view->setLayout(lay);
     
     widget->addWidget(description);
-    widget->addWidget(error);
     widget->addWidget(view);
-    widget->setCurrentIndex(2);
+    widget->addWidget(noMatch);
+    widget->addWidget(fileNoExist);
     auto *layout = new QVBoxLayout();
     layout->addWidget(widget);
     setLayout(layout);
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+}
+
+void ParameterPyBox::updateSrc(QString str) {
+    if (str.isEmpty())
+        return widget->setCurrentIndex(0);
+    
+    QFileInfo file(str);
+    if (!file.exists())
+        return widget->setCurrentIndex(3);
+    
+    QString name = file.fileName();
+    if (hidden->isMatched(name)) {
+        QStringList paramList = hidden->getPrintArguments(name);
+        //qDebug() << paramList.count() << "   " << list->count();
+        list->at(0)->setText("filename: " + name);
+        for (int i = 1; i < list->count(); i++) {
+            list->at(i)->setText(paramList.at(i - 1));
+        }
+        return widget->setCurrentIndex(1);
+    }
+    widget->setCurrentIndex(2);
 }

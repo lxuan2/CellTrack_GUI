@@ -103,6 +103,7 @@ void VideoGroupBox::setDuration(qint64 duration) {
 
 void VideoGroupBox::loadOriginal() {
     QString fileAbsPath = finder->currentText();
+    if(fileAbsPath.isEmpty()) return;
     if(!loadFile(fileAbsPath)) {
         emit updateSrc("N/A");
         return log->write("Error: No file or invalid file loaded.");
@@ -178,6 +179,7 @@ bool VideoGroupBox::loadFile(QString fileAbsPath) {
         }
         return true;
     }
+    player->setMedia(QUrl::fromLocalFile(fileAbsPath));
     return false;
 }
 

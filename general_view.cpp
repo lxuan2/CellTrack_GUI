@@ -58,7 +58,7 @@ void GeneralViewMA::setResultVideo(QString path) {
     videoBox->setResultPath(path);
 }
 
-GeneralViewPy::GeneralViewPy(QString app, UserData *data, LogView *log){
+GeneralViewPy::GeneralViewPy(QString app, UserData *data, LogView *log, HiddenVarView *hidden){
     
     // Widget initialize
     videoView = new VideoView();
@@ -66,8 +66,10 @@ GeneralViewPy::GeneralViewPy(QString app, UserData *data, LogView *log){
     // Groupbox initialize
     runBox     = new RunGroupBox("python", data, log);
     videoBox   = new VideoGroupBox(videoView, runBox, log, "python", data);
-    controlBox = new ParameterPyBox(data, log);
+    controlBox = new ParameterPyBox(hidden, log);
     
+    QObject::connect(videoBox, &VideoGroupBox::updateSrc, controlBox, &ParameterPyBox::updateSrc);
+    QObject::connect(hidden, &HiddenVarView::reloadParam, videoBox, &VideoGroupBox::loadOriginal);
     QObject::connect(runBox, &RunGroupBox::run, this, &GeneralViewPy::runDetected);
     
     // Widget layout initialize
@@ -77,6 +79,7 @@ GeneralViewPy::GeneralViewPy(QString app, UserData *data, LogView *log){
     layout->addWidget(controlBox, 0, 1);
     layout->addWidget(runBox, 1, 1);
     setLayout(layout);
+    videoBox->loadOriginal();
 }
 
 void GeneralViewPy::runDetected() {

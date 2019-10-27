@@ -58,10 +58,11 @@ RunGroupBox::RunGroupBox(QString app, UserData *data, LogView *l): srcPath("N/A"
     layout->addWidget(revealResButton, 3, 3, Qt::AlignRight);
     layout->addWidget(analyzeButton, 4, 3, Qt::AlignLeft);
     setLayout(layout);
+    loadCsharp();
 }
 
 void RunGroupBox::loadCsharp() {
-    if (finder->currentText() == appPath)
+    if (finder->currentText() == appPath || finder->currentText().isEmpty())
         return;
     updateRes("N/A");
     QFileInfo file(finder->currentText());

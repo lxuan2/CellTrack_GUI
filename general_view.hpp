@@ -54,7 +54,7 @@ class GeneralViewPy: public QWidget{
 public:
     
     // Default constructor
-    GeneralViewPy(QString app, UserData *data, LogView *log);
+    GeneralViewPy(QString app, UserData *data, LogView *log, HiddenVarView *hidden);
     
     QString getVideoPath();
     

@@ -41,36 +41,78 @@ HelperWidget::HelperWidget(QString name):QDialog(QApplication::focusWidget()) {
 
 void HelperWidget::createIntro() {
     QGridLayout *layout = new QGridLayout();
-    layout->addWidget(new QLabel("intro"));
+    
+    QPixmap map(QCoreApplication::applicationDirPath() + "/help_intro.png");
+    map.setDevicePixelRatio(2);
+    QLabel *label= new QLabel();
+    label->setPixmap(map);
+    label->setAlignment(Qt::AlignCenter);
+    
+    layout->addWidget(label);
     group->setLayout(layout);
 }
 
 void HelperWidget::createPyGeneral() {
     QGridLayout *layout = new QGridLayout();
-    layout->addWidget(new QLabel("general_py"));
+    
+    QPixmap map(QCoreApplication::applicationDirPath() + "/help_py_general.png");
+    map.setDevicePixelRatio(2);
+    QLabel *label= new QLabel();
+    label->setPixmap(map);
+    label->setAlignment(Qt::AlignCenter);
+    
+    layout->addWidget(label);
     group->setLayout(layout);
 }
 
 void HelperWidget::createPyHidden() {
     QGridLayout *layout = new QGridLayout();
-    layout->addWidget(new QLabel("hidden_py"));
+    
+    QPixmap map(QCoreApplication::applicationDirPath() + "/help_py_hidden.png");
+    map.setDevicePixelRatio(2);
+    QLabel *label= new QLabel();
+    label->setPixmap(map);
+    label->setAlignment(Qt::AlignCenter);
+    
+    layout->addWidget(label);
     group->setLayout(layout);
 }
 
 void HelperWidget::createMaGeneral() {
     QGridLayout *layout = new QGridLayout();
-    layout->addWidget(new QLabel("general_ma"));
+    
+    QPixmap map(QCoreApplication::applicationDirPath() + "/help_ma_general.png");
+    map.setDevicePixelRatio(2);
+    QLabel *label= new QLabel();
+    label->setPixmap(map);
+    label->setAlignment(Qt::AlignCenter);
+    
+    layout->addWidget(label);
     group->setLayout(layout);
 }
 
 void HelperWidget::createLog() {
     QGridLayout *layout = new QGridLayout();
-    layout->addWidget(new QLabel("log"));
+    
+    QPixmap map(QCoreApplication::applicationDirPath() + "/help_log.png");
+    map.setDevicePixelRatio(2);
+    QLabel *label= new QLabel();
+    label->setPixmap(map);
+    label->setAlignment(Qt::AlignCenter);
+    
+    layout->addWidget(label);
     group->setLayout(layout);
 }
 
 void HelperWidget::createError() {
     QGridLayout *layout = new QGridLayout();
-    layout->addWidget(new QLabel("error"));
+    
+    QPixmap map(QCoreApplication::applicationDirPath() + "/help_error.png");
+    map.setDevicePixelRatio(2);
+    QLabel *label= new QLabel();
+    label->setPixmap(map);
+    label->setAlignment(Qt::AlignCenter);
+    
+    layout->addWidget(label);
     group->setLayout(layout);
 }

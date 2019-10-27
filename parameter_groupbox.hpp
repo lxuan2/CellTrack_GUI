@@ -13,6 +13,7 @@
 
 #include "log_view.hpp"
 #include "run_groupbox.hpp"
+#include "hidden_var_view.hpp"
 
 class ParameterMABox: public QGroupBox
 {
@@ -58,13 +59,19 @@ class ParameterPyBox: public QGroupBox
 public:
     
     // Default constructor
-    ParameterPyBox(UserData *data, LogView *l);
+    ParameterPyBox(HiddenVarView *hidden, LogView *l);
+    
+public slots:
+    
+    void updateSrc(QString str);
     
 private:
     
     QStackedWidget *widget;
     
     QList<QLabel*> *list;
+    
+    HiddenVarView *hidden;
     
     // Log widget
     LogView *log;
