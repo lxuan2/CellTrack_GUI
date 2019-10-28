@@ -74,7 +74,7 @@
         "parameter7": 0
     },
     "UserPreference": {
-        "Pyprogram": "/Users/xuanli/Desktop/test.py",
+        "Pyprogram": "/Users/xuanli/Developer/CellTrack_GUI/test.py",
         "Pysource": "/Users/xuanli/Documents/cyto_data1.mp4",
         "rmWithoutAsk": false
     }

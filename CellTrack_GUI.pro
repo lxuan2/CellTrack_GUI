@@ -12,7 +12,7 @@ HEADERS = \
     matlab_widget.hpp \
     video_view.hpp \
     video_groupbox.hpp \
-    control_panel_groupbox.hpp \
+    parameter_groupbox.hpp \
     file_combobox.hpp \
     log_view.hpp \
     core.hpp \
@@ -27,14 +27,15 @@ HEADERS = \
     python_widget.hpp \
     process_view.hpp \
     radar.hpp \
-    parameter_model.hpp
+    parameter_model.hpp \
+    helper_widget.hpp
 
 SOURCES = main.cpp \
     scene_delegate.cpp \
     matlab_widget.cpp \
     video_view.cpp \
     video_groupbox.cpp \
-    control_panel_groupbox.cpp \
+    parameter_groupbox.cpp \
     file_combobox.cpp \
     log_view.cpp \
     core.cpp \
@@ -49,7 +50,8 @@ SOURCES = main.cpp \
     python_widget.cpp \
     process_view.cpp \
     radar.cpp \
-    parameter_model.cpp
+    parameter_model.cpp \
+    helper_widget.cpp
 
 target.path = /Users/xuanli/Developer/CellTrack_GUI/src
 INSTALLS += target

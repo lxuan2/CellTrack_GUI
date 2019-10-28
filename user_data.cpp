@@ -1,7 +1,7 @@
 #include "user_data.hpp"
 
 UserData::UserData() {
-    jsonFilePath = QCoreApplication::applicationDirPath() + "/userData.json";
+    jsonFilePath = QCoreApplication::applicationDirPath() + "/Resources/userData.json";
 }
 
 bool UserData::loadJson() {
