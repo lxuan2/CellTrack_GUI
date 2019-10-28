@@ -148,7 +148,12 @@ void CorePy::runPython() {
     
     log->write("\n   Running Python Code...\n");
     QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CorePy::finishedPython);
-    process->start("python3", arguments);
+    #if defined(_WIN32) || defined(_WIN64)    //Code for Windows
+        process->start("python", arguments);
+    #elif defined(__APPLE__)                  //Code for macos
+        process->start("python3", arguments);
+    #endif
+    
     
     /* Output:
     */
@@ -161,15 +166,16 @@ void CorePy::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
     proView->stop();
     
     if (exitStatus == QProcess::CrashExit) {
-        log->write("Error: the analysis process crashes for unknown reasons.");
+        log->write("Error: the analysis process crashes for unknown reasons.\n-- Finish Analysis --\n");
         return;
     }
     
     if (!process->canReadLine()) {
-        log->write("Error: cannot read result from python script.");
+        log->write("Error: cannot read result from python script.\n-- Finish Analysis --\n");
+        return;
     }
-    log->write("   Printing out results from python console...");
-    QByteArray result = process->readAll();
+    log->write("   Printing out results from python console...\n");
+    QByteArray result = process->readAllStandardOutput();
     std::string line = "";
     std::stringstream stream(result.toStdString());
     
