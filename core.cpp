@@ -87,7 +87,7 @@ void CoreMA::finishedMatlab(int exitCode, QProcess::ExitStatus exitStatus) {
                 "\n   Accuracy in tracking stopped cells:\n\t" + tmp[7] +
                 "\n   Output file name:\n\t" + tmp[8] + "\n"));
     
-    log->write("   Using time: " + proView->timeCost());
+    log->write("\n   Using time: " + proView->timeCost() + "\n");
     
     QFileInfo video(general->getVideoPath());
     general->setResultVideo(video.path() + QString::fromStdString("/" + tmp[8]));
@@ -181,6 +181,7 @@ void CorePy::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
     while (std::getline(stream, line)) {
         log->write("   " + QString::fromStdString(line));
     }
+    log->write("");
     
     // Send result video to player
     QFileInfo video(QString::fromStdString(resVideo));
@@ -188,7 +189,7 @@ void CorePy::finishedPython(int exitCode, QProcess::ExitStatus exitStatus) {
         general->setResultVideo(QString::fromStdString(resVideo));
     else
         log->write("Error: The first return result is not video full path.");
-    log->write("   Using time: " + proView->timeCost());
+    log->write("\n   Using time: " + proView->timeCost() + "\n");
     log->write("-- Finish Analysis --\n");
 }
 

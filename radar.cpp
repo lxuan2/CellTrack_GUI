@@ -8,13 +8,13 @@
 #include "radar.hpp"
 
 Radar::Radar() {
-    QPixmap radarMap(QCoreApplication::applicationDirPath() + "/RadarBackground.png");
+    QPixmap radarMap(QCoreApplication::applicationDirPath() + "/Resources/RadarBackground.png");
     radarMap.setDevicePixelRatio(4);
     radarLabel= new QLabel();
     radarLabel->setPixmap(radarMap);
     radarLabel->setAlignment(Qt::AlignCenter);
     
-    sweepMap = new QPixmap(QCoreApplication::applicationDirPath() + "/RadarSweep.png");
+    sweepMap = new QPixmap(QCoreApplication::applicationDirPath() + "/Resources/RadarSweep.png");
     sweepMap->setDevicePixelRatio(4);
     sweepLabel= new QLabel();
     sweepLabel->setPixmap(*sweepMap);

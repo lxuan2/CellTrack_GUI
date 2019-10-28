@@ -132,7 +132,6 @@ void VideoGroupBox::volumeChanged(int volume) {
 
 void VideoGroupBox::stateChanged(QMediaPlayer::State state) {
     if(player->state() == QMediaPlayer::StoppedState){
-        log->write("- Stop -");
         emit changePlayButton(false);
     }
 }

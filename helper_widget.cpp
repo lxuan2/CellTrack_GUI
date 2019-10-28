@@ -42,7 +42,7 @@ HelperWidget::HelperWidget(QString name):QDialog(QApplication::focusWidget()) {
 void HelperWidget::createIntro() {
     QGridLayout *layout = new QGridLayout();
     
-    QPixmap map(QCoreApplication::applicationDirPath() + "/help_intro.png");
+    QPixmap map(QCoreApplication::applicationDirPath() + "/Resources/help_intro.png");
     map.setDevicePixelRatio(2);
     QLabel *label= new QLabel();
     label->setPixmap(map);
@@ -55,7 +55,7 @@ void HelperWidget::createIntro() {
 void HelperWidget::createPyGeneral() {
     QGridLayout *layout = new QGridLayout();
     
-    QPixmap map(QCoreApplication::applicationDirPath() + "/help_py_general.png");
+    QPixmap map(QCoreApplication::applicationDirPath() + "/Resources/help_py_general.png");
     map.setDevicePixelRatio(2);
     QLabel *label= new QLabel();
     label->setPixmap(map);
@@ -68,7 +68,7 @@ void HelperWidget::createPyGeneral() {
 void HelperWidget::createPyHidden() {
     QGridLayout *layout = new QGridLayout();
     
-    QPixmap map(QCoreApplication::applicationDirPath() + "/help_py_hidden.png");
+    QPixmap map(QCoreApplication::applicationDirPath() + "/Resources/help_py_hidden.png");
     map.setDevicePixelRatio(2);
     QLabel *label= new QLabel();
     label->setPixmap(map);
@@ -81,7 +81,7 @@ void HelperWidget::createPyHidden() {
 void HelperWidget::createMaGeneral() {
     QGridLayout *layout = new QGridLayout();
     
-    QPixmap map(QCoreApplication::applicationDirPath() + "/help_ma_general.png");
+    QPixmap map(QCoreApplication::applicationDirPath() + "/Resources/help_ma_general.png");
     map.setDevicePixelRatio(2);
     QLabel *label= new QLabel();
     label->setPixmap(map);
@@ -94,7 +94,7 @@ void HelperWidget::createMaGeneral() {
 void HelperWidget::createLog() {
     QGridLayout *layout = new QGridLayout();
     
-    QPixmap map(QCoreApplication::applicationDirPath() + "/help_log.png");
+    QPixmap map(QCoreApplication::applicationDirPath() + "/Resources/help_log.png");
     map.setDevicePixelRatio(2);
     QLabel *label= new QLabel();
     label->setPixmap(map);
@@ -107,7 +107,7 @@ void HelperWidget::createLog() {
 void HelperWidget::createError() {
     QGridLayout *layout = new QGridLayout();
     
-    QPixmap map(QCoreApplication::applicationDirPath() + "/help_error.png");
+    QPixmap map(QCoreApplication::applicationDirPath() + "/Resources/help_error.png");
     map.setDevicePixelRatio(2);
     QLabel *label= new QLabel();
     label->setPixmap(map);
