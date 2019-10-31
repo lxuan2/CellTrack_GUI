@@ -150,7 +150,7 @@ void CorePy::runPython() {
     QObject::connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &CorePy::finishedPython);
     #if defined(_WIN32) || defined(_WIN64)    //Code for Windows
         process->start("python", arguments);
-    #elif defined(__APPLE__)                  //Code for macos
+    #elif defined(__APPLE__)                  //Code for macOS
         process->start("python3", arguments);
     #endif
     

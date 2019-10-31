@@ -9,11 +9,13 @@ It is probably not necessary, if you already have other decoder on your computer
 
     `K-Lite_Codec_Pack_1508_Basic.exe` has been included in release `others.zip`. Note that for installation 
 preference you need to choose `Movies & TV app`. The image, `intstallNote.PNG`, shows this in release `others.zip`.
-2. Install `python 3.7` and `opencv-python` package:
+2. Install `python 3.7`:
     Download `python 3.7` installer from [www.python.org](https://www.python.org) based on your computer system. 
 On Windows, make sure that you select `Add to PATH` and `Disable path length limit`. After installation, 
 please reboot the computer.
-    In terminal, install opencv by `pip3 install opencv-python`.
+3. Install `opencv-python`, `scipy` and `scikit-image` package
+    In terminal, use command `pip3 install opencv-python`, `pip3 install scipy` and 
+`pip3 install scikit-image`
 
 ## General Interface for communicating with CellTrack_GUI
 I have serveral assumptions about what you have:
@@ -55,7 +57,7 @@ For step 2, you instance the template for a specific video, `cycto.avi` and `v.a
 ```
 For step 3, you load video in the GUI, choose your script and click start analysis. Later, you see the return result from Log Tab.
 
-The command that the GUI execute: `python yourScript.py "Here are your customized parameters"`
+The command that the GUI execute: `python yourScript.py videoPath videoName "Here are your customized parameters"`
 Hint: `test.py` has been provided in release `others.zip`
 
 ### Note: 
