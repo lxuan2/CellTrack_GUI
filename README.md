@@ -18,12 +18,12 @@ please reboot the computer.
 `pip3 install scikit-image`
 
 ## General Interface for communicating with CellTrack_GUI
-I have serveral assumptions about what you have:
+There are serveral assumptions about what you have:
     1. A python script 
     2. Serval parameters that you want to pass it to your python script. 
     3. Use `print()` function to return results. (The app reads results line by line.)
 
-In following paragraphs, I explain above assumptions in order.
+In following paragraphs, above assumptions  are explained in order.
 1. A python script : The python environment is based on the system python 3 environment. 
                                 Therefore, please install the opencv or other packages in system level.
 2. Serval parameters that you want to pass it to your python script:
@@ -53,7 +53,7 @@ For step 2, you instance the template for a specific video, `cycto.avi` and `v.a
         "maxSize": 2.2222,
         "minSize": 100.14444
     }
- }
+ ]
 ```
 For step 3, you load video in the GUI, choose your script and click start analysis. Later, you see the return result from Log Tab.
 
@@ -64,7 +64,7 @@ Hint: `test.py` has been provided in release `others.zip`
 1. The types in the `Template` are limited to `string` and `double`. 
 2. `Template` has to have `filename` defined in it, since the GUI uses the file name to match videos and corresponding param.
 3. Kind reminder: careful with comma symbol in json file. The last object doesn't have comma at the end.
-4. I recommand you modify the `userData.json` in folder instead of creating a new one.
+4. It is recommanded you modify the `userData.json` in folder instead of creating a new one.
 3. Use `print()` function to return results. (The app reads results line by line):
 Making sure the first thing you print is the full path for result video. The GUI checks that file and loads it into the player. Other results are read and printed line by line in Log Tab.
 
